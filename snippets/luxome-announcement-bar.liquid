@@ -1,0 +1,59 @@
+<style>
+  .announcement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 33px;
+    background: #AF0404;
+    color: white;
+    font-size: 14px;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .announcement {
+      height: 34px;
+      font-size: 16px;
+    }
+  }
+    @media (max-width: 768px) {
+    .announcement {
+        padding: 20px;
+     }
+  }
+  #qab_content {
+    padding-top: 4px;
+  }
+</style>
+
+<div id='luxome-announcement-bar' class='announcement'>
+  <div id='qab_content'>
+    <span class='announcement__message'>
+  		OUR BEST DEALS OF THE YEAR! 
+    </span>
+  </div>
+</div>
+
+<script>
+  
+  (function () {
+    let messages = {
+      m1: 'OUR BEST DEALS OF THE YEAR!',
+      m2: 'BLACK FRIDAY SAVINGS + FREE SHIPPING!'
+    }
+    
+    let nextMessage
+    let n = 0
+
+    setInterval(function () {
+      if(n){
+        nextMessage = messages.m1
+        n = 0
+      } else {
+        nextMessage = messages.m2
+        n = 1
+      }
+      document.querySelector('.announcement__message').innerText = nextMessage
+    }, 4500)
+  })()
+  
+</script>

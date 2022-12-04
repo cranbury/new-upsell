@@ -1,0 +1,231 @@
+{%comment%} BAMBOO PILLOWCASE SET {%endcomment %}
+
+{% assign BP_show_custom = true %}
+{% assign BP_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+     
+{%comment%} COOLING WEIGHTED BLANKETS {%endcomment%}
+
+{% assign COWB_show_custom = true %}
+{% assign COWB_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+     
+{%comment%} INTEGRATED WEIGHTED BLANKETS {%endcomment%}
+
+{% assign IWB_show_custom = true %}
+{% assign IWB_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+{%comment%} LAYR PILLOW {%endcomment%}
+
+{% assign LAYR_show_custom = true %}
+{% assign LAYR_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+{%comment%} BAMBOO SHEETS {%endcomment%}
+
+{% assign BS_show_custom = true %}
+{% assign BS_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+{%comment%} WEIGHTED BLANKET COVER {%endcomment%}
+
+{% assign CWB_show_custom = true %}
+{% assign CWB_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+{%comment%} REMOVABLE COVERS {%endcomment%}
+
+{% assign RC_show_custom = true %}
+{% assign RC_custom_discount = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+{%comment%} SITEWIDE MESSAGE {%endcomment%}
+
+{% assign site_wide = "OUR ONLY SALE OF THE YEAR!" %}
+
+{%comment%}-------------------------------------------------------{%endcomment%}
+
+
+<div class="promo-product-div">
+  {% comment %} If no promo, only comment out the below paragraph {% endcomment %}
+  
+  {% case product.id %}
+  {% when 4502045294653 %} {%comment%}bamboo-pillowcase-set{%endcomment%}
+     <p class="promo-product-p">
+       {% if BP_show_custom %}
+       	 {{ BP_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+  
+  {% when 2140387999813 %} {%comment%}cooling-weighted-blankets{%endcomment%}
+     <p class="promo-product-p">
+       {% if COWB_show_custom %}
+       	 {{ COWB_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+  
+  {% when 1482400661573 %} {%comment%}weighted-blanket-integrated{%endcomment%}
+	 <p class="promo-product-p">
+       {% if IWB_show_custom %}
+       	 {{ IWB_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+  
+  {% when 4492419530813 %} {%comment%}layr-adjustable-pillow{%endcomment%}
+	 <p class="promo-product-p">
+       {% if LAYR_show_custom %}
+       	 {{ LAYR_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+     </p>
+  
+  {% when 4405624864829 %} {%comment%}bamboo-sheets{%endcomment%}
+	 <p class="promo-product-p">
+       {% if BS_show_custom %}
+       	 {{ BS_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+     </p>
+  
+  {% when 1482350919749 %} {%comment%}weighted-blanket-cover{%endcomment%}
+	 <p class="promo-product-p">
+       {% if CWB_show_custom %}
+       	 {{ CWB_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+  
+  {% when 2163188596805 %} {%comment%}removable-covers{%endcomment%}
+	 <p class="promo-product-p">
+       {% if RC_show_custom %}
+       	 {{ RC_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+  
+  {% when 6586143539261 %} {%comment%}lightweight-blanket{%endcomment%}
+	 <p class="promo-product-p">
+       {% if LWB_show_custom %}
+       	 {{ LWB_custom_discount }}
+       {% else %}
+       	 {{ site_wide }}
+       {% endif %}
+  	 </p>
+    
+  {% when 6640736469053 %} {%comment%}plush-performance-towel{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+  
+  {% when 6669003915325 %} {%comment%}spa-collection-towel{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+  
+  {% when 6824157577277 %} {%comment%}climasense-comforter{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+    
+  {% when 6824646279229 %} {%comment%}duvet-cover{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+    
+  {% when 6890447896637 %} {%comment%}weighted-blanket{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+      
+  {% when 6727710900285 %} {%comment%}ultra-plush-robe{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+      
+  {% when 6789635113021 %} {%comment%}ultra-plush-throw{%endcomment%}
+	 <p class="promo-product-p">
+       	 {{ site_wide }}
+  	 </p>
+        
+{% endcase %}
+  
+  {% comment %} Add paragraph for LAYR Pillow page under price and reviews {% endcomment %}
+  {% if product.id == 4492419530813 %}{% comment %} LAYR Pillow {% endcomment %}
+  
+  	<div id="layr-pillow-offer" {% if product.selected_variant.id != 39349072134205 %}style="display: none;"{% endif %}>
+      <i style="display: none;">Only <span id="layr-special-price" class="span-quicksand">{{ product.selected_variant.price | divided_by: 2 | money }}</span> per pillow!</i>
+    </div>
+    {% render 'add-paragraph-layr-price-section' %}
+  
+  {% comment %} Add paragraph for Robe page under price and reviews {% endcomment %}
+  {% elsif product.id == 6727710900285 %}{% comment %} Ultra Plush Robe {% endcomment %}
+     {% render 'add-paragraph-robe-price-section' %}
+
+  {% elsif product.id == 6586143539261 %}{% comment %} Lightweight  6586143539261 {% endcomment %}
+   <div id="layr-pillow-offer" {% if product.selected_variant.id != 5 %}style="display: none;"{% endif %}>
+      <i>Only <span id="layr-special-price" class="span-quicksand">{{ product.selected_variant.price | divided_by: 2 | money }}</span> per blanket!</i>
+    </div>
+    <p class="promo-product-p"></p>
+    <div class="">
+      <p class="layr-price-p">With a thinner profile than a traditional comforter, this perfectly soft & breathable quilted blanket will keep you comfortable all year round. The naturally thermal-regulating bamboo viscose fabric and fill is perfect for hot sleepers, while still providing adequate warmth in the cooler months.</p>
+    </div>
+  {% elsif product.id == 6640736469053 %}{% comment %} Towels  6640736469053 {% endcomment %} 
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p"> Who knew there was a towel that could do everything? With our patented dual loop structure, Luxome's Plush Performance Towels absorb
+                    more water and dry quicker, while staying soft and plush for hundreds of washings.</p>
+            </div>
+  {% elsif product.id == 6669003915325 %}{% comment %}Spa Collection Towels  6669003915325 {% endcomment %} 
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p"> The softest towels ever! The Viscose from Bamboo & cotton blend offers a luxuriously silky, soft feel while also being highly absorbent as you dry. Our Spa Collection towels really are the best of both worlds: supremely soft & high performing. </p>
+            </div>
+  {% elsif product.id == 2163188596805 %} {%comment%}removable-covers{%endcomment%}
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p"> Featuring our popular luxury fabrics & available in a variety of colors and sizes. An extra cover is great for when you're washing one, or to simply give your bedroom a refreshed look.</p>
+            </div> 
+  {% elsif product.id == 6789635113021 %} {%comment%}Ultra-Plush-Throw{%endcomment%}
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p"> Designed for cuddling up & getting cozy just about anywhere in your home. Our Ultra Plush Throw Blanket is the must-have accessory for laid-back evenings, afternoon naps, and morning coffee on the back porch.</p>
+            </div> 
+  {% elsif product.id == 6824646279229 %} {%comment%}Duvet-Cover{%endcomment%}
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p">Choose the fabric that best suits your sleep style. For a silky-soft feel, try our 100% Viscose from Bamboo. For a crisp feel & extra boost of temperature-regulating power, choose Cotton with 37.5® Technology. </p>
+            </div>
+    {% elsif product.id == 6824157577277 %} {%comment%}ClimaSense Comforter{%endcomment%}
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p">Luxuriously fluffy & plush, our ultra-breathable comforter is infused with 37.5® Technology and adjusts to help maintain your personal microclimate, naturally regulating temperature for deeper, longer sleep.</p>
+            </div>
+    {% elsif product.id == 6890447896637 %} {%comment%}Weighted Blanket Consolidation Page{%endcomment%}
+            <!-- product price -->
+            <div class="">
+                <p class="layr-price-p">Scientifically designed to help you sleep better without overheating. Our luxurious weighted blankets are available in removable cover (2-piece) and integrated cover (1-piece).</p>
+            </div>
+  {% endif %}
+  
+  
+  
+  
+</div>

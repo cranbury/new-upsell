@@ -1,0 +1,289 @@
+{%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+
+{%- unless product.empty? -%}
+  <div
+    data-product-images
+    data-zoom="{{ settings.product_zoom_enable }}"
+    data-has-slideshow="true">
+    <div class="product__photos product__photos-{{ section_id }} product__photos--{{ thumbnail_position }}">
+
+      <div class="product__main-photos" data-aos data-product-single-media-group>
+        <div id="ProductPhotos-{{ section_id }}" class="main-carousel">
+          {%- for media in product.media -%}
+            {%- include 'media',
+              media: media,
+              featured_media: featured_media,
+              isModal: isModal,
+              video_looping: video_looping,
+              video_style: video_style
+            -%}
+          {%- endfor -%}
+        </div>
+        <style>img#imgMain.fastfade{animation: fade-in 0.2s cubic-bezier(0.26, 0.54, 0.32, 1) 0s forwards;}</style>
+        <script>if(screen.width<500){imgSize=450} else {imgSize=768}; document.querySelector('#ProductPhotos-{{ section_id }} > div.starting-slide > div > div > img').setAttribute('id', 'imgMain'); document.getElementById('imgMain').setAttribute('src', document.getElementById('imgMain').getAttribute('data-src').replace('{width}', imgSize)); document.getElementById('imgMain').classList.add('lazyloaded', 'fastfade'); document.getElementById('imgMain').classList.remove('lazyload');</script>
+        {% assign first_3d_model = product.media | where: 'media_type', 'model' | first %}
+
+        {%- if first_3d_model -%}
+          <button
+            aria-label="{{ 'products.product.view_in_space_label' | t }}"
+            class="product-single__view-in-space"
+            data-shopify-xr
+            data-shopify-model3d-id="{{ first_3d_model.id }}"
+            data-shopify-title="{{ product.title }}"
+            data-shopify-xr-hidden
+          >
+            <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-3d" viewBox="18.24 17.35 24.52 28.3"><path fill="#3A3A3A" d="M30.5 17.35l-12.26 7.07v14.16l12.26 7.07 12.26-7.08V24.42L30.5 17.35zM20.24 37.42V25.58l10.26-5.93 10.13 5.85-10.13 5.88v12l-10.26-5.96z"/></svg>
+            <span class='product-single__view-in-space-text'>
+              {{ 'products.product.view_in_space' | t }}
+            </span>
+          </button>
+        {%- endif -%}
+
+        <div class="product__photo-dots product__photo-dots--{{ section_id }}">
+          <div class="carousel-dot-container">
+            {%- for media in product.media -%}
+              {%- assign img_url = media.preview_image -%}
+              {% if product.id == 4492419530813 %} {% comment %} LAYR Pillow {% endcomment %}
+            	  {% if forloop.index0 == 0 %}
+            		  <div
+                    class="dot-carousel dot-picked"
+                    data-img="{{ media.preview_image | img_url: product_zoom_size }}"
+                    data-index="{{ forloop.index0 }}"
+                    onclick="dotFocus(this)"
+                    style="display:block;">
+                      </div>
+              	  {% else %}
+                      <div
+                        class="dot-carousel"
+                        data-img="{{ media.preview_image | img_url: product_zoom_size }}"
+                        data-index="{{ forloop.index0 }}"
+                        onclick="dotFocus(this)"
+                        style="display:block;">
+                      </div>
+            	  {% endif %}
+              {% else %}
+                <div
+                     class="dot-carousel"
+                     data-img="{{ media.preview_image | img_url: product_zoom_size }}"
+                     data-index="{{ forloop.index0 }}"
+                     onclick="dotFocus(this)">
+                </div>
+              {% endif %}
+            
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- if product.media.size > 1 -%}
+          <span class="product-main-image-nav-btn product-main-image-nav-btn_prev js-arrow-prev">
+            <div onclick="moveLeft()" class="product-main-image-nav-btn__inner">
+            </div>
+          </span>
+          <span class="product-main-image-nav-btn product-main-image-nav-btn_next js-arrow-next">
+            <div onclick="moveRight()" class="product-main-image-nav-btn__inner">
+            </div>
+          </span>
+        {% endif %}
+      </div>
+        <div
+          id="ProductThumbs-{{ section_id }}"
+          class="product__thumbs product__thumbs--{{ thumbnail_position }} product__thumbs-placement--{{ image_position }} {% if product.media.size == 1 %} medium-up--hide{% endif %} small--hide product__thumbs-sizing-vh"
+          data-position="{{ thumbnail_position }}"
+          data-arrows="{{ thumbnail_arrows }}"
+          data-aos
+          data-slider-color="{{color}}"
+             >
+
+          <div id="thumb-carousel">
+{%- if product.media.size > 1 -%}
+              {%- for media in product.media -%}
+                <div class="product__thumb-item"
+                  {% if product.id == 4492419530813 %} {% comment %} LAYR Pillow {% endcomment %}
+                     style="display:block;"
+                  {% endif %}   
+                  data-index="{{ forloop.index0 }}"
+                  {% if forloop.index0 > 5 %}data-posx="{{ forloop.index0 | minus: 5 }}"{% endif %}>
+                  <div class="image-wrap" style="height: 0; padding-bottom: {{ 100 | divided_by: media.preview_image.aspect_ratio }}%;">
+                    <a
+                      href="{{ media.preview_image | img_url: product_zoom_size }}"
+                      class="product__thumb product__thumb-{{ section_id }} js-no-transition{% if forloop.index0 == 0 %} thumb-focused{% endif %}"
+                      data-index="{{ forloop.index0 }}"
+                      data-id="{{ media.id }}"
+                      onclick="return thumbFocus(this)">
+                      {%- if media.media_type == 'video' or media.media_type == 'external_video' -%}
+                        <span class="product__thumb-icon">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-play" viewBox="18.24 17.35 24.52 28.3"><path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/></svg>
+                        </span>
+                      {%- endif -%}
+                      {%- if media.media_type == 'model' -%}
+                        <span class="product__thumb-icon">
+                          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-3d" viewBox="18.24 17.35 24.52 28.3"><path fill="#3A3A3A" d="M30.5 17.35l-12.26 7.07v14.16l12.26 7.07 12.26-7.08V24.42L30.5 17.35zM20.24 37.42V25.58l10.26-5.93 10.13 5.85-10.13 5.88v12l-10.26-5.96z"/></svg>
+                        </span>
+                      {%- endif -%}
+
+                      {%- assign img_url = media.preview_image | img_url: '120x' -%}
+                      <img class="animation-delay-1 lazyload"
+                          data-src="{{ img_url }}"
+                          data-aspectratio="{{ media.preview_image.aspect_ratio }}"
+                          data-sizes="auto"
+                          alt="{{ media.alt | escape }}">
+                    </a>
+                  </div>
+                </div>
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <script type="application/json" id="ModelJson-{{ section_id }}">
+    {{ product.media| json }}
+   
+  </script>
+	
+<script>
+	function thumbFocus(ele){
+      const slides = [...document.querySelectorAll('.product__thumb')];
+      const mainSlides = [...document.querySelector('.main-carousel').children];
+      
+      slides.filter(slide => slide.classList.remove('thumb-focused'));
+	  ele.classList.add('thumb-focused');
+      
+      let idx = ele.parentNode.parentNode.dataset.index;
+      
+      mainSlides.forEach(slide => {
+      	slide.style.display = 'none';
+        let img = slide.firstElementChild.firstElementChild.firstElementChild;
+        img.style.opacity = 0;
+        img.classList.remove('lazyautosizes')
+        //img.classList.remove('lazyloaded')
+        if(slide.dataset.index === idx){
+       	  slide.style.display = 'block';
+          let img = slide.firstElementChild.firstElementChild.firstElementChild;
+          img.style.opacity = 1;
+          img.classList.add('lazyautosizes')
+          //img.classList.add('lazyloaded')
+        }
+      })
+      
+      return false;
+	}
+    
+    function dotFocus(ele){
+      const dots = [...document.querySelectorAll('.dot-carousel')];
+      const mainSlides = [...document.querySelector('.main-carousel').children];
+      
+      dots.filter(dot => {dot.classList.remove('dot-picked'); dot.classList.remove('thumb-focused')});
+	  ele.classList.add('dot-picked');
+      
+      let idx = ele.dataset.index;
+      
+      mainSlides.forEach(slide => {
+      	slide.style.display = 'none';
+        let img = slide.firstElementChild.firstElementChild.firstElementChild;
+        img.style.opacity = 0;
+        img.classList.remove('lazyautosizes')
+        //img.classList.remove('lazyloaded')
+        if(slide.dataset.index === idx){
+       	  slide.style.display = 'block';
+          let img = slide.firstElementChild.firstElementChild.firstElementChild;
+          img.style.opacity = 1;
+          img.classList.add('lazyautosizes')
+          //img.classList.add('lazyloaded')
+        }
+      })
+	}
+    
+    function moveLeft(){
+      let focused = document.querySelector('.thumb-focused');
+      let idx = focused.parentNode.parentNode.dataset.index;
+      let first = true;
+      if(parseInt(idx) > 0){
+        const slides = [...document.querySelectorAll('.product__thumb')];
+        slides.reverse().forEach(function(slide){
+          let display = window.getComputedStyle(slide.parentNode.parentNode).display;
+          if(parseInt(slide.dataset.index) < parseInt(idx) && display != 'none' && first ){
+            thumbFocus(slide)
+            dotFocus(document.querySelectorAll('.dot-carousel')[slide.dataset.index])
+            first = false;
+          }
+        })
+      	
+      }
+    }
+    
+    function moveRight(){
+      let focused = document.querySelector('.thumb-focused');
+      let maxLength = document.querySelectorAll('.product__thumb-item').length;
+      let idx = focused.parentNode.parentNode.dataset.index;
+      let first = true;
+      if(parseInt(idx) < maxLength){
+        const slides = [...document.querySelectorAll('.product__thumb')];
+        slides.forEach(function(slide){
+          let display = window.getComputedStyle(slide.parentNode.parentNode).display;
+          if(parseInt(slide.dataset.index) > parseInt(idx) && display != 'none' && first ){
+            thumbFocus(slide)
+            dotFocus(document.querySelectorAll('.dot-carousel')[slide.dataset.index])
+            first = false;
+          }
+        })
+       
+      }
+    }
+    
+    function dotLeft(){
+      console.log('left ')
+      let focused = document.querySelector('.dot-picked');
+      let idx = focused.dataset.index;
+      let first = true;
+      if(parseInt(idx) > 0){
+        const dots = [...document.querySelectorAll('.dot-carousel')];
+        dots.reverse().forEach(function(dot){
+          let display = window.getComputedStyle(dot).display;
+          if(parseInt(dot.dataset.index) < parseInt(idx) && display != 'none' && first ){
+            thumbFocus(dot)
+            dotFocus(dot)
+            first = false;
+          }
+        })
+      	
+      }
+    }
+    
+    function dotRight(){
+      console.log('rigght')
+      let focused = document.querySelector('.dot-picked');
+      let maxLength = document.querySelectorAll('.dot-carousel').length;
+      let idx = focused.dataset.index;
+      let first = true;
+      if(parseInt(idx) < maxLength){
+        const dots = [...document.querySelectorAll('.dot-carousel')];
+        dots.forEach(function(dot){
+          let display = window.getComputedStyle(dot).display;
+          if(parseInt(dot.dataset.index) > parseInt(idx) && display != 'none' && first ){
+            thumbFocus(dot)
+            dotFocus(dot)
+            first = false;
+          }
+        })
+       
+      }
+    }
+    
+    
+  </script>
+{%- else -%}
+  <div class="product__photos product__photos-{{ section_id }}">
+    <div class="product__main-photos" style="width: 100%">
+      <div id="ProductPhotos-{{ section_id }}">
+        <div data-index="{{ forloop.index0 }}">
+          <a href="#">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+{%- endunless -%}

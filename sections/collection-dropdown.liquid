@@ -1,0 +1,13 @@
+{% if collection.id == 91114799173 %}{%comment%}luxome-weighted-blankets{%endcomment%}
+  {% include 'bd-collection-dropdowns' %}
+{% elsif collection.id == 162048868413 or collection.id == 157696688189 %}{%comment%}all-products & all-luxome-products{%endcomment%}
+{% else %}
+  {% include 'bd-collection-dropdowns' %}
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}

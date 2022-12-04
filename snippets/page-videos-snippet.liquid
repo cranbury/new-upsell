@@ -1,0 +1,74 @@
+<header class="dark-blue-header">
+  <h3 class="dark-blue-h3">VIDEOS</h3>
+  <h1 class="dark-blue-h1">Learn More</h1>
+</header>
+
+<main class="ancillary-main videos-main">
+  <h3 class="video-h3">Learn more about the Luxome Difference</h3>
+  <!-- VIDEO -->
+  <!--   <div class="video-margin">
+    <div class='embed-container'>
+      <iframe src='https://www.youtube.com/embed/4cpyVkrSCfg' frameborder='0' allowfullscreen></iframe>
+    </div>
+  </div> -->
+  
+  <button class="accordion" style="display: flex; justify-content: space-between; align-items: center;">
+    Weighted Blankets
+  </button>
+  <div class="panel">
+    <p class="faq-a-normal"><a href="/blogs/videos/removable-cover-weighted-blanket" class="a-no-underline">Removable Cover Weighted Blanket</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/integrated-cover-weighted-blanket" class="a-no-underline">Integrated Cover Weighted Blanket</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/blanket-covers" class="a-no-underline">Blanket Covers</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-gravity" class="a-no-underline">Luxome vs. Gravity</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-brookstone" class="a-no-underline">Luxome vs. Brookstone</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-blanquil" class="a-no-underline">Luxome vs. Blanquil</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-sharper-image" class="a-no-underline">Luxome vs. Sharper Image</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-my-calm-blanket" class="a-no-underline">Luxome vs. My Calm Blanket</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-casper" class="a-no-underline">Luxome vs. Casper</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-vs-luna" class="a-no-underline">Luxome vs. Luna</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/what-makes-luxome-better" class="a-no-underline">What Makes Luxome BETTER?</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/whats-really-inside-of-a-weighted-blanket?" class="a-no-underline">What's Really Inside of a Weighted Blanket?</a></p>
+  </div>
+  
+  <button class="accordion"
+          style="display: flex;
+    			 justify-content: space-between;
+                 align-items: center;">
+    Bamboo Sheets
+  </button>
+  <div class="panel">
+<!--     <p class="faq-a-normal"><a href="/blogs/videos/bamboo-sheets" class="a-no-underline">Coming soon...</a></p> -->
+  </div>
+  
+  <button class="accordion"
+          style="display: flex;
+    			 justify-content: space-between;
+                 align-items: center;">
+    LAYR Pillow
+  </button>
+  <div class="panel">
+    <p class="faq-a-normal"><a href="/blogs/videos/layr-pillow" class="a-no-underline">Introducing LAYR Adjustable Pillow</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/layr-pillow-instructions" class="a-no-underline">LAYR Pillow – Instructions</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/how-to-customize-your-layr-pillow" class="a-no-underline">How To Customize Your LAYR Pillow</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-layr-vs-sleepgram" class="a-no-underline">Luxome LAYR vs. Sleepgram</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-layr-vs-sleep-number" class="a-no-underline">Luxome LAYR vs. Sleep Number</a></p>
+    <p class="faq-a-normal"><a href="/blogs/videos/luxome-layr-pillow-how-are-we-different" class="a-no-underline">LAYR Pillow – How Are We Different?</a></p>
+  </div>
+</main>
+
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("faq-active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      } 
+    });
+  }
+</script>

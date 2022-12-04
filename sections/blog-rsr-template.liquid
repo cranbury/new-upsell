@@ -1,0 +1,124 @@
+<header class="dark-blue-header">
+  <h3 class="dark-blue-h3">OUR BLOG</h3>
+  <h1 class="dark-blue-h1">Read. Sleep. Repeat.</h1>
+  {% comment %}
+ 	{{ blog.title }}
+  {% endcomment %}
+</header>
+
+{%- capture contentForQuerystring -%}{{ content_for_header }}{%- endcapture -%}
+{%- assign pageUrl = contentForQuerystring | split:'"pageurl":"' | last | split:'"' | first | split:'.myshopify.com' | last |
+   replace:'\/','/' | 
+   replace:'%20',' ' | 
+   replace:'\u0026','&'
+-%}
+
+{%- assign queryTag = false -%}
+
+{%- for i in (1..1) -%}
+
+  {%- unless pageUrl contains "?" -%}{% break %}{%- endunless -%}
+  
+  {%- assign pageQuerystring = pageUrl | split:'?' | last -%}
+  {%- assign parts= pageQuerystring | split:'&' -%}
+
+  {%- for part in parts -%}
+	
+    {%- assign keyAndValue = part | split:'=' -%}
+	{%- if keyAndValue.size > 1 -%}
+
+      {% if keyAndValue[0] == 'tag'%}
+          {%- assign queryTag = keyAndValue[1]-%}
+      {% endif%}
+
+    {%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+
+<main class="blog-main">
+  <div class="div-blog-tags">
+    {% for tag in blog.all_tags %}
+      <a href="https://luxome.com/blogs/read-sleep-repeat{% unless tag == queryTag %}?tag={{tag}}{% endunless %}" class="btn-tag-blog{% if tag == queryTag %} tag-selected {% endif %}">{{ tag }}</a>
+    {% endfor %}
+  </div>
+
+  <div class="blog-main-upper-div-p">
+    <p class="blog-main-upper-p">Welcome to the Luxome blog. Exploring the comforts of home, the secrets of better sleep, & everyday tips to help improve your health & wellness. Curl up, get cozy, & take a moment to take it all in.</p>
+  </div>
+
+  <div class="blog-main-articles">
+    
+    {% unless queryTag  %}
+    	{% paginate blog.articles by 6 %}
+          {% for article in blog.articles %}
+              <a href="https://luxome.com/blogs/{{article.handle}}" class="blog-article-wrapper">
+                <div class="blog-article-img lazyload"
+                     data-bgset="{{ article.image.src | img_url: '400x'}}">
+
+                </div>
+                <p class="blog-article-title">{{ article.title }}</p>
+                <p class="blog-article-excerpt">{{ article.excerpt }}</p>
+              </a>
+          {% endfor %}
+
+          <div class="div-blog-pagination">
+            {% if paginate.previous.is_link %}
+              <a href="{{ paginate.previous.url }}" class="btn-blog-prv-nxt">Previous</a>
+            {% else %}
+              <div class="btn-blog-prv-nxt unselectable">PREVIOUS</div>
+            {% endif %}
+              <div class="blog-paginations-numbers">{{ paginate.current_page }} of {{ paginate.pages }}</div>
+            {% if paginate.next.is_link %}
+              <a href="{{ paginate.next.url }}" class="btn-blog-prv-nxt">Next</a>
+            {% else %}
+              <div class="btn-blog-prv-nxt unselectable">NEXT</div>
+            {% endif %}
+          </div>
+        {% assign sp_paginate_by = paginate.page_size %}{% endpaginate %}
+    {% else %}
+    	{% paginate blog.articles | where: 'tags', queryTag | by 6 %}
+          {% for article in blog.articles %}
+            {% if article.tags contains queryTag%}
+              <a href="https://luxome.com/blogs/{{article.handle}}" class="blog-article-wrapper">
+                <div class="blog-article-img lazyload"
+                     data-bgset="{{ article.image.src | img_url: '400x'}}">
+
+                </div>
+                <p class="blog-article-title">{{ article.title }}</p>
+                {% comment %}
+                  {% for tag  in article.tags %}
+                      {{tag}}
+                  {% endfor %}
+                {% endcomment %}
+                <p class="blog-article-excerpt">{{ article.excerpt }}</p>
+              </a>
+            {% endif %}
+          {% endfor %}
+
+          <div class="div-blog-pagination">
+            {% if paginate.previous.is_link %}
+              <a href="{{ paginate.previous.url }}" class="btn-blog-prv-nxt">Previous</a>
+            {% else %}
+              <div class="btn-blog-prv-nxt unselectable">PREVIOUS</div>
+            {% endif %}
+              <div class="blog-paginations-numbers">{{ paginate.current_page }} of {{ paginate.pages }}</div>
+            {% if paginate.next.is_link %}
+              <a href="{{ paginate.next.url }}" class="btn-blog-prv-nxt">Next</a>
+            {% else %}
+              <div class="btn-blog-prv-nxt unselectable">NEXT</div>
+            {% endif %}
+          </div>
+        {% assign sp_paginate_by = paginate.page_size %}{% endpaginate %}
+    {% endunless %}
+    
+    
+    
+  </div>
+</main>
+
+{% if sp_paginate_by %}{% render 'spurit_po2_collection_template_snippet', paginate_by: sp_paginate_by %}{% endif %}{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}

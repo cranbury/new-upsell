@@ -1,0 +1,42 @@
+{% render 'shogun-products', content: collection %}
+{% include 'shogun-products', content: collection %}
+{{collection.metafields.shogun.above}}
+<div id="CollectionAjaxResult" class="collection-content collection-all">
+  <div id="CollectionAjaxContent">
+    {% if collection.id == 162048868413 or collection.id == 157696688189 %}{%comment%}All Products & Innovation. Luxury. Sleep.{%endcomment%}
+      <div class="collection-all-banner">
+        <p>THE BEST GIFTS OF THE SEASON</p>
+        <h1>Holiday Savings</h1>
+      </div>
+    {% else %}
+      <div class="grid upper-grid-collection">
+        <div class="upper-part-lifestyle-image-and-review">
+          {% section 'collection-lifestyle-image' %}
+          <div class="grid__item medium-up--one-quarter collection-review-section">
+            {% section 'collection-review' %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
+    <div class="page-width {% if collection.id == 162048868413 or collection.id == 157696688189 %}all-products {% endif %}">
+      <div class="grid lower-grid-collection grid-collection">
+        <div class="dropdown-size-color-fabric-section">
+          {% section 'collection-dropdown' %}
+        </div>
+        <div class="cover-products-section">
+          {% if collection.id == 162048868413 or collection.id == 157696688189  %}{%comment%}All Products & Innovation. Luxury. Sleep.{%endcomment%}
+            {% include 'bd-collection-products-all' %}
+          {% else %}
+            {% section 'collection-products' %}
+          {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+
+		
+
+
+{{collection.metafields.shogun.below}}
+
+

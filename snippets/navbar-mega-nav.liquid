@@ -1,0 +1,342 @@
+<!-- WEIGHTED BLANKETS -->
+<div class="header-dropdown header-dropdown-links weighted-blankets-dropdown">
+  
+  <div class="header-links header-links-right-panel"> 
+    <h4 class="header-h4 weighted-blanket-collection-category">Comforters & Throws</h4>
+    
+    <ul class="header-ul">
+      <li><a href="/products/climasense-comforter?variant=40039052279869">ClimaSense Comforter</a></li>
+      <li><a href="/products/duvet-cover">Duvet Cover</a></li>
+      <li><a href="/products/bamboo-blanket">Lightweight Blanket</a></li>
+      <li><a href="/products/ultra-plush-throw">Ultra Plush Throw</a></li>
+
+    </ul>  
+
+    <h4 class="header-h4 weighted-blanket-collection-category padding-top-wb">
+    	Weighted Blankets
+    </h4>
+
+    <ul class="header-ul">
+      <li><a href="/products/weighted-blanket?variant=40256155779133">All Weighted Blankets</a></li>
+      <li><a href="/products/removable-covers?variant=19695805202501">Blanket Covers</a></li>
+    </ul>
+
+  </div>
+
+  <div class="header-images header-images-right-panel">
+    <div>
+      <div class="lifestyle-image-container">
+        <a href="/products/weighted-blanket-integrated" class="lifestyle-image-anchor">
+          <img class="lifestyle-image-header lazyload" data-src="{{ 'Weighted-Blankets-400x200.png' | asset_img_url: '400x' }}" alt="LIFESTYLE IMAGE">
+        </a>
+      </div>
+    </div>
+    <div class="product-image-header-container">
+      <a href="/products/weighted-blanket-integrated" class="product-image-anchor">
+        <img class="product-image-header lazyload" data-src="{{ 'Removable_Cover_200x200.jpg' | asset_img_url: '200x' }}" alt="PRODUCT IMAGE">
+      </a>
+    </div>
+  </div>
+  <div class="header-description-right-panel">
+    <p class="set-nav-p">The absolute best fabrics and materials for an affordable price</p>
+  </div>
+</div>
+
+<!-- SHEETS -->
+<div class="header-dropdown rigth header-dropdown-links sheets-dropdown">
+  <div class="empty-div"></div>
+
+  <div class="header-images right-side">
+    <div>
+      <div class="lifestyle-image-container">
+        <a href="/products/weighted-blanket-integrated" class="lifestyle-image-anchor">
+          <img class="lifestyle-image-header lazyload" data-src="{{ 'Sheets-400x200.png' | asset_img_url: '400x' }}" alt="Woman in bed with comfy sheets">
+        </a>
+      </div>
+    </div>
+    <div class="product-image-header-container">
+      <a href="/products/weighted-blanket-integrated" class="product-image-anchor">
+        <img class="product-image-header lazyload" data-src="{{ 'Removable_Cover_200x200.jpg' | asset_img_url: '200x' }}" alt="PRODUCT IMAGE">
+      </a>
+    </div>
+  </div>
+  
+  <div class="header-links">
+    <ul class="header-ul right-list">
+      <li><a href="/products/bamboo-sheets?variant=31578516455485">Luxury Sheet Set</a></li>
+      <li><a href="/products/bamboo-pillowcase-set?variant=31945175859261">Pillowcase Set</a></li>
+    </ul>
+    
+  </div>
+  
+  <div class="empty-div"></div>
+  <div class="empty-div"></div>
+  
+  <div>
+    <p class="set-nav-p text-left">The absolute best fabrics and materials for an affordable price</p>
+  </div>
+  
+  <div class="empty-div"></div>
+</div>
+
+<!-- Towels -->
+<div class="header-dropdown rigth header-dropdown-links towels-dropdown">
+  <div class="empty-div"></div>
+
+  <div class="header-images right-side">
+    <div>
+      <div class="lifestyle-image-container">
+        <a href="/products/weighted-blanket-integrated" class="lifestyle-image-anchor">
+          <img class="lifestyle-image-header lazyload" data-src="{{ 'PP-Towels-400x200.png' | asset_img_url: '400x' }}" alt="Woman in bed with comfy sheets">
+        </a>
+      </div>
+    </div>
+    <div class="product-image-header-container">
+      <a href="/products/weighted-blanket-integrated" class="product-image-anchor">
+        <img class="product-image-header lazyload" data-src="{{ 'SC-Towels_400x200.png' | asset_img_url: '200x' }}" alt="PRODUCT IMAGE">
+<!--         <div class="bottom-right-lifestyle-img">SPA COLLECTION TOWELS</div> -->
+      </a>
+    </div>
+  </div>
+  
+  <div class="header-links">
+    <ul class="header-ul right-list">
+      <li><a href="/products/plush-performance-towels?variant=39535706701885">Plush Performance Towels</a></li>
+      <li><a href="/products/spa-collection-towels?variant=39553092550717">Spa Collection Towels</a></li>
+    </ul>
+    
+  </div>
+  
+  <div class="empty-div"></div>
+  <div class="empty-div"></div>
+  
+  <div>
+    <p class="set-nav-p text-left">The absolute best fabrics and materials for an affordable price</p>
+  </div>
+  
+  <div class="empty-div"></div>
+</div>
+
+<script>
+  let wbDropdown = document.querySelector(".collection-blankets")
+  let wbContainer = document.querySelector(".weighted-blankets-dropdown")
+  let sheetsContainer = document.querySelector(".sheets-dropdown")
+  let towelsContainer = document.querySelector(".towels-dropdown")
+  let lpDropdown = document.querySelector(".collection-pillow")
+  let robeDropdown = document.querySelector(".collection-robe")
+  let saleDropdown = document.querySelector(".collection-sale")
+  let pptDropdown = document.querySelector(".collection-towel")
+  let bsDropdown = document.querySelector(".collection-sheets")
+  let timer
+  
+  let deselectNav = function() {
+    [wbContainer, sheetsContainer, wbDropdown, containerCompany, containerSupport, towelsContainer].forEach((container) => container.classList.remove("active"))
+  }
+  
+  lpDropdown.addEventListener("mouseenter", function() {
+    deselectNav()
+  })
+  
+  robeDropdown.addEventListener("mouseenter", function() {
+    deselectNav()
+  })
+  
+  saleDropdown.addEventListener("mouseenter", function() {
+    deselectNav()
+  })
+  pptDropdown.addEventListener("mouseenter", function() {
+    deselectNav()
+    setImages("Plush Performance Towels")
+    towelsContainer.classList.add("active") 
+  })
+    
+  bsDropdown.addEventListener("mouseenter", function() {
+    deselectNav()
+  })
+  
+  // Weighted Blankets
+  wbDropdown.addEventListener("mouseenter", function() {
+    setImages("wbcc")
+    wbContainer.classList.add("active") 
+  })
+  
+  wbDropdown.addEventListener("mouseleave", function(e) {
+    if (e.offsetY > -3) {
+      
+    } else {    
+      setTimeout(function(){ wbContainer.classList.remove("active")}, 500);
+    }
+  })  
+  pptDropdown.addEventListener("mouseleave", function(e) {
+    if (e.offsetY > -3) {
+      
+    } else {    
+      setTimeout(function(){ towelsContainer.classList.remove("active")}, 500);
+    }
+  })
+  
+  wbContainer.addEventListener("mouseover", function() {
+    wbContainer.classList.add("active") 
+  })
+  wbContainer.addEventListener("mouseout", function(e) {
+    if (e.target.tagName == 'DIV'){
+      wbContainer.classList.remove("active") 
+    }
+  })
+  
+  // Sheets
+  bsDropdown.addEventListener("mouseenter", function() {
+    setImages("Luxury Sheet Set")
+    sheetsContainer.classList.add("active") 
+  })
+  
+  bsDropdown.addEventListener("mouseleave", function(e) {
+    if (e.offsetY > -3) {
+      
+    } else {    
+      setTimeout(function(){ sheetsContainer.classList.remove("active")}, 500);
+    }
+  })
+  
+  sheetsContainer.addEventListener("mouseover", function() {
+    sheetsContainer.classList.add("active") 
+  })
+  sheetsContainer.addEventListener("mouseout", function(e) {
+    if (e.target.tagName == 'DIV'){
+      sheetsContainer.classList.remove("active")
+    }
+  })  
+  
+  towelsContainer.addEventListener("mouseover", function() {
+    towelsContainer.classList.add("active") 
+  })
+  towelsContainer.addEventListener("mouseout", function(e) {
+    if (e.target.tagName == 'DIV'){
+      towelsContainer.classList.remove("active")
+    }
+  })
+
+  
+  window.addEventListener('load', function() {
+    window.addEventListener('scroll', function(e) {
+      document.querySelectorAll('.header-dropdown').forEach((el) => el.classList.remove("active"))
+      if (screen.width > 769 && window.scrollY > 0) {
+        $(".weighted-blankets-dropdown, .company-dropdown, .support-dropdown").addClass("scroll-down")
+      } else {
+        $(".weighted-blankets-dropdown, .company-dropdown, .support-dropdown").removeClass("scroll-down")
+      }
+    })
+  })
+  
+  document.querySelectorAll(".header-ul li a").forEach(function(el){
+    el.addEventListener("mouseover", () => setImages(el.innerText))
+  })
+  
+  document.querySelector(".weighted-blanket-collection-category").addEventListener("mouseover", () => setImages('wbcc'))
+  
+  function setImages(menu) {
+    const imageNav = {
+      "Weighted Blanket": "/products/weighted-blanket?variant=40256155779133", 
+      "Removable Cover": "/products/weighted-blanket-cover", 
+      "One-Piece Blankets": "/products/weighted-blanket-integrated", 
+      "Cooling Collection": "/products/cooling-weighted-blankets", 
+      "Blanket Covers": "/products/removable-covers",
+      "All Weighted Blankets": '/products/weighted-blanket?variant=40256155779133',
+      "Lightweight Blanket": "/products/bamboo-blanket",
+      "Luxury Sheet Set": "/products/bamboo-sheets",
+      "Pillowcase Set": "/products/bamboo-pillowcase-set",
+      "wbcc": "/products/weighted-blanket?variant=40256155779133",
+      "Plush Performance Towels": "/products/plush-performance-towels",
+      "Spa Collection Towels": "/products/spa-collection-towels",
+      "Ultra Plush Throw": "/products/ultra-plush-throw",
+      "ClimaSense Comforter": "/products/climasense-comforter",
+      "Duvet Cover": "/products/duvet-cover"
+    }
+    
+    const imageLeft = {
+      "Weighted Blanket": "{{ 'Removable-Cover-400x200.png' | asset_img_url: '400x' }}", 
+      "Removable Cover": "{{ 'Removable-Cover-400x200.png' | asset_img_url: '400x' }}", 
+      "One-Piece Blankets": "{{ 'Integrated-400x200.png' | asset_img_url: '400x' }}", 
+      "Cooling Collection": "{{ 'Cooling400x200.png' | asset_img_url: '400x' }}", 
+      "Blanket Covers": "{{ 'Covers-400x200.png' | asset_img_url: '400x' }}",
+      "All Weighted Blankets": "{{ 'Weighted-Blankets-400x200.png' | asset_img_url: '400x' }}",
+      "Lightweight Blanket": "{{ 'LW-Blanket-400x200.png' | asset_img_url: '400x' }}",
+      "Luxury Sheet Set": "{{ 'Sheets-400x200.png' | asset_img_url: '400x' }}",
+      "Pillowcase Set": "{{ 'Pillowcases-400x200.png' | asset_img_url: '400x' }}",
+      "wbcc": "{{ 'Weighted-Blankets-400x200.png' | asset_img_url: '400x' }}",
+      "Plush Performance Towels": "{{ 'PP-Towels-400x200.png' | asset_img_url: '400x' }}",
+      "Spa Collection Towels": "{{ 'SC-Towels-400x200.png' | asset_img_url: '400x' }}",
+      "Ultra Plush Throw": "{{ 'Throw-400x200.png' | asset_img_url: '400x' }}",
+      "ClimaSense Comforter": "{{ 'Comforter-400x200.png' | asset_img_url: '400x' }}",
+      "Duvet Cover": "{{ 'Duvet-400x200.png' | asset_img_url: '400x' }}",
+
+  
+    }
+    
+	const imageRight = {
+      "Weighted Blanket": " {{ 'Removable_Cover_200x200.jpg' | asset_img_url: '200x' }} ", 
+      "Removable Cover": "{{ 'Removable_Cover_200x200.jpg' | asset_img_url: '200x' }}", 
+      "One-Piece Blankets": "{{ 'Integrated_200x200.jpg' | asset_img_url: '200x' }}", 
+      "Cooling Collection": "{{ 'Cooling200x200.png' | asset_img_url: '200x' }}", 
+      "Blanket Covers": "{{ 'Cover_200x200.jpg' | asset_img_url: '200x' }}",
+      "Lightweight Blanket": "{{ 'LW-Blanket-400x200.png' | asset_img_url: '200x' }}",
+      "Luxury Sheet Set": "{{ 'Sheets-400x200.png' | asset_img_url: '400x' }}",
+      "Pillowcase Set": "{{ 'Pillowcases-400x200.png' | asset_img_url: '400x' }}",
+      "wbcc": "{{ 'Weighted-Blankets-400x200.png' | asset_img_url: '400x' }}",
+      "Plush Performance Towels": "{{ 'PP-Towels-400x200.png' | asset_img_url: '400x' }}",
+      "Spa Collection Towels": "{{ 'SC-Towels-400x200.png' | asset_img_url: '400x' }}",
+      "Ultra Plush Throw": "{{ 'Throw-400x200.png' | asset_img_url: '400x' }}",
+      "ClimaSense Comforter": "{{ 'Comforter-400x200.png' | asset_img_url: '400x' }}",
+      "Duvet Cover": "{{ 'Duvet-400x200.png' | asset_img_url: '400x' }}",
+
+    }
+    
+	const imageParagraph = {
+      "Weighted Blanket": "Exceptional Craftsmanship | Premium Fabrics", 
+      "Removable Cover": "100% Percale Cotton inner weighted blanket w/ premium removable cover", 
+      "One-Piece Blankets": "One-piece weighted blanket with choice of premium fabric", 
+      "Cooling Collection": "A hand-picked selection of our coolest weighted blankets", 
+      "Blanket Covers": "Change the look & feel of your removable cover blanket",
+      "All Weighted Blankets": "Luxury weighted blankets with choice of premium fabric",
+      "Lightweight Blanket": "Luxurious 100% Viscose from Bamboo fabric & fill blanket",
+      "Luxury Sheet Set": "Luxurious & breathable 100% Viscose from Bamboo",
+      "Pillowcase Set": "Woven for luxurious softness, optimal cooling & durability",
+      "wbcc": "",
+      "Plush Performance Towels": "Super absorbent & quick drying",
+      "Spa Collection Towels": "60% Viscose from Bamboo for the softest towels ever!",
+      "Ultra Plush Throw": "Breathtakingly soft & extra cozy",
+      "ClimaSense Comforter": "Ultra fluffy comforter infused with 37.5® Technology",        
+      "Duvet Cover": "Designed for ClimaSense™ Comforter",
+
+    }
+    
+    const productName = {
+      "Weighted Blanket": "Weighted Blanket", 
+      "Removable Cover": "Removable Cover", 
+      "One-Piece Blankets": "Integrated Cover", 
+      "Cooling Collection": "Cooling ", 
+      "Blanket Covers": "Blanket Covers",
+      "Lightweight Blanket": "Lightweight Blanket",
+      "Luxury Sheet Set": "Luxury Sheet Set",
+      "Pillowcase Set": "Pillowcase Set",
+      "wbcc": "",
+      "Plush Performance Towels": "Plush Performance Towels",
+      "Spa Collection Towels": "Spa Collection Towels",
+      "Ultra Plush Throw": "Ultra Plush Throw",
+      "ClimaSense Comforter": "ClimaSense Comforter",
+      "Duvet Cover": "Duvet Cover",
+
+
+    }
+    
+
+    //$(".bottom-right-lifestyle-img").text(productName[menu])
+    //document.querySelector(".bottom-left-lifestyle-img").innerText = productName[menu]
+    
+    document.querySelectorAll(".lifestyle-image-anchor").forEach( e => e.href = imageNav[menu])
+    document.querySelectorAll(".product-image-anchor").forEach( e => e.href = imageNav[menu])
+    document.querySelectorAll(".lifestyle-image-header").forEach( e => e.src = imageLeft[menu])
+    document.querySelectorAll(".product-image-header").forEach( e => e.src = imageRight[menu])
+    document.querySelectorAll(".set-nav-p").forEach( e => e.innerText = imageParagraph[menu])
+  }
+</script>

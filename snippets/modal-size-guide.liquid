@@ -1,0 +1,429 @@
+<!-- The Modal -->
+<div id="myModalSizeGuide" class="modal-size-guide-div" style="text-align: left;">
+
+  <!-- Modal content -->
+  <div class="modal-size-guide-content">    
+    
+    <header class="modal-size-guide-header">
+      <p>BED SIZING <span>(select one):</span></p>
+      <nav class="nav-modal-size-guide">
+        <ul>
+          {% if product.id != 1482350919749 %} {% comment %} Removable Cover WB {% endcomment %}
+          	<li id="twin-tab" data-size='twin'>TWIN</li>
+          {% endif %}
+          <li id="full-tab" data-size='full' class="selected">FULL</li>
+          <li id="queen-tab" data-size='queen'>QUEEN</li>
+          <li id="king-tab" data-size='king'>KING</li>
+        </ul>
+      </nav>
+      <span class="close-size-guide-modal">X</span>
+    </header>
+    
+    <script>
+      document.querySelectorAll('.nav-modal-size-guide ul li').forEach((el) => {
+        el.addEventListener("click", (e) => {
+        	if ( e.target.classList !== "selected") {
+				tabChoice(e.target)
+            }
+        })                                                                       
+      })
+    </script>
+    
+    <main class="modal-size-guide-main">
+      {% if product.id != 1482350919749 %} {% comment %} Removable Cover WB {% endcomment %}
+
+        <!-- TWIN -->
+        <div class="twin-bed bed-guide selected">
+          <div class="twin-small-blanket">
+            <div><h2>Small Blanket</h2></div>
+            <div class="modal-size-guide-left-right-div">
+              <div class="modal-size-guide-left">
+                <div class="modal-size-guide-small-blanket-image"><img class="lazyload" data-src="{{ 'S_on_Twin_Bed.svg' | asset_url }}"></div>
+              </div>
+              <div class="modal-size-guide-right">
+                <ul>
+                  <li class="size-guide-li-first-red">42" x 56" - 8lb</li>
+                  <li>Covers most of bed</li>
+                  <li>.49lbs / sq ft</li>
+                  <li>Small child or lap use</li>
+                </ul>
+                <div data-size='8lb | 42"x56"' data-option='s' class="size-guide-button" onclick="chooseApply(event)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="size-guide-line"></div>
+          <div class="twin-medium-blanket">
+            <div><h2>Medium Blanket</h2></div>
+            <div class="modal-size-guide-left-right-div">
+              <div class="modal-size-guide-left">
+                <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'M_on_Twin_Bed.svg' | asset_url }}"></div>
+              </div>
+              <div class="modal-size-guide-right">
+                <ul>
+                  <li class="size-guide-li-first-red">54" x 72" - 15lb</li>
+                  <li>Drapes sides of bed</li>
+                  <li>.56lbs / sq ft</li>
+                  <li>For individual use</li>
+                </ul>
+                <div data-size='15lb | 54"x72"' data-option='m' class="size-guide-button" onclick="chooseApply(event)"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      {% endif %}
+      
+      <!-- FULL -->
+      <div class="full-bed bed-guide">
+        <div class="full-medium-blanket">
+          <div><h2>Medium Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-small-blanket-image"><img class="lazyload" data-src="{{ 'M_on_Full_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">54" x 72" - 15lb</li>
+                <li>Covers top of bed</li>
+                <li>.56lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='15lb | 54"x72"' data-option='m' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="size-guide-line"></div>
+        <div class="full-large-blanket">
+          <div><h2>Large Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'L_on_Full_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">60" x 80" - 18lb</li>
+                <li>Drapes sides of bed</li>
+                <li>.54lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='18lb | 60"x80"' data-option='l' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        var qindex = 1;        
+        function qshow(increase){
+          let qslides = document.querySelectorAll('.queen-example')
+          qindex = qindex + increase;
+  	      qindex = Math.min(
+   			Math.max(qindex,0),
+    		qslides.length-1
+ 		  );
+  		  qslides[qindex].scrollIntoView({behavior: 'smooth'});
+          if (increase == 2) {
+            document.querySelector(".qprev").style.opacity = "1"
+            document.querySelector(".qnext").style.opacity = "0"
+          } else {
+            document.querySelector(".qprev").style.opacity = "0"
+            document.querySelector(".qnext").style.opacity = "1"
+          }
+        }
+      </script>
+      
+      <!-- QUEEN -->
+      <div class="queen-bed bed-guide"
+           {% if product.id == 1482400661573 %} {% comment %} Integrated Cover Weighted Blankets {% endcomment%}
+                 style="height:100%; max-height: 650px;"
+           {% endif %}>
+        <div class="queen-extra-blanket queen-example queen-extra-large"
+             >
+          <div><h2>Extra Large Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-small-blanket-image"><img class="lazyload" data-src="{{ 'XL_on_Queen_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">100" x 85" - 30lb</li>
+                <li>Drapes sides of bed</li>
+                <li>.51lbs / sq ft</li>
+                <li>For shared use</li>
+              </ul>
+              <div data-size='30lb | 100"x85"' data-option='xl' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="size-guide-line"></div>
+        <div class="queen-large-blanket queen-example">
+          <div><h2>Large Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'L_on_Queen_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">60" x 80" - 18lb</li>
+                <li>Covers top of bed</li>
+                <li>.54lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='18lb | 60"x80"' data-option='l' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="size-guide-line"></div>
+        <div class="queen-medium-blanket queen-example">
+          <div><h2>Medium Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'M_on_Queen_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">54" x 72" - 15lb</li>
+                <li>Covers side of bed</li>
+                <li>.56lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='15lb | 54"x72"' data-option='m' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="qprev" onclick="qshow(-2)">&lt;</div>
+		<div class="qnext" onclick="qshow(+2)">&gt;</div>
+      </div>
+      
+      <script>
+        var kindex = 1;        
+        function kshow(increase){
+          let kslides = document.querySelectorAll('.king-example')
+          kindex = kindex + increase;
+  	      kindex = Math.min(
+   			Math.max(kindex,0),
+    		kslides.length-1
+ 		  );
+  		  kslides[kindex].scrollIntoView({behavior: 'smooth'});
+          if (increase == 2) {
+            document.querySelector(".kprev").style.opacity = "1"
+            document.querySelector(".knext").style.opacity = "0"
+          } else {
+            document.querySelector(".kprev").style.opacity = "0"
+            document.querySelector(".knext").style.opacity = "1"
+          }
+        }
+      </script>
+      
+      <!-- KING -->
+      <div id="king-bed-div" class="king-bed bed-guide"
+           {% if product.id == 1482400661573 %} {% comment %} Integrated Cover Weighted Blankets {% endcomment%}
+                 style="height:100%; max-height: 650px;"
+             {% endif %}>
+        <div class="king-extra-blanket king-example king-extra-large">
+          <div><h2>Extra Large Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-small-blanket-image"><img class="lazyload" data-src="{{ 'XL_on_King_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">100" x 85" - 30lb</li>
+                <li>Drapes sides of bed</li>
+                <li>.51lbs / sq ft</li>
+                <li>For shared use</li>
+              </ul>
+              <div data-size='30lb | 100"x85"' data-option='xl' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="size-guide-line"></div>
+        <div class="king-large-blanket king-example">
+          <div><h2>Large Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'L_on_King_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">60" x 80" - 18lb</li>
+                <li>Covers side of bed</li>
+                <li>.54lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='18lb | 60"x80"' data-option='l' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="size-guide-line"></div>
+        <div class="king-medium-blanket king-example">
+          <div><h2>Medium Blanket</h2></div>
+          <div class="modal-size-guide-left-right-div">
+            <div class="modal-size-guide-left">
+              <div class="modal-size-guide-medium-blanket-image"><img class="lazyload" data-src="{{ 'M_on_King_Bed.svg' | asset_url }}"></div>
+            </div>
+            <div class="modal-size-guide-right">
+              <ul>
+                <li class="size-guide-li-first-red">54" x 72" - 15lb</li>
+                <li>Covers side of bed</li>
+                <li>.56lbs / sq ft</li>
+                <li>For individual use</li>
+              </ul>
+              <div data-size='15lb | 54"x72"' data-option='m' class="size-guide-button" onclick="chooseApply(event)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="kprev" onclick="kshow(-2)">&lt;</div>
+	    <div class="knext" onclick="kshow(+2)">&gt;</div>
+      </div>
+      
+      <script>
+        var productICQueen = {{ product.id | json }}
+        if (productICQueen !== null && productICQueen.id === 1482400661573) {
+          document.querySelector(".queen-extra-blanket.queen-example.queen-extra-large").style.display = "none";
+          document.querySelector(".king-extra-large").style.display = "none";
+          document.querySelector(".qnext").style.display = "none";
+          document.querySelector(".knext").style.display = "none";
+        }
+      </script>
+    </main>
+    
+    <footer class="modal-size-guide-footer">
+      <p class="">Our blankets are an ideal weight per square foot for a perfect weight, every time.</p>
+    </footer>
+    
+  </div>
+
+</div>
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModalSizeGuide");
+
+  // Get the link that opens the modal
+  var link = document.getElementById("{{modalId}}");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close-size-guide-modal")[0];
+      
+  // When the user clicks the button, open the modal 
+  if (link){
+    link.onclick = function(e) {
+    e.preventDefault();
+//     window.scrollTo(0, 0);
+
+    modal.style.display = "block";
+    let size = userSelection().Size
+
+    let option = $('.Size input:checked + label').data("option")
+    $('.size-guide-button').each(function(){
+      if ( $(this).data("option") === option){
+        $(this).addClass("applied")
+      } else {
+        $(this).removeClass("applied")
+      }
+    })
+
+    let sizes = {
+      'Small: 42x56 - 8 lbs': "twin-tab",
+      '8 lbs | 42"x56"': "twin-tab",
+      'Medium: 54x72 - 15 lbs': "full-tab",
+      'Small': "full-tab",
+      '15 lbs | 54"x72"': "full-tab",
+      'Full': "full-tab",
+      'Medium': "full-tab",
+      'Large: 60x80 - 18 lbs': "queen-tab",
+      '18 lbs | 60"x80"': "queen-tab",
+      'Queen':  "queen-tab",
+      'Large': "queen-tab",
+      'Extra Large: 100x85 - 30 lbs': "king-tab",
+      '30 lbs | 100"x85"': "king-tab",
+      'King': "king-tab",
+      'Extra Large': "king-tab",
+    }
+    tabChoice(document.getElementById(sizes[size]))
+  }
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.addEventListener("click", function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  })
+  
+  // modal tab choice
+  var tabChoice =  (target) => {
+    $(".nav-modal-size-guide ul li").removeClass("selected")
+    if($(".bed-guide")) $(".bed-guide").removeClass("selected")
+
+    if(target) {
+      target.classList.add("selected")
+      $(`.${target.dataset.size}-bed`).addClass("selected")
+    }
+  }
+  
+  // choose and apply
+  var chooseApply = (e) => {
+    let ele;
+    let top = 0;
+    console.log(e.target.dataset.option, 'option', '{{product.id}}')
+    if ("{{modalId}}" === "collection-size-guide-modal-link") {
+      $('.variant_button-label[data-option="'+e.target.dataset.option+'"]').click()
+      ele = document.querySelector('.variant_button-label[data-option="'+e.target.dataset.option+'"]')
+    //} else if ({{product.id}} == 6890447896637){
+
+
+    } else {
+      $('.variant__button-label[data-option="'+e.target.dataset.option+'"]').click()
+      ele = document.querySelector('.variant__button-label[data-option="'+e.target.dataset.option+'"]')
+      }
+   
+    if(window.screen.width < 768) {
+      top = 200
+    }
+
+    modal.style.display = "none";
+    $('html, body').animate({
+      scrollTop: top
+    }, 1000);
+  }
+  
+  // Scrolls up and down on the Queen and King tab to show that there are more options available
+  var queenTab = document.getElementById("queen-tab")
+  var kingTab = document.getElementById("king-tab")
+  var queenScroll = document.querySelector(".queen-bed")
+  var kingScroll = document.querySelector(".king-bed")
+  
+  queenTab.onclick = function(){
+    if (screen.width < 769) {
+      $(queenScroll).animate({
+        scrollTop: "500px"
+      }, 1000, function() {
+        $(queenScroll).animate({
+          scrollTop: "0px"
+        }, 1000)
+      })
+    } else {    
+      qshow(-2)
+    }
+  }
+  kingTab.onclick = function(){
+    if (screen.width < 769) {
+      $(kingScroll).animate({
+        scrollTop: "500px"
+      }, 1000, function() {
+        $(kingScroll).animate({
+          scrollTop: "0px"
+        }, 1000)
+      })
+    } else {
+      kshow(-2)
+    }
+  }
+</script>

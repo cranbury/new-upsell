@@ -1,0 +1,25 @@
+<header class="dark-blue-header">
+  <h3 class="dark-blue-h3">VIDEO</h3>
+  <h1 class="dark-blue-h1">{{ article.title }}</h1>
+</header>
+
+<main class="ancillary-main videos-dynamic">
+  <p class="p-dynamic-center">{{ article.excerpt }}</p>
+  <!-- VIDEO -->
+  <div class="video-margin">
+    <div class='embed-container'>
+      {{ article.content }}
+    </div>
+  </div>
+  
+  <h3 class="video-h3 coming-soon">Want to see more?</h3>
+  <div class="videos-center-button">
+    <a href="/pages/videos"><button class="light-dynamic-video-button">BACK TO VIDEO LIBRARY</button></a>
+  </div>
+  
+  <hr class="hr-divider">
+  
+  <div class="about-us-main-bottom">
+    {% include 'ancillary-lower-products-section.liquid' %}
+  </div>
+</main>

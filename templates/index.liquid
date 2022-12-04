@@ -1,0 +1,525 @@
+{% comment %}
+  Your home page is build up of sections, the code for each living in
+  the sections/ director.
+	{{ content_for_index }}
+{% endcomment %}
+
+<div class="home-carousel">
+  <div class="home-carousel-wrapper">
+    <div data-slide="0" class="home-carousel-slide slide-1 main-slide">
+      <div class="home-slide-desktop" style="background-image: url({{ '0_homePageSlider_2022.png' | asset_url }});" data-bgset="{{ '0_homePageSlider_2022.png' | asset_url }}">
+      </div>
+        <a class="home-slide-mobile-tag" href="/collections/all-products" title="ALL PRODUCTS">
+      		<div class="home-slide-mobile" style="background-image: url({{ '0_homePageSlider_2022_mobile.png' | asset_img_url: '500x' }});">
+      		</div>
+      	</a>
+      <div class="slide-content">
+        <h3 class="slide-desc margin-bottom-h3">BLACK FRIDAY</h3>
+        <h1 class="slide-title">Holiday <span style="color:#C11728;">Sale</span></h1>
+        <h3 class="slide-desc margin-bottom-h3">Shop Our <span style="text-decoration:underline;">Best Deals</span> on the coziest gifts</h3>
+        <a class="shop_now_button" href="/collections/last-call">
+          SAVE NOW
+        </a>
+      </div>
+    </div>
+    <div data-slide="1" class="home-carousel-slide slide-1 main-slide">
+    </div>
+
+    <div data-slide="2" class="home-carousel-slide slide-2">
+    </div>
+
+    <div data-slide="3" class="home-carousel-slide slide-3 lazyload" data-bgset="{{ '3_HomepageSlider_PillowJan2021.png' | asset_url }}">
+    </div>
+    
+  </div>
+</div>
+
+{% for collection in collections %}
+  {% if collection.id == 157696688189 %}{%comment%}all-luxome-products Innovation luxury sleep{%endcomment%}
+    {% for product in collection.products %} 
+      {% if product.id == 4405624864829 %}{%comment%}luxury-sheets{%endcomment%}
+        {% assign luxury-sheets = product %}
+
+      {% elsif product.id == 4492419530813 %}{%comment%}layr-adjustable-pillow{%endcomment%}
+        {% assign layr-pillow = product %}
+        
+      {% elsif product.id == 2140387999813 %} {% comment %} cooling-weighted-blankets {% endcomment %}
+        {% assign cooling-weighted-blankets = product %}
+        
+      {% elsif product.id == 1482400661573 %} {% comment %} integrated-weighted-blanket {% endcomment %}
+        {% assign integrated-weighted-blanket = product %}
+        
+      {% elsif product.id == 6586143539261 %} {% comment %} lightweight-blanket {% endcomment %}
+        {% assign lightweight-blanket = product %}
+        
+      {% elsif product.id == 1482350919749 %} {% comment %} removable-covers-weighted-blanket {% endcomment %}
+        {% assign removable-covers-weighted-blanket = product %}
+      
+      {% elsif product.id == 6640736469053 %} {% comment %} Plush Performance Towel Set {% endcomment %}
+        {% assign plush-performance-towel-set = product %}
+      
+      {% elsif product.id == 6669003915325 %} {% comment %} Spa Collection Towel Set {% endcomment %}
+        {% assign spa-towel-set = product %}
+
+      {% elsif product.id == 4502045294653 %} {% comment %} Luxury Pillowcase Set {% endcomment %}
+        {% assign luxury-pillowcase-set = product %}
+
+      {% elsif product.id == 6727710900285 %} {% comment %} Ultra Plush Robe {% endcomment %}
+        {% assign ultra-plush-robe= product %}
+
+      {% elsif product.id == 6890447896637 %}{% comment %}  weighted blanket {% endcomment %}
+        {% assign weighted-blanket = product %}
+      {% endif%}
+ 
+    {% endfor %}
+  {% endif%}
+
+  {% if collection.id == 91114799173 %}{%comment%}luxome-spa-collection-towels{%endcomment%}
+	  {% assign luxome-collection = collection%}
+	  {% assign luxome-collection-min-price = 14500%}
+	  {% for product in collection.products %} 
+      {% if product.price_min < luxome-collection-min-price %}
+        {% assign luxome-collection-min-price = product.price_min%}
+      {% endif%}		
+	  {% endfor %}
+  {% endif%}
+
+  {% if collection.id == 271552708669 %}{%comment%}duvet, comforter, throw{%endcomment%}
+    {% for product in collection.products %} 
+      {% if product.id == 6824646279229 %}{%comment%}duvet-cover{%endcomment%}
+        {% assign duvet-cover = product %}
+      
+      {% elsif product.id == 6789635113021 %} {% comment %} Ultra Plush Throw {% endcomment %}
+        {% assign ultra-plush-throw= product %}
+
+      {% elsif product.id == 6824157577277 %} {% comment %} ClimaSense Comforter {% endcomment %}
+        {% assign climasense-comforter= product %}
+      {% endif%}		
+	  {% endfor %}
+  {% endif%}
+{% endfor %}
+
+
+  {%- style -%}
+  
+  #imageCover1{background-image:url('{{ 'Homepage_LAYR.png' | asset_url }}');} 
+  
+  @media(min-width:600px){#imageCover1{background-image:url('{{ 'Homepage_LAYR.png' | asset_url }}');}
+
+  {%- endstyle -%}
+  {% include 'index-horizontal-scroll-products' %}
+  {% include 'index-page-review-section' %}
+
+<div class="home-luxome-difference">
+    <img src="{{ 'Made-With-Love.png' | asset_url }}">
+  <div class="luxome-difference-banner">
+      <p>
+        One-of-a-kind luxury essentials that calm, uplift, and give much-needed comfort to you, your loved ones, 
+	      and your homes. When thinking about what makes a thoughtful gift, we truly believe that there's no   
+		    better way to say ‘I love you’ than the gift of comfort.
+      </p>
+      <div class="sap-div-a">
+        <a href="/pages/about-us">
+          ABOUT US
+        </a>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="quality-video" id="qualityVideo">
+  <iframe id="videoquality" class="" data-src="" mob-src="https://player.vimeo.com/video/764950272?h=fe5a89468c?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" desk-src="https://player.vimeo.com/video/764949277?h=6391ff8323?autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  <style>.mobile-index-video{position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+  <script>
+    if (screen.width < 768) {
+      document.getElementById('videoquality').setAttribute('data-src', (document.getElementById('videoquality').getAttribute('mob-src'))); 
+      document.getElementById('videoquality').classList.add('mobile-index-video');
+      setTimeout(function(){
+        $('.quality-video iframe').css({width: '99%'})
+        setTimeout(function(){
+          $('.quality-video iframe').css({width: '100%'})
+        },70)
+
+      },5500)
+    } else {
+        document.getElementById('videoquality').setAttribute('data-src', (document.getElementById('videoquality').getAttribute('desk-src'))); 
+        document.getElementById('videoquality').classList.add('desktop-index-video');
+      } 
+        
+        let videoLoad=()=>{document.getElementById('videoquality').classList.add('lazyload'); console.log('now')}
+
+        document.getElementById('qualityVideo').addEventListener('lazyunveilread', videoLoad);
+        let loadvideoLoad=()=>{document.getElementById('qualityVideo').classList.add('lazyload')};trekLoad.push(loadvideoLoad);
+  </script>
+</div>
+<div class="home-collection-2-title">
+  <h2>FEATURED COLLECTIONS</h2>
+</div>
+<div class="home-collection-3 cover58">
+  <a class="collection-product-home-cover cover23" href="/pages/gift-guide">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Homepage-Featured-Holiday-Gifts.png' | asset_url }}">
+        </div>
+     </div>
+  </a>
+  <div class="bath-cover">
+    <h4>2022 GIFT GUIDE</h4>
+    <h2>The Gift of Comfort</h2>
+    <p>Shop our curated Gift Guide and find the perfect cozy gift for everyone on your list.</p>
+    <div class="bath-cover-buttons">  
+      <a class="collection-product-home-cover cover23 desc climasense-button-w" href="/pages/gift-guide">
+	      <button>SHOP GIFTS</button>
+      </a>
+    </div>  
+  </div>
+</div>
+<div class="home-collection-3 cover58 time-to-lounge">
+  <div class="bath-cover">
+    <h4>TIME TO</h4>
+    <h2>Lounge in Luxury</h2>
+    <p>So sensationally soft, you’ll never want to let them go. Transform your home into a luxury retreat with these premium lounging essentials.</p>
+    <div class="bath-cover-buttons">  
+      <a class="collection-product-home-cover cover23 desc" href="/products/ultra-plush-robe?variant=39788176474173">
+	      <button>ULTRA PLUSH ROBE</button>
+      </a>
+      <a class="collection-product-home-cover cover23 desc" href="/products/ultra-plush-throw?variant=39970670182461">
+	      <button>ULTRA PLUSH THROW</button>
+      </a>
+    </div>  
+  </div>
+  <a class="collection-product-home-cover cover23" href="/products/ultra-plush-robe">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Homepage-Featured-Holiday-UPRT.png' | asset_url }}">
+        </div>
+     </div>
+  </a>
+</div>
+<div class="home-collection-3 cover58">
+  <a class="collection-product-home-cover cover23" href="/products/plush-performance-towels">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Homepage-Featured-Holiday-Gift.png' | asset_url }}">
+        </div>
+     </div>
+  </a>
+  <div class="bath-cover home-page-margin">
+    <h4>WRAP UP IN OUR</h4>
+    <h2>Bath Essentials</h2>
+    <p>Our luxury towel sets bring the quality, softness, and comfort you know and love into the bathroom!</p>
+    <div class="bath-cover-buttons">  
+      <a class="collection-product-home-cover cover23 desc" href="/products/plush-performance-towels?variant=39535706701885">
+	      <button>PLUSH PERFORMANCE</button>
+      </a>
+      <a class="collection-product-home-cover cover23 desc" href="/products/spa-collection-towels?variant=39553092550717">
+	      <button>SPA COLLECTION</button>
+      </a>
+    </div>  
+  </div>
+</div>
+<script>
+  var slider = document.querySelector('.home-carousel'),
+      wrapper = document.querySelector('.home-carousel-wrapper'),
+      slides = document.querySelectorAll('.home-carousel-slide'),
+      c1 = document.querySelector('div#c1.carousel-control'),
+      c2 = document.querySelector('div#c2.carousel-control'),
+      c3 = document.querySelector('div#c3.carousel-control')
+  
+  var autoSlider;
+
+//   window.onload = startMainCarousel
+    
+  function startMainCarousel() {
+    let control = document.querySelector('.carousel-control[data-index="2"')
+    setTimeout(function(){ control.click() }, 3000);
+
+    var posX1 = 0,
+        posX2 = 0,
+        posInitial,
+        posFinal,
+        threshold = 100,
+        slidesLength = slides.length,
+        firstSlide = slides[0],
+        lastSlide = slides[slidesLength - 1],
+        cloneFirst = firstSlide.cloneNode(true),
+        cloneLast = lastSlide.cloneNode(true),
+        index = 0,
+        allowShift = true;
+
+    c1.addEventListener('click', function() { shiftSlide(0, this) });
+    c2.addEventListener('click', function() { shiftSlide(1, this) });
+    c3.addEventListener('click', function() { shiftSlide(2, this) });
+
+    wrapper.addEventListener('transitionend', checkIndex);
+
+    function shiftSlide(pos, ele) {
+      wrapper.classList.add('shifting')
+
+      if(allowShift) {
+        if(!posInitial) { posInitial = wrapper.offsetLeft };		
+        var slidesSize = slides[0].offsetWidth
+        
+        if(pos === 0) { 
+          wrapper.style.left = '0px';
+          index = pos;
+        } else if (pos === 1) {
+          wrapper.style.left = -(slidesSize) + 'px';
+          index = pos;
+        } else if (pos === 2) {
+          wrapper.style.left = -(slidesSize * 2) + 'px';
+          index = pos;
+        }
+
+        document.querySelectorAll('.carousel-control').forEach(ele => {
+          ele.classList.remove('active-control');
+        });
+
+        ele.classList.add('active-control')
+      }
+      allowShift= false
+      clearTimeout(autoSlider);
+      if(pos == 0){
+        let control = document.querySelector('.carousel-control[data-index="2"')
+        autoSlider = setTimeout(function(){ shiftSlide(1, control) }, 3000);
+      } else if (pos == 1) {
+        let control = document.querySelector('.carousel-control[data-index="3"')
+        autoSlider = setTimeout(function(){ shiftSlide(2, control) }, 3000);
+      } else if (pos == 2) {
+        let control = document.querySelector('.carousel-control[data-index="1"')
+        autoSlider = setTimeout(function(){ shiftSlide(0, control) }, 3000);
+      }
+      
+    }
+
+    function checkIndex() {
+      wrapper.classList.remove('shifting');
+
+      allowShift = true;
+    }
+
+    function swipedetect(el, callback){
+
+      var touchsurface = el,
+          swipedir,
+          startX,
+          startY,
+          distX,
+          distY,
+          threshold = 50, //required min distance traveled to be considered swipe
+          restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+          allowedTime = 300, // maximum time allowed to travel that distance
+          elapsedTime,
+          startTime,
+          handleswipe = callback || function(swipedir){}
+
+      touchsurface.addEventListener('touchstart', function(e){
+        var touchobj = e.changedTouches[0]
+        swipedir = 'none'
+        dist = 0
+        startX = touchobj.pageX
+        startY = touchobj.pageY
+        startTime = new Date().getTime() // record time when finger first makes contact with surface
+      }, {passive: true})
+
+      touchsurface.addEventListener('touchend', function(e){
+        var touchobj = e.changedTouches[0]
+        distX = touchobj.pageX - startX // get horizontal dist traveled by finger while in contact with surface
+        distY = touchobj.pageY - startY // get vertical dist traveled by finger while in contact with surface
+        elapsedTime = new Date().getTime() - startTime // get time elapsed
+        if (elapsedTime <= allowedTime){ // first condition for awipe met
+          if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint){ // 2nd condition for horizontal swipe met
+            swipedir = (distX < 0)? 'left' : 'right' // if dist traveled is negative, it indicates left swipe
+          }
+          else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+            swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+          }
+        }
+        handleswipe(swipedir)
+      }, {passive: true})
+    }
+
+    var slideContainer = document.querySelector('.home-carousel');
+    swipedetect(slideContainer, function(swipedir){
+
+      var cIndex = parseInt(document.querySelector('.active-control').dataset.index);
+      var pos = cIndex  - 1;
+      switch(swipedir){
+        case 'left':
+          if (pos < 2) {
+            var control = document.querySelector(`.carousel-control[data-index="${cIndex+1}"`)
+            shiftSlide(pos +1, control);
+          }
+          break;
+        case 'right':
+          if (pos > 0) {
+            var control = document.querySelector(`.carousel-control[data-index="${cIndex-1}"`)
+            shiftSlide(pos-1, control);
+          }
+          break;
+      }
+    });
+  }
+  
+//   window.onresize = adjustCarouselOnResize
+  
+  function adjustCarouselOnResize() {
+    var slider = document.querySelector('.home-carousel'),
+        wrapper = document.querySelector('.home-carousel-wrapper'),
+        slides = document.querySelectorAll('.home-carousel-slide'),
+        c1 = document.querySelector('div#c1.carousel-control'),
+        c2 = document.querySelector('div#c2.carousel-control'),
+        c3 = document.querySelector('div#c3.carousel-control'),
+        acControl = document.querySelector('.carousel-control.active-control')
+        
+    var pos = acControl.dataset.index - 1;
+    var slidesSize = slides[0].offsetWidth
+    var posInitial = wrapper.offsetLeft;
+
+    if(pos === 0) { 
+      wrapper.style.left = '0px';
+      index = pos;
+    } else if (pos === 1) {
+      wrapper.style.left = -(slidesSize) + 'px';
+      index = pos;
+    } else if (pos === 2) {
+      wrapper.style.left = -(slidesSize * 2) + 'px';
+      index = pos;
+    }
+  }
+  
+  
+  // Code for review's slider
+  
+  let index = 0
+  let amount = 0
+  let currTransl = []
+  let translationComplete = true
+  let moveOffset = 0
+  let slideClass
+  let slideTransition
+  
+  let transitionCompleted = function(){
+    translationComplete = true;
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let slideI = 0;
+    const slides = document.querySelectorAll(".review-slide")
+    const updateSlide = (i) => {
+      slides.forEach( (slide,index) => slide.style.opacity = 0)
+      setTimeout(() => slides[i].style.opacity = 1, 2000)
+    }
+    updateSlide(slideI)
+    setInterval(() =>{
+      slideI++
+      slideI = slideI % slides.length
+      updateSlide(slideI)
+    },5000)
+    {% comment %} if(window.screen.width >= 768) {
+      //slideClass = "review-slide-desktop"
+      //initSlider('.home-luxome-review-desktop')
+    }
+    if(window.screen.width < 768) {
+      slideClass = "review-slide-mobile"
+      initSlider('.home-luxome-review-mobile')
+    } {% endcomment %}
+  });
+  
+  function initSlider(container) {
+    
+    let carousel = document.querySelector(container);
+
+    amount = document.getElementsByClassName(slideClass).length;
+    // get the width of the container
+    moveOffset = parseInt(window.getComputedStyle(document.querySelector('.home-luxome-review')).width, 10);
+    // calcuate the width of the carousel
+    document.querySelector(container).style.width = (amount * moveOffset) + 'px';
+    // prevent multiple click when transition
+    for(var i = 0; i < amount; i++) {
+      currTransl[i] = -moveOffset;
+      document.getElementsByClassName(slideClass)[i].addEventListener("transitionend", transitionCompleted, true);                    
+      document.getElementsByClassName(slideClass)[i].addEventListener("webkitTransitionEnd", transitionCompleted, true);                    
+      document.getElementsByClassName(slideClass)[i].addEventListener("oTransitionEnd", transitionCompleted, true);                    
+      document.getElementsByClassName(slideClass)[i].addEventListener("MSTransitionEnd", transitionCompleted, true);                  
+    }
+    // add the last item to the start so that translateX(-moveOffset) works (In case the first click is the previous button)
+    document.querySelector(container).insertBefore(document.querySelector(container).children[3], document.querySelector(container).children[0])
+	
+    slideTransition = setInterval(next, 5000)
+  }
+
+  function prev() {
+    if (translationComplete === true) {
+      translationComplete = false;
+      index--;
+      if (index == -1){
+        index = amount-1;
+      }
+      let outerIndex = (index) % amount;
+      for (var i = 0; i < amount; i++){
+        let slide = document.getElementsByClassName(slideClass)[i];  
+        slide.style.opacity = '1'; 
+        slide.style.transform = 'translateX('+(currTransl[i]+moveOffset)+'px)';
+        currTransl[i] = currTransl[i]+moveOffset;
+      }
+      let outerSlide = document.getElementsByClassName(slideClass)[outerIndex];
+      outerSlide.style.transform = 'translateX('+(currTransl[outerIndex]-(moveOffset*amount))+'px)';
+      outerSlide.style.opacity = '0';
+      currTransl[outerIndex] = currTransl[outerIndex]-moveOffset*(amount);
+    }
+  }
+
+  function next() {
+    if (translationComplete === true){
+      translationComplete = false;
+      let outerIndex = (index) % amount;
+      index++;
+      for(var i = 0; i < amount; i++){
+        let slide = document.getElementsByClassName(slideClass)[i];    
+        slide.style.opacity = '1'; 
+        slide.style.transform = 'translateX('+(currTransl[i]-moveOffset)+'px)';
+        currTransl[i] = currTransl[i]-moveOffset;
+      }
+      let outerSlide = document.getElementsByClassName(slideClass)[outerIndex];
+      //outerSlide.style.opacity = '0';
+      
+      outerSlide.style.transform = 'translateX('+(currTransl[outerIndex]+(moveOffset*amount))+'px)';
+      currTransl[outerIndex] = currTransl[outerIndex]+moveOffset*(amount);
+    }
+  }
+  
+  let rtime;
+  let timeout = false;
+  let delta = 200;
+  
+  window.addEventListener('resize', function(event) {
+    
+    rtime = new Date();
+    if (timeout === false) {
+      clearInterval(slideTransition)
+      translationComplete = false;
+
+      timeout = true;
+      setTimeout(resizeend, delta);
+    }
+  });
+  
+  function resizeend() {
+    if (new Date() - rtime < delta) {
+      setTimeout(resizeend, delta);
+    } else {
+      timeout = false;
+      if(window.screen.width >= 768) {
+        slideClass = "review-slide-desktop"
+        adjustSlider('.home-luxome-review-desktop')
+      }
+      if(window.screen.width < 768) {
+        slideClass = "review-slide-mobile"
+        adjustSlider('.home-luxome-review-mobile')
+      }
+    }               
+  }
+  
+  function adjustSlider(container) {
+    
+    slideTransition = setInterval(next, 5000)
+  }
+</script>

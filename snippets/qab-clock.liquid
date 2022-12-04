@@ -1,0 +1,250 @@
+<script>
+//   SET PROMO CODE MESSAGE
+  let showPromoCode = false; // true: show message, false: hide message
+  let promoCodeMessage = "Holiday Sale:";// Message display.
+  
+//   SET EXPIRATION DATE FOR CLOCK
+  let showClock = false;//true: show clock, false: hide clock
+  let expirationDate = "Dec 31, 2021 00:00:00 GMT-05:00";// expiration date
+  
+// SET CLOCK STYLES
+  let fontColor = 'white' 
+  let backgroundColor = 'rgb(131,22,24)'
+  let applyStyles = true
+  
+  let announcementId = 'luxome-announcement-bar'
+  
+  let checkQAB = setInterval(function() {
+    let qabBar = document.getElementById('qab_content')
+    if (qabBar) {
+      clearInterval(checkQAB)
+      addPromoCodeMessage(showPromoCode, promoCodeMessage)
+      addClock(showClock, expirationDate)
+      changeHeight()
+    }
+  }, 500)
+  
+  function addPromoCodeMessage(showPromoCode, promoCodeMessage){
+    let qabBar = document.getElementById('qab_content')
+
+    if(showPromoCode){
+      let promoCodeContainer = document.createElement('span')
+      promoCodeContainer.innerHTML = promoCodeMessage
+      promoCodeContainer.id = 'promo-code-container'
+      qabBar.appendChild(promoCodeContainer)
+    }
+  }
+  
+  function addClock(showClock, expirationDate){
+    let qabBar = document.getElementById('qab_content')
+
+    if(showClock){
+      let countDownDate = new Date(expirationDate).getTime();
+      let clock = createClock(countDownDate);
+      styleClock(clock, backgroundColor , fontColor, applyStyles);
+      qabBar.appendChild(clock)
+      
+      let header = document.getElementById('site-header-original-position')
+      
+      if(header) header.style.paddingTop = '24px'
+    }
+
+  }
+    
+  function createClock(countDownDate){
+    let clockContainer = document.createElement('span')
+    let { distance, days, hours, minutes, seconds } = setClockTime(countDownDate);
+
+    if (distance < 0) {
+      clockContainer.innerHTML = renderCurrentTime(0, 0, 0, 0)
+    } else {
+
+      clockContainer.innerHTML = renderCurrentTime(days, hours, minutes, seconds)
+
+      let clockInterval = setInterval(function() {
+        let { distance, days, hours, minutes, seconds } = setClockTime(countDownDate);
+
+        clockContainer.innerHTML = renderCurrentTime(days, hours, minutes, seconds)
+
+        if (distance < 0) {
+          clearInterval(clockInterval);
+          clockContainer.innerHTML = renderCurrentTime(0, 0, 0, 0)
+        }
+
+      }, 1000)
+
+     }
+    return clockContainer;
+  }
+  
+  function styleClock(clock, background, color, styles){
+  	let qabBar = document.getElementById('luxome-announcement-bar')
+    let qabContent = document.getElementById('qab_content')
+
+    let compStylesBGColor = window.getComputedStyle(qabBar);
+    let compStylesColor = window.getComputedStyle(qabContent);
+    let getColor = compStylesColor.getPropertyValue('color')
+    let getBGColor = compStylesBGColor.getPropertyValue('background-color')
+    
+    let clockID = clock.setAttribute("id", "clock-container");
+    if(styles) {
+      clock.style.backgroundColor = background
+      clock.style.color = color
+    } else {
+      clock.style.backgroundColor = getColor
+      clock.style.color = getBGColor
+    }
+
+  }
+  
+  function renderCurrentTime(days, hours, minutes, seconds){
+    let clockData = '<span class="clock-numbers">';
+    clockData = clockData.concat(days)
+    clockData = clockData.concat(' d</span><span class="clock-numbers">')
+    clockData = clockData.concat(hours)
+    clockData = clockData.concat(' h</span><span class="clock-numbers">')
+    clockData = clockData.concat(minutes)
+    clockData = clockData.concat(' m</span><span class="clock-numbers">')
+    clockData = clockData.concat(seconds)
+    clockData = clockData.concat(' s</span>')
+    
+    return clockData
+  }
+
+  function setClockTime(countDownDate){
+    let now = new Date().getTime();
+
+    let distance = countDownDate - now;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    let clockData = { distance, days, hours, minutes, seconds }
+
+    return clockData
+  }
+  
+  let promoAdjust = true;
+  let clockAdjust = true;
+    
+  window.addEventListener('resize', changeHeight);
+    
+  function changeHeight(){
+    
+    if (window.innerWidth <= 900) {
+      if(showPromoCode && promoAdjust){
+        increaseHeight('qab_container')
+        promoAdjust = false;
+      }
+    } else {
+      if(showPromoCode && !promoAdjust) {
+        decreaseHeight('qab_container')
+        promoAdjust = true;
+      }
+    }
+    
+    if (window.innerWidth <= 900) {
+      if(showClock && clockAdjust){
+        increaseHeight('qab_container')
+        clockAdjust = false;
+      }
+
+    } else {
+      if(showClock && !clockAdjust){
+        decreaseHeight('qab_container')
+        clockAdjust = true;
+      }
+    }
+  }
+
+  function increaseHeight(elementId){
+    let qabContainer = document.getElementById(elementId)
+    let qabMessage = document.getElementById('qab_message')
+    if(qabContainer !== null) {
+      let actualHeight = parseInt(qabContainer.style.height, 10)
+      let newHeight = actualHeight + 24
+      
+      qabContainer.style.height = newHeight + 'px'
+      
+    }
+    if(qabMessage !== null){
+      qabMessage.style.fontSize = '14px'
+    }
+  }
+  
+  function decreaseHeight(elementId){
+    let qabContainer = document.getElementById(elementId)
+    let qabMessage = document.getElementById('qab_message')
+    if(qabContainer !== null) {
+      let actualHeight = parseInt(qabContainer.style.height, 10)
+      let newHeight = actualHeight - 24
+
+      qabContainer.style.height = newHeight + 'px'
+      
+    }
+    if(qabMessage !== null){
+      qabMessage.style.fontSize = '16px'
+    }
+  }
+  
+  function adjustOnScroll() {
+    let first = true
+    window.addEventListener('scroll', function(e) {
+      let navBar = document.querySelector('.site-header.site-header--stuck.site-header--opening')
+      if(navBar && first) {
+        let styles = window.getComputedStyle(navBar);
+        let actualHeight = parseInt(styles.getPropertyValue('top'), 10)
+        let newHeight = actualHeight + 24
+//         navBar.style.top = newHeight + 'px'
+        navBar.classList.add('with-qab-clock')
+        first = false
+      }
+    })
+
+  }
+  
+  </script>
+  
+  <style>
+    #promo-code-container {
+      font-family: Montserrat;
+      font-size: 15px;
+      letter-spacing: -0.5px;
+      padding: 3.5px 12px;
+    }
+    #clock-container {
+      font-family: Montserrat;
+      font-size: 15px;
+      padding: 3.5px 12px;
+      border-radius: 6px;
+      letter-spacing: -0.5px;
+      margin-left: 20px;
+      
+    }
+    .clock-numbers {
+      font-family: Montserrat;
+      font-size: 14px;
+      font-weight: bold;
+      display: inline-block;
+      text-align: right;
+      margin-right: 12px;
+    }
+    
+    .clock-numbers:first-of-type {
+      margin-left: 12px;
+    }
+    
+    @media only screen and (max-width: 900px) {
+      #promo-code-container {
+        display: block;
+      }
+      #clock-container {
+        display: block;
+        width: fit-content;
+    	margin: 0 auto;
+      }
+    }
+
+  </style>

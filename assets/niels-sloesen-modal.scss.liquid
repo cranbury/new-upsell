@@ -1,0 +1,333 @@
+/* Size Guide modal */
+#myModalSizeGuide {
+  font-size:12px;
+  letter-spacing:0.25em;
+} 	
+/* The Modal (background) */
+.modal-size-guide-div {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 99999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-size-guide-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+/*   border: 1px solid #888; */
+  width: 80%;
+  text-transform: none;
+}
+
+/* The Close Button */
+.close-size-guide-modal {
+  color: #fff;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transform: scale(1.5) translate(-11px, -1px);
+}
+
+.close-size-guide-modal:hover,
+.close-size-guide-modal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* HEADER */
+.modal-size-guide-header {
+  display: grid;
+  grid-template-columns: 49% 49% 2%;
+  justify-content: center;
+  background-color: #87A1A9;
+  color: #fff;
+}
+
+.modal-size-guide-header p {
+  text-align: right;
+  margin: .5em;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-right: 3em;
+}
+
+.nav-modal-size-guide ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+}
+
+.nav-modal-size-guide ul li {
+  font-size: 1.25em;
+  padding: 0.5em 1.25em;
+  margin: 0;
+  border-right: 1px solid #87A1A9;
+  box-shadow: 0 1.1px 23.8px rgba(0, 0, 0, 0.095), 0 9px 47px rgba(0, 0, 0, 0.1);
+  &.selected {
+    background: #fff;
+    color: #224152;
+    font-weight: bold;
+  }
+  &:hover {
+    background-color: #fff;
+    color: #87A1A9;
+    cursor: pointer;
+  }
+}
+
+/* MAIN */
+.size-guide-line {
+  height: 90%;
+  margin-top: 1.5em;
+  width: 1px;
+  background-color: lightgrey;
+}
+
+.modal-size-guide-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
+}
+
+.modal-size-guide-main h2 {
+  text-align: center;
+  margin: 1.25em;
+}
+
+.modal-size-guide-left-right-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.modal-size-guide-left {
+  text-align: center;
+}
+
+.modal-size-guide-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-size-guide-right ul li {
+  font-size: initial;
+  letter-spacing: 0;
+}
+
+.size-guide-button {
+  text-align: center;
+  cursor:pointer;
+}
+
+.size-guide-button::before {
+  content: "CHOOSE & APPLY";
+}
+
+.size-guide-button.applied{
+    background-color: #fff;
+    border: 2px solid #224152;
+    color: #224152;
+	&:before {
+  		content: "APPLIED"
+    }
+}
+
+.size-guide-li-first-red {
+  color: #F25D5A;
+}
+
+.size-guide-button {
+  background-color: #224152;
+  border: 2px solid #224152;
+  color: white;
+  padding: 1em;
+  margin-right: 4em;
+  font-size: inherit;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  &:hover {
+    background-color: #D2D9DD;
+    border: 2px solid #224152;
+    color: #000;
+  }
+  &:active {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+.bed-guide {
+  display: none;
+  &.selected {
+    display: grid;
+    grid-template-columns: 49.5fr 1fr 49.5fr;
+  }
+}
+
+.bed-guide.selected.queen-bed {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  .queen-example {
+    flex-shrink: 0;
+    width: 50%;
+  }
+}
+
+.bed-guide.selected.king-bed {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  .king-example {
+    flex-shrink: 0;
+    width: 50%;
+  }
+}
+
+div.qprev, div.qnext, div.kprev, div.knext {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: grey;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+div.qprev, div.kprev {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  opacity: 0;
+}
+div.qnext, div.knext {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+/* FOOTER */
+
+.modal-size-guide-footer {
+  background-color: #C9D2D5;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.25em;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .product-details-header.product-details-header {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+  .modal-size-guide-main {
+    max-height: 90vh;
+  }
+  .modal-size-guide-content{
+    min-height:95vh;
+    position: absolute;
+    width: 90%;
+    left: 5%;
+    top: 2%;
+    max-height: 72.5vh;
+  } 
+  .bed-guide.selected {
+    grid-template-columns: 1fr;
+  }
+  .modal-size-guide-header {
+    grid-template-columns: 1fr;
+  }
+  .close-size-guide-modal { 
+    position: absolute;
+    right: 0%;
+    color: #fff;
+  }
+  .modal-size-guide-header p {
+    font-size: 0.9rem;
+    font-weight: normal;
+    margin-right: 0;
+    text-align: center;
+    letter-spacing: 0;
+  }
+  .modal-size-guide-main h2 {
+    margin: .75em;
+  }
+  .nav-modal-size-guide ul {
+    justify-content: center;
+    font-size: 0.6rem;
+  }  
+  .modal-size-guide-right ul li {
+    font-size: 0.7rem;
+  }
+  .size-guide-button {
+    margin-left: 1em;
+    font-size: 0.5rem;
+    padding: .5em;
+  }
+  .size-guide-line {
+    width: 80%;
+    margin-left: 10%;
+    height: 1px;
+    margin-bottom: 1em;
+    background-color: lightgrey;
+  }
+  .modal-size-guide-footer {
+    display: none;
+    font-size: 0.9rem;
+    letter-spacing: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    & p {
+      padding: 0.5em;
+    }    
+  }  
+  .bed-guide.selected.queen-bed .queen-example,
+  .bed-guide.selected.king-bed .king-example {
+    width: 100%;
+  }
+  .bed-guide.selected.queen-bed,
+  .bed-guide.selected.king-bed {
+    flex-direction: column;
+    flex-shrink: 0;
+    height: 67%;
+  }
+  div.qprev, div.kprev {
+    position: absolute;
+    left: 45%;
+    top: 20%;
+    transform: rotate(90deg);
+  }
+  div.qnext, div.knext {
+    position: absolute;
+    left: 45%;
+    top: unset;
+    bottom: 0%;
+    transform: rotate(90deg);
+  }
+  div.qprev, div.qnext, div.kprev, div.knext {
+    display: none;
+  }
+}
+
+@media only screen and (max-width:425px) {
+  .modal-size-guide-content {
+    min-height:580px;
+    max-height:90vh;
+  }
+}

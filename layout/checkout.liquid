@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }}">
+
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+    <meta name="referrer" content="origin">
+  <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* latin */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v23/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aXx-p7K4KLg.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+    <title>{{ page_title }}</title>
+
+    {{ content_for_header }}
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+  
+  {% render 'shogun-head' %}
+
+  
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PGWT6J9');</script>
+<!-- End Google Tag Manager -->
+  
+  
+  </head>
+  <body>
+    
+      <header style="background: black; text-align:center; padding:10px" class="main__header" data-header role="banner">
+          
+      <div class="wrap">
+        {{ content_for_logo }}
+        
+      </div>
+    </header>
+    {{ skip_to_content_link }}
+
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main">
+          <header class="main__header" role="banner">
+            
+            {{ breadcrumb }}
+            {{ alternative_payment_methods }}
+            {% if page_title contains "Information"  %}
+
+
+             <div class="ll-container">
+              <div class="l-header">
+                  <h1 class="l-h1">Want to split up your payments interest-free?</h1>
+              </div>
+              <div id="checkout-info">
+                  <div class="item">
+                      <div class="center">
+                          <img src="//cdn.shopify.com/s/files/1/0026/5178/3237/t/61/assets/klarnaAndShop.png?v=1634675530"
+                              class="reason-img" alt="eco friendly bamboo tree sustainability">
+                      </div>
+                  </div>
+                  <div class="l-footer">
+                      <h1 class="l-h1">Select from these after shipping step</h1>
+                  </div>
+              </div>
+          	</div>
+            {% endif %}
+          <br/>  
+            
+          </header>
+          <main class="main__content" role="main">
+            {{ content_for_layout }}
+          </main>
+          <footer class="main__footer" role="contentinfo">
+            {{ content_for_footer }}
+          </footer>
+        </div>
+        <aside class="sidebar" role="complementary">
+          <div class="sidebar__header">
+            {{ content_for_logo }}
+          </div> 
+          
+     
+    
+          
+          
+          
+          
+          <div class="sidebar__content"> 
+            <h1 class="summary">ORDER SUMMARY</h1>
+            {{ content_for_order_summary }} 
+           
+            <p class="checkout__klarna-price-installment">
+              Payments as low as
+              <span class="klarna-price-installment" style="color:#AF0404;"></span>
+
+     	   </p>
+              <script>
+             	var setPrice = function(){
+                  let installment = parseInt(document.querySelector(".total-recap__final-price").innerText.slice(1,10).replace(',',''))/4
+                  document.querySelectorAll(".klarna-price-installment").forEach(function(el){
+                    el.innerText = "$" + (Math.round(installment * 100) / 100).toFixed(2)
+                  })
+                }
+              prices = []
+               {% for line_item in checkout.line_items %}
+                  prices.push({final_price: {{line_item.final_price}}, compare_at: parseInt({{line_item.variant.compare_at_price}}) || 0})
+               {% endfor %}
+               
+                function insertGold(){
+                  var el = document.createElement("div")
+                  need = document.createElement("p")
+                  price = document.createElement("p")
+                  need.classList = "l-need special"
+                  need.innerHTML = `Need help? <a class="mailto" href="mailto:support@luxome.com">EMAIL US</a> or call us at 855-458-9663`            
+
+                  price.classList = "checkout__klarna-price-installment special"
+                  price.innerHTML = `Payments as low as
+             		 <span class="klarna-price-installment" style="color:#d28268;"></span>`
+                  el.classList = "special l-container"
+                  el.innerHTML = `
+                  <div class="header">
+                      <h1 class="lH1">15,000+ FIVE-STAR REVIEWS</h1>
+                  </div>   
+
+                  <div id="stars">
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>
+                    <span>&#9733;</span>                  
+                  </div>              
+                  <div id="checkout-info">
+                    <div class="item-ch">
+                      <div class= "left">
+                        <img src="{{ 'diamon.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                      </div>
+                      <div class="right">
+                        <h1 class="lH1">PREMIUM QUALITY GUARANTEED</h1>
+                        <h3 class="lH3">Best-in-class products & customer service</h3>
+                      </div>
+                    </div>
+                    <div class="item-ch">
+                      <div class= "left">
+                        <img src="{{ 'CarGold.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                      </div>
+                      <div class="right">
+                        <h1 class="lH1">FAST & FREE SHIPPING</h1>
+                        <h3 class="lH3">Contiguous US states</h3>
+                      </div>
+                    </div>
+                    <div class="item-ch">
+                      <div class= "left">
+                        <img src="{{ 'Icon-OekoTex_120x.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                      </div>
+                      <div class="right">
+                        <h1 class="lH1">QUICK & EASY RETURNS</h1>
+                        <h3 class="lH3">Rest easy with our 30-day return policy</h3>
+                      </div>
+                    </div>
+                  </div>`
+                  document.querySelector(".order-summary__sections").appendChild(price)
+                 document.querySelector(".order-summary__sections").appendChild(el)
+                 
+                 
+                 document.querySelector(".order-summary__sections").append(need)
+                 
+             }
+               window.onload = function(){
+                 insertGold(); 
+                 setPrice(); 
+
+                 setInterval(function(){
+                  setPrice(); 
+                  document.querySelectorAll('tr.product').forEach(function(el,i){
+                    
+                    let compareAt = prices[i].compare_at
+                    let delPrice = el.querySelector('del')
+                    if (compareAt && delPrice){
+                      delPrice.innerText = '$' + ((compareAt / 100).toFixed(2))
+                      delPrice.style.display = 'inline'
+                      let discount = el.querySelector('.reduction-code__text')
+                      if (discount){
+                        discount.style.display = 'contents'
+                        
+                        discount.innerText = Math.round(100 * ((prices[i].compare_at - prices[i].final_price) / prices[i].compare_at)) + '% off!'
+                      }
+                    }
+                    
+                 })
+                  document.querySelectorAll('.reduction-code__text').forEach(function(el){
+                    el.style.display = 'inline'
+                  })
+                 document.querySelectorAll('.reduction-code').forEach(function(el){
+                    el.style.display = 'list-item'
+                  })
+                 },1000)
+                 document.querySelectorAll('tr.product').forEach(function(el){
+                  if (el.innerText.includes('50%')){
+                    let compareAt = 2 * parseFloat(el.querySelector('.product__price span.order-summary__emphasis').innerText.slice(1,10))
+                    let delPrice = el.querySelector('del')
+                    delPrice.innerText = '$' + (Math.round(compareAt * 100) / 100).toFixed(2)
+                    delPrice.style.display = 'inline'
+                  }
+                 })
+
+
+               }
+              </script>       
+            
+            <div class="l-container desktop-only">
+              	<div class="header">
+                	<h1 class="lH1">15,000+ FIVE-STAR REVIEWS</h1>
+            	</div>   
+    
+              	<div id="stars">
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>
+                  <span>&#9733;</span>                  
+              	</div>              
+              	<div id="checkout-info">
+                  <div class="item-ch">
+                    <div class= "left">
+                      <img src="{{ 'diamon.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                    </div>
+                    <div class="right">
+                      <h1 class="lH1">PREMIUM QUALITY GUARANTEED</h1>
+                      <h3 class="lH3">Best-in-class products & customer service</h3>
+                    </div>
+                  </div>
+                  <div class="item-ch">
+                    <div class= "left">
+                      <img src="{{ 'CarGold.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                    </div>
+                    <div class="right">
+                      <h1 class="lH1">FAST & FREE SHIPPING</h1>
+                      <h3 class="lH3">Contiguous US states</h3>
+                    </div>
+                  </div>
+                  <div class="item-ch">
+                    <div class= "left">
+                      <img src="{{ 'Icon-OekoTex_120x.png' | asset_img_url: '300x' }}" class="reason-img" alt="Diamond">
+                    </div>
+                    <div class="right">
+                      <h1 class="lH1">QUICK & EASY RETURNS</h1>
+                      <h3 class="lH3">Rest easy with our 30-day return policy</h3>
+                    </div>
+                  </div>
+              	</div>
+              
+          </div>
+            <p class="l-need">Need help? <a class="mailto" href="mailto:support@luxome.com"><u>EMAIL US</u></a> or call us at 855-458-9663</p>            
+        </div>         
+          
+        </aside>   
+        
+      </div>
+      
+    </div>
+
+    {{ tracking_code }}
+      {% assign pageurl = content_for_header| split:'"pageurl":"' | last | split:'"' | first %}
+  <script>step = '{{ page_title  }}'</script>
+
+<style>
+
+  /* cyrillic-ext */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WRhyyTh89ZNpQ.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+  /* cyrillic */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459W1hyyTh89ZNpQ.woff2) format('woff2');
+    unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+  /* vietnamese */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WZhyyTh89ZNpQ.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WdhyyTh89ZNpQ.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v15/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  .product__description__property {
+    display:none;
+  }
+  .product__description .reduction-code__text, .product__description .reduction-code{
+    display:none;
+  }
+  del {
+    display: none;
+  }
+  *, h1, h2, h3, span {
+    font-family: Montserrat, serif;
+  }
+  #stars {
+    font-size: 24px;
+    position: relative;
+    top: -15px;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  .center img {
+    max-width: 75%;
+  }
+  #continue_button {
+    padding: 0.7em 4.0em;
+    border-radius: 0;
+    font-weight: 300;
+    text-transform: uppercase;
+    background-color:#AF0404;
+  }
+  .sp-modal-toggle.sp-modal-toggle{
+    background-color: #E1B560;
+  }
+  .btn:hover,.sp-modal-toggle:hover {
+    background-color: #e6e7e8;
+    color: white;
+    cursor: pointer;
+  }
+  #stars span {
+    color: #e1b560;
+  }
+  .l-need {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 30px;
+  }
+
+  .field__input-btn-wrapper .field__input-btn.btn{
+    background-color:#AF0404;
+  }
+  .step__footer .step__footer__continue-btn.btn{
+    background-color:#AF0404;
+  }
+  .order-summary__sections.order-summary__sections {
+    height: unset;
+  }
+  .l-container {
+    border: 2px solid black;
+    height: 285px;
+    width: 440px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;   
+  }
+  .l-container.special {
+    display: none;
+  }
+  .ll-container {
+    border: 1px solid #e6e6e6;
+    height: 104px;
+    width: 565px;
+    margin-top: 50px;            
+    flex-direction: column;
+    align-items: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: flex;
+  }
+  .l-container .header {position: relative;
+    text-align: center;
+    top: -16px;
+    background: #fafafa;
+    width: fit-content;
+    padding: 0 12px;
+  }
+  .ll-container .l-header {position: relative;
+    text-align: center;
+    top: -12px;
+    background: #ffffff;
+    width: fit-content;
+    padding: 0 12px;
+  }
+  .ll-container .l-footer {
+    position: relative;
+    text-align: center;
+    top: 11px;
+    background: #ffffff;
+    width: 280px;
+    margin: auto;
+  }
+  .item-ch {
+    display: flex;
+    margin: 10px 0;
+  }
+  .item-ch img {
+    max-width: 55px;
+  }      		
+  .right {
+    display: flex;
+    flex-direction: column;
+    padding-left: 12px;
+    justify-content: center;
+  }
+  .lH1 {
+    color: black;
+    font-size: 1.2em;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .l-h1 {
+    color: black;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  .lH3 {
+    font-weight: 400;
+  }
+  .summary {
+    color: black;
+    font-size: 1.2em;
+    font-weight: 700;
+    line-height: 1.5;
+  } 
+  .checkout__klarna-price-installment{
+    text-align: end;
+    font-size:11px;
+    margin-top: -17px;
+  }
+  .product-thumbnail.product-thumbnail{
+    width: 5.9em;
+    height: 4em;
+  }
+  @media only screen and (max-width: 600px) {
+    .summary {
+      margin-top: -22px;
+    }
+  }
+  
+  @media only screen and (min-width: 1001px) {
+    .special {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    .checkout__klarna-price-installment {
+      margin-top: -20px;
+    }
+    .lH1 {
+      font-size: 1em;
+    }
+    .ll-container .l-footer {
+      margin: auto;
+      top: 17px;
+    }
+    .l-container .header {
+      top: -12px;
+    }
+    .ll-container {
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+    .checkout__klarna-price-installment{
+      display: none
+    }
+    .checkout__klarna-price-installment.special{
+      display: block;
+    }
+    .l-container {
+      display: none;
+    }
+    .l-container.special {
+      border: 2px solid black;
+      height: 285px;
+      width: 91%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 30px;
+      padding: 0 4%;
+    }
+    .l-container.desktop-only {
+      display: none;
+    }
+    .l-need {
+      display: none;
+      font-size: 10px;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+    .l-need.special {
+      display: block;
+      margin: 10px 0 50px 0;
+    }
+    .desktop-only {
+      display: none;
+    }
+    #stars {                  
+      top: -8px;
+    }
+    .summary {
+      display: none;
+    }
+  }
+</style>
+    
+<noscript>
+  <!-- Google Tag Manager (noscript) --> <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGWT6J9" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>    
+  </body>    
+</html>

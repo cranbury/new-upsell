@@ -1,0 +1,166 @@
+<script>
+  let sizeConversions = {'8lb | 42"x56"': "small", '15lb | 54"x72"': "medium", '18lb | 60"x80"': "large", '30lb | 100"x85"': "extra" };
+</script>
+{% for product in collection.products %}
+  <div class="collection-product-title-and-overview-products">
+    <div class="collection-product-title-and-description">
+      <h3>{{ product.title }}</h3>
+	  <p>
+      	{% if product.id == 1482400661573 %}{%comment%}weighted-blanket-integrated{%endcomment%}
+          One-piece weighted blanket with premium fabric.
+        {% elsif product.id == 1482350919749%}{%comment%}weighted-blanket-cover{%endcomment%}
+          Luxury weighted blanket with removable cover.
+        {% elsif product.id == 2140387999813%}{%comment%}cooling-weighted-blankets{%endcomment%}
+          A hand-picked selection of our coolest weighted blankets.
+        {% endif %}
+      </p>
+    </div>
+      <div class="collection-total-products-for-title">
+        {% for variant in product.variants %}
+        
+          {% if variant.available %}
+        
+            {% if product.options.size > 2 %}
+              {% if variant.option1 == '8lb | 42"x56"' %}
+                {% assign size = "small" %}
+              {% elsif variant.option1 == '15lb | 54"x72"' %}
+                {% assign size = "medium" %}
+              {% elsif variant.option1 == '18lb | 60"x80"' %}
+                {% assign size = "large" %}
+              {% elsif variant.option1 == '30lb | 100"x85"' %}
+                {% assign size = "extra" %}            
+              {% endif %}
+              <div class="collection-products-div" data-shown="true" data-size='{{ size }}' data-color="{{ variant.option2 }}" data-fabric="{{ variant.option3 }}">
+                <div class="collection-products-image">            
+                  <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url }}" alt="">
+                </div>
+                <p class="collections-fabric-paragraph">{{ variant.option3 }}</p>
+                <p class="collections-size-paragraph">{{ variant.option1 }}</p>
+                <span class="collection-products-price">{{ variant.compare_at_price | money }}</span>
+                <span class="collection-products-sales-price"> {{ variant.price | money }}</span>
+              </div>
+
+            {% elsif product.options.size == 2 and collection.id == 150956408901 %}{%comment%}shop-all-weighted-blankets{%endcomment%}
+
+              {% if variant.option2 contains 'Small:' %}
+                {% assign size = "small" %}
+              {% elsif variant.option2 contains 'Medium:' %}
+                {% assign size = "medium" %}
+              {% elsif variant.option2 contains 'Extra ' %}
+                {% assign size = "extra" %} 
+              {% elsif variant.option2 contains 'Large:' %}
+                {% assign size = "large" %}       
+              {% endif %}
+
+
+              <div class="collection-products-div" data-shown="true" data-size="{{ size }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+                <a href="https://luxome.com/products/{{product.handle}}?variant={{variant.id}}">
+                  <div class="collection-products-image">            
+                    <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: '350x' }}" alt="">
+                  </div>
+                </a> 
+                <a href="https://luxome.com/products/{{product.handle}}?variant={{product.id}}">
+                  <div class="collection-product-div-desc">
+                    <p class="collections-fabric-paragraph">{{ variant.option1 }}</p>
+                    <p class="collections-size-paragraph">
+                      {%if variant.compare_at_price %}
+                        <span class="ajaxcart__price span-quicksand red">{{ product.price | money }}</span>
+                        <span class="ajaxcart__price cart__price--strikethrough span-quicksand">{{product.compare_at_price | money}}</span>
+                      {%else%}
+                        <span class="ajaxcart__price span-quicksand" style="text-decoration: line-through;">
+                        {{ product.price | money }}</span>
+                      {%endif%}                       
+                      {% comment %}
+                      <span class="collection-products-price numeric-quicksand" >
+                        {{ variant.compare_at_price | money }}
+                      </span>
+                      {% endcomment %}
+                      <span class="collection-products-sales-price numeric-quicksand"> 
+                        {{ variant.price | money }}
+                      </span>
+                    </p>
+                  </div>
+                </a>
+              </div>
+            {% elsif product.options.size == 2 and collection.id == 91114799173 %} {%comment%}luxome-weighted-blankets{%endcomment%}
+
+              <div class="collection-products-div" data-shown="true" data-size="{{ variant.option2 }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+                <a href="https://luxome.com/products/{{product.handle}}?variant={{variant.id}}">
+                  <div class="collection-products-image">            
+                    <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: '350x' }}" alt="">
+                  </div>
+                </a> 
+                <a href="https://luxome.com/products/{{product.handle}}?variant={{product.id}}">
+                  <div class="collection-product-div-desc">
+                    <p class="collections-fabric-paragraph">{{ variant.option1 }}</p>
+                    <p class="collections-size-paragraph">
+                      {%if variant.compare_at_price and variant.compare_at_price > variant.price %}
+                        <span class="ajaxcart__price cart__price--strikethrough span-quicksand">{{variant.compare_at_price | money}}</span>
+                        <span class="ajaxcart__price span-quicksand red">{{ variant.price | money }}</span>
+                      {%else%}
+                        <span class="ajaxcart__price span-quicksand"> 
+                          {{ variant.price | money }}
+                        </span>
+                      {%endif%}
+                      {% comment %}
+                      <span class="collection-products-price numeric-quicksand">
+                        {{ variant.compare_at_price | money }}
+                      </span>
+                    {% endcomment %}
+                    </p>
+                  </div>
+                </a>
+              </div>
+
+            {% elsif collection.handle == "all" and forloop.first == true %}
+
+              <div class="collection-products-div" data-shown="true" data-size="{{ size }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+                <div class="collection-products-image">            
+                  <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: '350x' }}" alt="">
+                </div>
+                <div>
+                  <p class="collections-fabric-paragraph">{{ variant.option1 }}</p>
+                  <p class="collections-size-paragraph">{{ variant.option2 }}</p>
+                  <span class="collection-products-price">{{ variant.compare_at_price | money }}</span>
+                  <span class="collection-products-sales-price"> {{ variant.price | money }}</span>
+                </div>
+              </div>
+
+            {% elsif collection.id == 157696688189 and forloop.first == true %}{%comment%}all-luxome-products{%endcomment%}
+
+              <div class="collection-products-div" data-shown="true" data-size="{{ size }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+                <div class="collection-products-image">            
+                  <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: '350x' }}" alt="">
+                </div>
+                <div>
+                  <p class="collections-fabric-paragraph">{{ variant.option1 }}</p>
+                  <p class="collections-size-paragraph">{{ variant.option2 }}</p>
+                  <span class="collection-products-price">{{ variant.compare_at_price | money }}</span><span class="collection-products-sales-price"> {{ variant.price | money }}</span>
+                </div>
+              </div>
+
+             {% elsif product.options.size == 2 %}
+              <div class="collection-products-div" data-shown="true" data-size="{{ variant.option2 }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+                <div class="collection-products-image">            
+                  <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: '350x' }}" alt="">
+                </div>
+                <div>
+                  <p class="collections-fabric-paragraph">{{ variant.option1 }}</p>
+                  <p class="collections-size-paragraph">{{ variant.option2 }}</p>
+                  <span class="collection-products-price">{{ variant.compare_at_price | money }}</span><span class="collection-products-sales-price"> {{ variant.price | money }}</span>
+                </div>
+               </div>
+            {% endif %}
+        
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    {% if forloop.last == false%}
+    	<div class="hr-end-collection"></div>
+    {% endif %}
+    
+  </div>
+{% endfor %}
+    

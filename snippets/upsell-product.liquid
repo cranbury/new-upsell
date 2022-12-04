@@ -1,0 +1,179 @@
+{% capture sizes %}{% for variant in product_data.variants %}{{variant.option2}}{% if forloop.last == false %}::{% endif%}{% endfor %}{% endcapture %}
+{% assign size_array = sizes | split: '::' | uniq %}
+        
+{% assign string = "244-07::266-07::288-07::244-05::266-05::288-05::244-09::266-09::288-09::122-04::144-04::166-04::122-07::144-07::166-07::122-05::144-05::166-05" %} 
+{% assign array = string | split: '::' %}
+
+{% capture materials %}{% for variant in product_data.variants %}{% if array contains variant.sku %}{{variant.option1}}{% if forloop.last == false %}::{% endif %}{% endif %}{% endfor %}{% endcapture %}
+{% assign materials_array = materials | split: '::' | uniq %}
+		
+{% capture images %}{% for variant in product_data.variants %}{{variant.featured_media.preview_image.src}}{% if forloop.last == false %}::{% endif%}{% endfor %}{% endcapture %}
+{% assign image_array = images | split: '::' | uniq %}
+
+{% if product_data.id == 1482350919749 %}{% comment %}Removable Cover Weighted Blankets{% endcomment %}
+	{% assign header_title = 'Luxury Weighted Blanket' %}
+	{% assign header_subtitle = 'with Removable Cover' %}
+{% elsif product_data.id == 1482400661573 %}{% comment %}Integrated Cover Weighted Blankets{% endcomment %}
+	{% assign header_title = 'Luxury Weighted Blanket' %}
+	{% assign header_subtitle = ' ' %}
+{% endif %}
+
+{% assign option = '' %}
+
+<span>
+  <div id="upsell-promo-desc">
+    <span class="strong-upsell">BLACK FRIDAY DEAL - 50% OFF </span>with purchase: </div>
+</span>
+
+<div id="upsell-promo-container">
+  <div>
+   <form class="upsell-product-details" id="upsell-product-details-{{ product_data.id }}">
+    <div class="upsell-product-image">
+      <a id='img-link-{{product_data.id}}' class="upsell-link-variant" href="https://luxome.com/products/{{product_data.handle}}?variant=19671500226629">
+    	<img alt="{{ product_data.title }}" src="https://cdn.shopify.com/s/files/1/0026/5178/3237/products/bamboo-minky-white2-rc.png?v=1640931533" style="width:100%;" onload=""/>
+      </a>
+    </div>
+    <div class="upsell-grid">
+      <div class="product-title">
+        <a class="upsell-link-variant" >
+      	 {{ header_title }}
+        </a>
+        <p class="upsell-link-subheader"> {{ header_subtitle }}  </p>
+      </div>
+          <div class="variant-wrapper variant-wrapper--button js">
+            <label class="variant__label upsell-variant-label"
+              for="SingleOptionSelector-MATERIAL-option-TEST">
+              {{ product_data.name }}
+            </label>
+              <div class="variant-input-wrap upsell-material-images" data-index="option{{ forloop.index }}">
+              {% for option in product_data.options_with_values %}
+          	   {% if option.name == "Material" %}
+                {% assign first_time = true %}
+                {% for value in option.values %}
+                  {% if materials_array contains value %}
+					          {%- assign color_image = value | handle | append: '.' | append: swatch_file_extension | asset_img_url: '50x' | prepend: 'https:' | split: '?' | first -%}
+          			    {%- assign color_swatch_fallback = value | split: ' ' | last | handle -%}
+
+         	 		      {% assign pictures = product_data.variants | where: "option1", value %} 
+
+          			    {% assign color_picture = '' %}
+
+          				  {% assign color_picture = pictures[0].featured_image | remove: "products/" | replace: '.png', 'LUX.png' | asset_url %} 
+
+                  	{%- assign color_image = value | handle | append: '.' | append: swatch_file_extension | asset_img_url: '50x' | prepend: 'https:' | split: '?' | first -%}
+                  	
+                	  <input type="radio"
+						          {% if first_time %} 
+                        checked="checked" 
+                      {% endif %}
+                      value="{{ value | escape }}"
+                      data-index="option{{ option_index }}"
+                      name="{{ option.name }}[]"
+                      class="upsell-material variant__input-{{ section_id }}variant__input--color-swatch-{{ section_id }}"
+                      data-color-name="{{ value | escape }}"
+                      data-color-index="{{ color_option_index }}"
+                      id="{{product_data.id}}-ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}">
+                    <label
+                        onclick="showUpsellVariant(event)"
+                        onmouseover="showUpsellVariant(event)"
+                        onmouseout="showUpsellVariant()"
+                        data-product="{{product_data.id}}"
+                        for="{{product_data.id}}-ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+                        class="variant__button-label color-swatch color-swatch--{{ value | handle }}"
+                        style="background-image: url('{{ color_picture }}');background-size: cover;"
+                        data-type="upsell-Material-option"
+                        data-handle="{{product_data.handle}}"
+                      >
+                    </label>
+                  {% assign first_time = false %}
+               {% endif %}
+                
+          	 {% endfor %}
+           	{% endif %}
+           {% endfor %}
+                
+              </div>
+    	</div>
+      </div>
+         <div class="upsell-prices">
+      		<span class="upsell-normal-price span-quicksand">{{ product_data.compare_at_price | money }}</span>
+      		<span class="upsell-promo-price span-quicksand">{{ product_data.compare_at_price | times: 0.5 |   money }}</span>
+    	</div>
+    </form>
+  <div class="upsell-material-name"></div>
+	<div class="upsell_checkout_dropdown" data-type="menu">
+      <div onclick="upsellPlusToMinus('{{product_data.handle}}')" class="upsell-mobile-footer__item">
+        
+        <h4>
+          SELECT A SIZE
+        </h4>
+        <button type="button" class="btn-collapse-{{product_data.handle}} h4 footer__title upsell-collapsible-trigger upsell-collapsible-trigger-btn" aria-controls="shop-foot">
+          <span class="upsell-collapsible-trigger__icon upsell-collapsible-trigger__icon--open" role="presentation">
+            <svg class="icon icon--wide icon-chevron-down" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> 
+              <g class="footer-plus-symbol">
+                <line class="footer-vertical-line" x1="5.5" x2="5.5" y2="11" stroke="black"/> 
+                <line y1="5.5" x2="11" y2="5.5" stroke="black"/>
+              </g> 
+            </svg> 
+          </span>
+        </button>
+      </div>
+      <div id="shop-foot" class="upsell-collapsible-content upsell-collapsible-content--small">
+        <div class="upsell-collapsible-content__inner">
+          <div class="upsell-footer__collapsible collapse-{{product_data.handle}}">
+      <form class="variant-options upsell-size-dropdown">
+        {% assign available_products = product_data.variants | where: "available", true %}
+        {% assign all_sizes = available_products | map: "option1" | compact %}
+
+
+          {% for opt in product_data.options_with_values %}
+              {% if opt.name == "Size" %}
+              {% assign option = opt %}   
+            {% endif %}
+          {% endfor %}
+            {%- for value in option.values -%}
+          
+          {% assign current_variant = product_data.variants | where: "option1", value | first%}
+              <div>
+                <input id='{{product_data.id}}-upsell-{{ option.name | downcase }}-{{ value}}' class='upsell-{{ option.name | downcase }}' 
+                       type="radio" value='{{ value}}' name="{{ option.name | downcase }}"
+                      {% if forloop.first %} 
+                            checked="checked" 
+                       {% endif %}
+                  >
+                
+                <label
+                    for='{{product_data.id}}-upsell-{{ option.name | downcase }}-{{ value}}'
+                    class="variant__button-label {{ option.name | handleize }}-variant upsell-{{ option.name | downcase }}-variant"
+                    data-value='{{value}}'
+                    data-product="{{product_data.id}}"
+                    data-handle="{{product_data.handle}}"
+                    onclick="updateVariantInfo(this)"
+                  >
+                  {% case value %}
+                  	{% when '8 lbs | 42"x56"'%}
+                  		S
+                  	{% when '15 lbs | 54"x72"'%}
+                  		M
+                  	{% when '18 lbs | 60"x80"'%}
+                  		L
+                  	{% when '30 lbs | 100"x85"'%}
+                  		XL
+                  {% endcase %}
+                </label>
+                <span class="upsell-size-span">{{value}}</span>
+              </div>
+
+            {% endfor %}
+
+      </form>
+    <div id="upsell-add-button">
+      <button class="disabled" onclick="addUpsellToCart('{{product_data.id}}')" id="upsell-add" type="button">SELECT A SIZE</button>
+    </div>
+      </div>  
+        </div>
+      </div>
+    </div>	
+  </div> 
+</div>
+

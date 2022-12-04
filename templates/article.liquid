@@ -1,0 +1,7 @@
+{% if article.url contains 'blogs/videos' %}
+  {% section 'article-videos-template' %}
+{% elsif article.url contains 'blogs/read-sleep-repeat' %}
+  {% section 'article-rsr-template' %}
+{% else %}
+  {% section 'article-template' %}
+{% endif %}

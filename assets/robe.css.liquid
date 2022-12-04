@@ -1,0 +1,113 @@
+.robe-details-headlines{
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: bold;
+  	letter-spacing:0;
+    margin-left: 15px;
+
+}
+.body-image-robe{
+	max-width:28em;
+}
+
+.robe-chart-desktop-image{
+	width:100%;
+}
+
+.plush-performance-robe-container {
+    background-image:url('{{ 'ROBE-Sizing-Desktop.png' | asset_url}}');
+    background-color: #030406;
+    width: 96vw;
+    min-height: 600px;
+    background-size: contain;
+    background-position: 0 0;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 2em 2rem 0 2rem;
+}
+
+.performance-regulating-robe {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  	justify-content:center;
+  	color:white;
+}
+
+.robe-list{
+	list-style: none;
+  	text-align: center;
+}
+.robe-list-header{
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.fit-robe-content {
+	font-size: 42px;
+  	font-weight:700;
+  	margin-bottom:2rem;
+}
+#model-list{
+	margin-left:unset;
+  	margin-bottom:5vh;
+}
+.best-words-robe{
+	margin: 0;
+}
+.dual-loop-robe-container{
+	grid-template-columns: 56% 43%;
+	display: grid;
+	padding: 20px;
+	grid-column-gap: 15px;
+	background: white;
+}
+.performance-meet-content{
+	font-family:'Work Sans', sans-serif;
+}
+
+@media only screen and (max-width: 750px){
+	.plush-performance-robe-container {
+		background-image:url('{{ 'Robe-Sizing-Mobile.png' | asset_url}}');
+		grid-template-columns: unset;
+		margin: 1rem 1rem 0 1rem;
+		width: unset;
+		height: unset;
+	}
+	.performance-regulating-robe {
+		width: unset;
+		margin-top:18rem;
+		max-height: 282px;
+		justify-content: flex-end;
+	}
+	ul{
+		margin-left:0;
+	}
+	.dual-loop-robe-container{
+		display: flex;
+		flex-direction: column;
+	}
+	.dual-loop-img-bamboo{
+		display:flex;
+	}
+	.fit-robe-content {
+		font-size: 2em;
+		font-weight: 700;
+	}
+	.loop-performance-regulating-bamboo.robe-section {
+		padding-bottom: 2rem;
+	}
+	.product-details-ul.robe-section{
+		overflow-x:auto;
+	}
+	.product-details-ul.robe-love-them-section{
+		margin-left:2rem;
+	}
+
+}
+
+

@@ -1,0 +1,37 @@
+{% if product.id == 4813098811453 %}
+  <div class="product-shipping-returns gifting-made-easy">
+    <div class="product-shipping-returns-left">
+      <img class="lazyload img-gift-card" data-src="{{ 'Laptop-GiftCard.png' | asset_img_url: '150x' }}" alt="Luxome Gift Card">
+      <div>
+        <h4>Gifting</h4>
+        <h4>Made Easy</h4> 
+      </div>   
+    </div>
+    <div class="product-shipping-returns-right">
+      <ul>
+        <li>Give the gift of luxurious comfort & rest!</li>
+        <li>Digital gift card is delivered via email within 24 hours</li>
+        <li>No processing fees and no expiration date</li>
+        <li>For balance inquiries, contact us at <a href="mailto:support@luxome.com">support@luxome.com</a></li>
+      </ul>
+    </div>
+  </div>
+{% else %}
+<div class="product-shipping-returns">
+  <div class="product-shipping-returns-left">
+    <img class="lazyload" data-src="{{ 'Shipping-icon.png' | asset_img_url: '150x' }}" alt="Truck Shipping">
+    <div>
+      <h4>Fast Shipping.</h4>
+      <h4>Easy Returns.</h4> 
+    </div>   
+  </div>
+  <div class="product-shipping-returns-right">
+    <ul>
+      <li>Free shipping on all products (contiguous US)</li>
+      <li>Same day shipping (weekday orders before 2pm EST)</li>
+      <li>2022 Holiday Returns - Extended to 1/31/23 (Orders after 11/1)</li>
+      <li>Learn more here: <a href="/pages/returns-exchanges" target="_blank">RETURNS & EXCHANGES</a></li>
+    </ul>
+  </div>
+</div>
+{% endif %}

@@ -1,0 +1,41 @@
+<script>window.dataLayer=window.dataLayer||[]; </script>
+<script>
+  let defUrls=["//staticw2.yotpo.com/Jg8rbkKNmSTiBs788KWOeVA7dUJlMNN5DLFmEmno/widget.js"],afUrls=[],extArr=[],themeArr=[],barArr=[],trkArr=[],trekLoad=[],DFl=[],dcoo=document.cookie;
+  const obsTrek=new MutationObserver(a=>{a.forEach(({addedNodes:a})=>{a.forEach(a=>{"SCRIPT"==a.tagName&&a.classList.contains("analytics")&&(a.type="text/deferTrek") || a.tagName&&a.classList.contains("boomerang")&&(a.type="text/noBoom") || a.tagName&&a.id.indexOf("web-pixels-manager-setup-esm")>-1&&(a.type="text/noBoom") || a.tagName&&a.id.indexOf("web-pixels-manager-setup-legacy")>-1&&(a.type="text/deferTrek")})})}),targetTrek=document.head;obsTrek.observe(targetTrek,{childList:!0,subtree:!1});
+  </script>
+  
+  {%- liquid
+    assign scr_excl ='staticw2.yotpo,customily'
+      assign head_content = content_for_header | remove_first: '<' | replace: ' < ', ' -psoc-%3C ' | replace: '</', '-psoc-%3C/' | split: '<'
+      for tag in head_content
+      if tag contains 'script ' and tag contains ' src=' and tag contains 'shopifycloud/shopify/'
+        assign txcont = tag | remove_first: 'script ' | remove: '>-psoc-%3C/script>' | replace: "'", "'" | strip 
+        echo "<script>extArr.push('" | append: txcont | append: "');</script>"
+      elsif tag contains 'BarInjector'
+        assign txcont = tag | replace_first: ')', 'pso-)' | split: 'pso-)' | last | split: ');-psoc-%3C/script>' | first 
+        echo '<script> function tracker' | append: forloop.index | append: '()' | append: txcont | strip | append: '; barArr.push(tracker' | append: forloop.index | append: ');</script>'
+      elsif tag contains 'asyncLoad'
+          assign txcont = tag | replace_first: '["', 'pso-["' | replace: '"]', '"pso-]' | split: 'pso-[' | last | split: 'pso-]' | first
+          assign scripExcludes = scr_excl | split: ','
+          assign txfilt = txcont | split: ',' | uniq
+          for txf in txfilt 
+              assign exclu = false
+              for excl in scripExcludes
+                  if txf contains excl
+                    assign exclu = true
+                  endif
+              endfor
+              if exclu != true
+                  assign txfs = txf | strip
+                  echo '<script>afUrls.push(' | append: txfs | append: ');</script>'
+              endif
+          endfor
+      else
+        echo tag | replace: '-psoc-%3C', '<' | prepend: '<'
+      endif  
+    endfor
+  -%}
+  <script>
+  let afL1=2700,afL2=500;let FN=(e)=>{e.forEach(Function.prototype.call,Function.prototype.call)};let UL=(e)=>{for(let t=0;t<e.length;t++){let n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=e[t];let i=document.getElementsByTagName("script")[0];i.parentNode.insertBefore(n,i)}};let EXs=(e)=>{for(z=[],a=e.split(" "),i=0;i<a.length;i++)a[i].startsWith("src=")?z[i]="s."+a[i]+", ":a[i].startsWith("defer")?z[i]="":(b=a[i].replace(/=/,'", '),z[i]='s.setAttribute("'+b+"), ");return p=z.join(" "),p.replace(/, $/,"").replace(/crossorigin/g,"crossOrigin")};let EX=(e)=>{c="";for(let t=0;t<e.length;t++)b=EXs(e[t]),c+="s=document.createElement('script'), s.type='text/javascript',"+b+", document.head.appendChild(s); \n";let n=document.createElement("script");n.type="text/javascript",n.textContent=c,document.head.appendChild(n)};let LdM=()=>{const t=document.querySelectorAll('SCRIPT[type="text/deferTrek"]');t.forEach(t=>{let e=document.createElement("script");e.classList.add('analytics');t.src?(e.src=t.src,e.id=t.id,e.crossOrigin="anonymous"):(e.textContent=t.textContent),e.async=!1,Object.assign(e.dataset,t.dataset),t.parentNode.removeChild(t),document.head.appendChild(e)})};trekLoad.push(LdM);let speedLoader=()=>{setTimeout(()=>{FN(trekLoad);UL(defUrls); setTimeout(()=>{EX(extArr),setTimeout(()=>{UL(afUrls),FN(trkArr),setTimeout(()=>{FN(barArr)},afL1)},afL2)},afL2)},afL1)};window.attachEvent?window.attachEvent("onload",speedLoader):window.addEventListener("load",speedLoader,!1);
+  </script>
+  

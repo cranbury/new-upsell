@@ -1,0 +1,31 @@
+<script> 
+window.dataLayer=window.dataLayer||[]; dataLayer.push({"pix" : {
+"TestMode": true,    
+"template": "{{ template }}",
+"email": "{{ customer.email }}",
+"custId": "{{ customer.id }}",
+"fname": "{{ customer.first_name }}",
+"lname": "{{ customer.last_name }}",
+ "title": {{ product.title|json }},
+  {% if template contains 'product' %}  
+ "prodid": {{ product.id|json }},
+ //"prodvid": {{ product.first_available_variant.id }},
+  {% endif %}
+ "prodType": {{ product.type|json }},
+ "catTitle": {{ product.collections|map:"title"|json }},
+ "colTitle" : "{{ collection.title }}",
+ "colList": [{% for product in collection.products limit:3 %}{% unless forloop.first %},{% endunless %}"{{ product.id }}"{% endfor %}],
+ "imgURL": "https:{{ product.featured_image.src|img_url:'grande' }}",
+ "cartCurrency" : "{{ cart.currency.iso_code }}",
+ "URL": "{{ shop.secure_url }}{{ product.url }}",
+ "brand": {{ product.vendor|json }},
+ "cartValue" : {{ cart.total_price | money_without_currency | remove:',' }},
+ "price": {{ product.price|money_without_currency | remove:',' | json}},
+ "comparePrice": {{ product.compare_at_price_max|money|json }},
+ "cartProdid": [{% for item in cart.items %}{{ item.product_id }},{% endfor %}],
+  "cartGtpId": [{% for item in cart.items %}"shopify_US_{{ item.product_id }}_{{ item.variant_id }}",{% endfor %}],
+ "cartProdvid": [{% for item in cart.items %}{{ item.variant_id }},{% endfor %}],
+ "cartTitle": [{% for item in cart.items %}"{{item.product.title}}",{% endfor %}],
+ "cartPcat": [{% for item in cart.items %}"{{ item.product.type }}",{% endfor %}],
+ "cartPrice": [{% for item in cart.items %}{{item.product.price | money_without_currency}},{% endfor %}],
+}})</script>    

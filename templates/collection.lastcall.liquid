@@ -1,0 +1,40 @@
+{% render 'shogun-products', content: collection %}
+{% include 'shogun-products', content: collection %}
+{{ 'lastcall.css' | asset_url | stylesheet_tag }}
+
+{{collection.metafields.shogun.above}}
+<div id="CollectionAjaxResult" class="collection-content collection-all black-collection">
+  <div id="CollectionAjaxContent">
+    {% if collection.id == 162048868413 or collection.id == 157696688189 %}{%comment%}All Products & Innovation. Luxury. Sleep.{%endcomment%}
+      <div class="collection-all-banner">
+        <h1 class='collection-all-title'>Innovation in Luxury</h1>
+      </div>
+    {% else %}
+      <div class="grid upper-grid-collection last-call-image">
+        <div class="upper-part-lastcall-image">
+          {% section 'collection-lifestyle-image' %}
+          <div class="grid__item medium-up--one-quarter collection-review-section">
+            {% section 'collection-lastcall-review' %}
+          </div>
+          <div></div>
+        </div>
+      </div>
+    {% endif %}
+    <div class="page-width last-call-collection-boxes">
+      <div class="grid lower-grid-collection grid-collection">
+
+        <div class="cover-products-section">
+
+          	{% include 'collection-lastcall' %}
+
+        </div>
+    </div>
+  </div>
+</div>
+
+		
+
+
+{{collection.metafields.shogun.below}}
+
+

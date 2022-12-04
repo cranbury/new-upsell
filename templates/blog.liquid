@@ -1,0 +1,7 @@
+{% if blog.handle == 'videos' %}
+  {% section 'blog-videos-template' %}
+{% elsif blog.handle == 'read-sleep-repeat' %}
+  {% section 'blog-rsr-template' %}
+{% else %}
+  {% section 'blog-template' %}
+{% endif %}

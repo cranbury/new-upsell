@@ -1,0 +1,413 @@
+{% assign temporary_products = collection.products %}
+<div class="dropdown-collections">
+  <div class="dropdown-collection-div">
+    
+    <div id="collection-dropdown-size" class='dropdown-label' onclick="showCollectionOptionDiv('size')">
+      <label id="collection-dropdown-label-size" class="collection-dropdown-size">
+        <span id="dropdown-label-size" class="dropdown-label-class">
+          size
+        </span> 
+        <span id="rotate-symbol-size" class="rotate-symbol">
+          ^
+        </span>
+      </label>
+    </div>
+
+  </div>
+
+  <div class="dropdown-collection-div">
+
+    <div id="collection-dropdown-color" class='dropdown-label' onclick="showCollectionOptionDiv('color')">
+      <label id="collection-dropdown-label-color" class="collection-dropdown-color">
+        <span id="dropdown-label-color" class="dropdown-label-class">
+          color
+        </span> 
+        <span id="rotate-symbol-color" class="rotate-symbol">
+          ^
+        </span>
+      </label>
+    </div>
+
+  </div>
+
+
+  <div class="dropdown-collection-div">
+
+    <div id="collection-dropdown-fabric" class='dropdown-label' onclick="showCollectionOptionDiv('fabric')">
+      <label id="collection-dropdown-label-fabric" class="collection-dropdown-fabric">
+        <span id="dropdown-label-fabric" class="dropdown-label-class">
+          fabric
+        </span> 
+        <span id="rotate-symbol-fabric" class="rotate-symbol">
+          ^
+        </span>
+      </label>
+    </div>
+
+  </div>
+</div>
+    
+
+
+
+<div id="show-collection-div">
+  <!-- onclick show size, color or fabric options -->
+</div>
+
+<div id="show-collection-size-div" class="collection-dropdown-size-div collection-dropdown">
+  <div class="variant-input collection-variant-input-size variant-input-wrap Size" data-value='8lb | 42"x56"'>
+    <input
+           type="radio"
+           value='8lb | 42"x56"'
+           data-index="option1"
+           name="Size"
+           class="variant_input-small"
+           id="ProductSelect-Small"
+           />
+    <label
+           data-color-selected="Grey"
+           for="ProductSelect-Small"
+           class="variant_button-label collection-variant_button-label"
+           data-type="size"
+           data-option="small"
+           >
+      <span>S</span><br /><span class="size-span-weight">8lbs</span>
+    </label>
+    <p class="size-desc">
+      42"x56"
+    </p>
+  </div>
+  <div class="variant-input collection-variant-input-size variant-input-wrap Size" data-value='15lb | 54"x72"'>
+    <input
+           type="radio"
+           checked="checked"
+           value='15lb | 54"x72"'
+           data-index="option1"
+           name="Size"
+           class="variant_input-medium"
+           id="ProductSelect-Medium"
+           />
+    <label
+           data-color-selected="Grey"
+           for="ProductSelect-Medium"
+           class="variant_button-label collection-variant_button-label"
+           data-type="size"
+           data-option="medium"
+           >
+      <span>M</span><br /><span class="size-span-weight">15lbs</span>
+    </label>
+    <p class="size-desc">
+      54"x72"
+    </p>
+  </div>
+  <div class="variant-input collection-variant-input-size variant-input-wrap Size" data-value='18lb | 60"x80"'>
+    <input
+           type="radio"
+           value='18lb | 60"x80"'
+           data-index="option1"
+           name="Size"
+           class="variant_input-Large"
+           id="ProductSelect-Large"
+           />
+    <label
+           data-color-selected="Grey"
+           for="ProductSelect-Large"
+           class="variant_button-label collection-variant_button-label"
+           data-type="size"
+           data-option="large"
+           >
+      <span>L</span><br /><span class="size-span-weight">18lbs</span>
+    </label>
+    <p class="size-desc">
+      60"x80"
+    </p>
+  </div>
+  <div class="variant-input collection-variant-input-size variant-input-wrap Size" data-value='30lb | 100"x85"'>
+    <input
+           type="radio"
+           value='30lb | 100"x85"'
+           data-index="option1"
+           name="Size"
+           class="variant_input-XL"
+           id="ProductSelect-XL"
+           />
+    <label
+           data-color-selected="Grey"
+           for="ProductSelect-XL"
+           class="variant_button-label collection-variant_button-label"
+           data-type="size"
+           data-option="extra"
+           >
+      <span>XL</span><br /><span class="size-span-weight">30lbs</span>
+    </label>
+    <p class="size-desc">
+      100"x85"
+    </p>
+  </div>
+    
+  <div class="variant-input collection-variant-input-size variant-input-wrap Size collection-size-guide-button" data-value='30lb | 100"x85"'>
+    <input
+           type="radio"
+           value='Size Guide'
+           name="collection-size-guide-input"
+           class="collection-size-guide-input"
+           id="collection-size-guide-input"
+           />
+    <label
+           for="collection-size-guide-input"
+           class="variant_button-label collection-variant_button-label collection-size-guide-label"
+           >
+      <a class="collection-size-guide-link" href="#">Size Guide</a>
+    </label>
+    <p class="size-desc size-guide-link-p">
+      Size Guide
+    </p>
+  </div>
+</div>
+
+<div style="display:none;" id="show-collection-color-div" class="collection-dropdown-color-div collection-dropdown">
+    <div class="variant-input variant-input-wrap Color" data-value="Grey">
+      <input
+        type="radio"
+        value="Grey"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabricinput--color-swatch-Color"
+        data-color-name="Grey"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-Grey"
+      /><label
+        for="ProductSelect-Color-option-color-Grey"
+        data-available="none, s, m, l, xl"
+        class="variant_button-label color-swatch color-swatch--grey"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/grey_50x.png'); background-color: grey;"
+        data-type="color"
+        data-option="grey"
+      >
+        Grey
+      </label>
+    </div>
+    <div class="variant-input variant-input-wrap Color" data-value="Beige">
+      <input
+        type="radio"
+        value="Beige"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabric variantinput--color-swatch-Color"
+        data-color-name="Beige"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-Beige"
+      /><label
+        for="ProductSelect-Color-option-color-Beige"
+        data-available="none, s, m, l, xl"
+        class="variant_button-label color-swatch color-swatch--beige"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/beige_50x.png'); background-color: beige;"
+        data-type="color"
+        data-option="beige"
+      >
+        Beige
+      </label>
+    </div>
+    <div class="variant-input variant-input-wrap Color" data-value="White">
+      <input
+        type="radio"
+        value="White"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabric variantinput--color-swatch-Color"
+        data-color-name="White"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-White"
+      /><label
+        for="ProductSelect-Color-option-color-White"
+        data-available="none, s, m, l, xl"
+        class="variant_button-label color-swatch color-swatch--white"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/white_50x.png'); background-color: white;"
+        data-type="color"
+        data-option="white"
+      >
+        White
+      </label>
+    </div>
+    <div class="variant-input variant-input-wrap Color" data-value="Lattice Print + Grey">
+      <input
+        type="radio"
+        value="Lattice Print + Grey"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabric variantinput--color-swatch-Color"
+        data-color-name="Lattice Print + Grey"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-Lattice+Print+%2B+Grey"
+      /><label
+        for="ProductSelect-Color-option-color-Lattice+Print+%2B+Grey"
+        data-available="none, s, m, l, xl"
+        class="variant_button-label color-swatch color-swatch--lattice-print-grey"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/lattice-print-grey_50x.png'); background-color: grey;"
+        data-type="color"
+        data-option="lattice"
+      >
+        Lattice Print + Grey
+      </label>
+    </div>
+    <div class="variant-input variant-input-wrap Color" data-value="Tan + White">
+      <input
+        type="radio"
+        value="Tan + White"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabric variantinput--color-swatch-Color"
+        data-color-name="Tan + White"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-Tan+%2B+White"
+      /><label
+        for="ProductSelect-Color-option-color-Tan+%2B+White"
+        data-available="none, s, m, l"
+        class="variant_button-label color-swatch color-swatch--tan-white"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/tan-white_50x.png'); background-color: white;"
+        data-type="color"
+        data-option="tan"
+      >
+        Tan + White
+      </label>
+    </div>
+    <div class="variant-input variant-input-wrap Color" data-value="Navy + Grey">
+      <input
+        type="radio"
+        value="Navy + Grey"
+        data-index="option2"
+        name="Color"
+        class="variant_input-Fabric variantinput--color-swatch-Color"
+        data-color-name="Navy + Grey"
+        data-color-index="1"
+        id="ProductSelect-Color-option-color-Navy+%2B+Grey"
+      /><label
+        for="ProductSelect-Color-option-color-Navy+%2B+Grey"
+        data-available="none, s, m, l, xl"
+        class="variant_button-label color-swatch color-swatch--navy-grey"
+        style="background-image: url('https://cdn.shopify.com/s/files/1/0026/5178/3237/t/10/assets/navy-grey_50x.png'); background-color: grey;"
+        data-type="color"
+        data-option="navy"
+      >
+        Navy + Grey
+      </label>
+    </div>
+</div>
+
+<div id="show-collection-fabric-div" class="collection-dropdown-fabric-div collection-dropdown" style="display:none;">
+    <div class="variant-input variant-input-wrap Fabric" data-value="Bamboo + Minky">
+      <input
+        type="radio"
+        value="Bamboo + Minky"
+        data-index="option3"
+        name="Fabric"
+        class="variant_input-Fabric"
+        id="ProductSelect-Fabric-option-fabric-Bamboo+%2B+Minky"
+      /><label
+        data-color-selected="Grey"
+        for="ProductSelect-Fabric-option-fabric-Bamboo+%2B+Minky"
+        class="variant_button-label"
+        data-type="fabric"
+        data-option="bamboo / minky"
+      >
+        <span class="fabric-name">Bamboo </span>
+        <span class="fabric-name">+ Minky</span>
+      </label>
+      <p class="fabric-desc">
+        Cool &amp; Cozy
+      </p>
+    </div>
+    <div class="variant-input variant-input-wrap Fabric" data-value="Bamboo">
+      <input
+        type="radio"
+        value="Bamboo"
+        data-index="option3"
+        name="Fabric"
+        class="variant_input-Fabric"
+        id="ProductSelect-Fabric-option-fabric-Bamboo"
+      /><label
+        data-color-selected="Grey"
+        for="ProductSelect-Fabric-option-fabric-Bamboo"
+        class="variant_button-label"
+        data-available="none, s, m, l, xl"
+        data-type="fabric"
+        data-option="bamboo"
+      >
+        <span class="fabric-name">Bamboo</span>
+      </label>
+      <p class="fabric-desc">
+        Cool &amp; Silky
+      </p>
+    </div>
+    <div class="variant-input variant-input-wrap Fabric" data-value="Minky">
+      <input
+        type="radio"
+        value="Minky"
+        data-index="option3"
+        name="Fabric"
+        class="variant_input-Fabric"
+        id="ProductSelect-Fabric-option-fabric-Minky"
+      /><label
+        data-color-selected="Grey"
+        for="ProductSelect-Fabric-option-fabric-Minky"
+        class="variant_button-label"
+        data-available="none, s, m, l, xl"
+        data-type="fabric"
+        data-option="minky"
+      >
+        <span class="fabric-name">Minky</span>
+      </label>
+      <p class="fabric-desc">
+        Cozy &amp; Plush
+      </p>
+    </div>
+</div>
+
+<script>
+  let test = {{collection.handle | json}}
+  let currentOptions = {size: "medium", color: null, fabric: null}
+  let lastOption = "size"
+  
+  function showCollectionOptionDiv(option) {
+    let symbol = $(`#rotate-symbol-${option}`)
+    
+    symbol.text('-').addClass('hyphen')
+    $(".rotate-symbol").not(symbol).text("^")
+    if (lastOption != option && currentOptions[lastOption]){
+      $(`#dropdown-label-${lastOption.charAt(0).toUpperCase() + lastOption.slice(1)}`).text(currentOptions[lastOption])
+      lastOption = option.toLowerCase()
+    }
+    const mine = $(`#show-collection-${option.toLowerCase()}-div`)
+    $(".collection-dropdown").not(mine).hide()
+    mine.show()
+  }
+  
+  document.querySelectorAll(".variant_button-label").forEach((el) => el.addEventListener("click", (e) => {
+  	collectionFilter(e.currentTarget.dataset.type, e.currentTarget.dataset.option)
+  }))
+  
+  function collectionFilter(key, string) {
+    currentOptions[key] = string
+    $(".collection-products-div").each(function() {
+      try {
+      let jq = $(this)
+      let show = true
+      for(let optionKey in currentOptions){
+        if(currentOptions[optionKey] && !jq.data(optionKey).toLowerCase().includes(currentOptions[optionKey])){
+          show = false
+        }
+      }
+      if (show) {
+        jq.show()
+      } else {
+        jq.hide()
+      }
+      } catch(error){
+        console.log(error)
+      }
+    })
+  }
+  
+  window.onload = collectionFilter
+  
+</script>

@@ -1,0 +1,178 @@
+<div class="site-nav site-nav-style">
+  <div class="site-nav__icons">
+    {% if shop.customer_accounts_enabled %}
+      <a class="site-nav__link site-nav__link--icon small--hide" href="{{ routes.account_url }}">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-user" viewBox="0 0 64 64"><path d="M35 39.84v-2.53c3.3-1.91 6-6.66 6-11.41 0-7.63 0-13.82-9-13.82s-9 6.19-9 13.82c0 4.75 2.7 9.51 6 11.41v2.53c-10.18.85-18 6-18 12.16h42c0-6.19-7.82-11.31-18-12.16z"/></svg>
+        <span class="icon__fallback-text">
+          {% if customer %}
+            {{ 'layout.customer.account' | t }}
+          {% else %}
+            {{ 'layout.customer.log_in' | t }}
+          {% endif %}
+        </span>
+      </a>
+    {% endif %}   
+    
+    <!-- COMPANY ICON -->
+  
+    <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon site-nav__link--underline js-search-header js-no-transition{% if section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-split' %} medium-up--hide{% endif %}">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-company" viewBox="0 0 64 67">
+        <line x1="1" y1="26.9944" x2="1" y2="66.9999" stroke="#BFA547" stroke-width="2"/>
+        <line y1="66" x2="64" y2="66" stroke="#BFA547" stroke-width="2"/>
+        <line x1="63" y1="67" x2="63" y2="7.45687" stroke="#BFA547" stroke-width="2"/>
+        <path d="M63.2236 7.87291L0.499999 27.4596" stroke="#BFA547" stroke-width="2" stroke-linejoin="round"/>
+        <rect x="8" y="31.7159" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+        <rect x="46" y="31.7159" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+        <rect x="27" y="31.7159" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+        <rect x="8" y="49.3927" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+        <rect x="46" y="49.3927" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+        <rect x="27" y="49.3927" width="9" height="10.0947" stroke="#BFA547" stroke-width="2"/>
+      </svg>
+      <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
+    </a>
+    <div class="header-dropdown company-dropdown">
+      <div class="header-links">
+        <h3>Company</h3>
+        <ul class="header-ul">
+          <li><a href="/pages/about-us">About Us</a></li>
+          <li><a href="/pages/sustainability">Sustainability</a></li>
+          <li><a href="/pages/reviews">Reviews</a></li>
+          <li><a href="/pages/videos">Videos</a></li>
+          <li><a href="/blogs/read-sleep-repeat">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- SUPPORT ICON -->
+    <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--underline site-nav__link--icon js-search-header js-no-transition{% if section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-split' %} medium-up--hide{% endif %}">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-support" viewBox="0 0 64 64">
+        <path d="M30.479 40.504C29.935 40.504 29.487 40.328 29.135 39.976C28.783 39.624 28.607 39.16 28.607 38.584C28.607 37.304 28.911 35.928 29.519 34.456C30.159 32.984 31.039 31.72 32.159 30.664C33.151 29.736 34.095 28.84 34.991 27.976C35.887 27.112 36.607 26.152 37.151 25.096C37.727 24.04 38.015 22.712 38.015 21.112C38.015 19.864 37.711 18.728 37.103 17.704C36.495 16.648 35.631 15.816 34.511 15.208C33.423 14.6 32.143 14.296 30.671 14.296C29.071 14.296 27.695 14.632 26.543 15.304C25.391 15.944 24.495 16.84 23.855 17.992C23.247 19.144 22.943 20.472 22.943 21.976C22.943 22.52 22.767 22.968 22.415 23.32C22.095 23.64 21.663 23.8 21.119 23.8C20.575 23.8 20.127 23.64 19.775 23.32C19.423 22.968 19.247 22.52 19.247 21.976C19.247 19.768 19.727 17.832 20.687 16.168C21.647 14.472 22.975 13.144 24.671 12.184C26.399 11.224 28.399 10.744 30.671 10.744C32.783 10.744 34.671 11.208 36.335 12.136C37.999 13.032 39.311 14.28 40.271 15.88C41.231 17.448 41.711 19.256 41.711 21.304C41.711 23.096 41.391 24.616 40.751 25.864C40.111 27.112 39.263 28.264 38.207 29.32C37.183 30.344 36.047 31.432 34.799 32.584C33.807 33.48 33.151 34.488 32.831 35.608C32.511 36.728 32.351 37.72 32.351 38.584C32.351 39.16 32.175 39.624 31.823 39.976C31.471 40.328 31.023 40.504 30.479 40.504ZM30.479 49C29.679 49 29.007 48.728 28.463 48.184C27.951 47.64 27.695 46.984 27.695 46.216C27.695 45.416 27.967 44.744 28.511 44.2C29.055 43.656 29.711 43.384 30.479 43.384C31.247 43.384 31.903 43.656 32.447 44.2C33.023 44.744 33.311 45.416 33.311 46.216C33.311 46.984 33.023 47.64 32.447 48.184C31.903 48.728 31.247 49 30.479 49Z" fill="#FFF"/>
+        <circle cx="32" cy="32" r="31" stroke="#FFF" stroke-width="2"/>
+	  </svg>
+      <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
+    </a>
+    <div class="header-dropdown support-dropdown">
+      <div class="header-links">
+        <h3>Support</h3>
+        <ul class="header-ul">
+          <li><a href="/pages/contact-us">Contact Us</a></li>
+          <li><a href="/pages/returns-exchanges">Returns & Exchanges</a></li>
+          <li><a href="/pages/care-instructions">Care Instructions</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    {% comment %}
+    {% if settings.search_enable %}
+      <a href="{{ routes.search_url }}" class="site-nav__link site-nav__link--icon js-search-header js-no-transition{% if section.settings.main_menu_alignment == 'center' or section.settings.main_menu_alignment == 'center-split' %} medium-up--hide{% endif %}">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-search" viewBox="0 0 64 64"><path d="M47.16 28.58A18.58 18.58 0 1 1 28.58 10a18.58 18.58 0 0 1 18.58 18.58zM54 54L41.94 42"/></svg>
+        <span class="icon__fallback-text">{{ 'general.search.title' | t }}</span>
+      </a>
+    {% endif %}
+    {% endcomment %}
+
+    {% if section.settings.main_menu_alignment == 'left' or section.settings.main_menu_alignment == 'left-center' or section.settings.main_menu_alignment == 'left-drawer' %}
+      <button
+        type="button"
+        class="site-nav__link site-nav__link--icon js-drawer-open-nav{% if section.settings.main_menu_alignment == 'left' or section.settings.main_menu_alignment == 'left-center' %} medium-up--hide{% endif %}"
+        aria-controls="NavDrawer">
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-hamburger" viewBox="0 0 64 64"><path d="M7 15h51M7 32h43M7 49h51"/></svg>
+        <span class="icon__fallback-text">{{ 'general.drawers.navigation' | t }}</span>
+      </button>
+    {% endif %}
+
+    <a href="{{ routes.cart_url }}" class="site-nav__link site-nav__link--icon site-nav__link--underline js-drawer-open-cart js-no-transition" aria-controls="CartDrawer" data-icon="{{ settings.cart_icon }}">
+      <span class="cart-link">
+        {% comment %}
+        {%- if settings.cart_icon == 'cart' -%}
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 64 64"><path fill="none" d="M14 17.44h46.79l-7.94 25.61H20.96l-9.65-35.1H3"/><circle cx="27" cy="53" r="2"/><circle cx="47" cy="53" r="2"/></svg>
+        {%- else -%}
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-bag" viewBox="0 0 64 64"><g fill="none" stroke="#000" stroke-width="2"><path d="M25 26c0-15.79 3.57-20 8-20s8 4.21 8 20"/><path d="M14.74 18h36.51l3.59 36.73h-43.7z"/></g></svg>
+        {%- endif -%}
+        {% endcomment %}
+        <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cart" viewBox="0 0 64 69">
+          <path d="M14.6866 27H49.3134C52.1534 27 54.6044 28.9911 55.1862 31.7708L62.769 68H1.23097L8.81382 31.7708C9.39563 28.9911 11.8466 27 14.6866 27Z" stroke="#BFA547" stroke-width="2"/>
+          <path d="M26.486 33.8332L23.7594 17.7179L21.7875 18.0515L24.514 34.1668L26.486 33.8332ZM41.5083 17.1251L39.383 33.8741L41.367 34.1259L43.4924 17.3769L41.5083 17.1251ZM39.8378 10.714C41.1984 12.5567 41.7966 14.8528 41.5083 17.1251L43.4924 17.3769C43.8455 14.5942 43.1129 11.7826 41.4468 9.52606L39.8378 10.714ZM23.7594 17.7179C23.3184 15.1112 24.069 12.4031 25.7743 10.3707L24.2421 9.08515C22.166 11.5595 21.2471 14.8576 21.7875 18.0515L23.7594 17.7179ZM25.7743 10.3707C29.49 5.94212 36.4246 6.09119 39.8378 10.714L41.4468 9.52606C37.2443 3.83433 28.7675 3.69155 24.2421 9.08515L25.7743 10.3707Z" fill="#BFA547"/>
+        </svg>
+        <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+        <span class="cart-link__bubble{% if cart.item_count > 0 %} cart-link__bubble--visible{% endif %}"></span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<script>
+  let iconCompany = document.querySelector(".icon-company")
+  let containerCompany = document.querySelector(".company-dropdown")
+  let iconSupport = document.querySelector(".icon-support")
+  let containerSupport = document.querySelector(".support-dropdown")
+  let iconCart = document.querySelector(".js-drawer-open-cart")  
+  let iconsContainer = document.querySelector(".site-nav.site-nav-style")
+  
+  // Company icon
+  iconCompany.addEventListener("mouseenter", function() {
+    deselectNav()
+    containerCompany.classList.add("active") 
+  })
+  
+  containerCompany.addEventListener("mouseover", function() {
+    containerCompany.classList.add("active") 
+  })
+  
+  containerCompany.addEventListener("mouseout", function() {
+    containerCompany.classList.remove("active") 
+  })
+  
+  // Support icon
+  iconSupport.addEventListener("mouseenter", function() {
+    deselectNav()
+    containerSupport.classList.add("active") 
+  })
+  
+  containerSupport.addEventListener("mouseover", function() {
+    containerSupport.classList.add("active") 
+  })
+  
+  containerSupport.addEventListener("mouseout", function() {
+    containerSupport.classList.remove("active") 
+  })
+  
+  // Cart icon
+  iconCart.addEventListener("mouseover", function() {
+    deselectNav()
+    containerCompany.classList.remove("active")
+    containerSupport.classList.remove("active") 
+  })
+  
+    
+  iconCart.addEventListener("click", function() {
+    checkAmountItems()
+  })
+    
+  iconsContainer.addEventListener("mouseleave", function() {
+    deselectNav()
+  })
+  
+  function checkAmountItems(){
+    setTimeout(function(){
+        let drawerContainerHeight = document.querySelector('#CartContainer .drawer__scrollable').offsetHeight
+        let drawerRowHeight = document.querySelector('#CartContainer .ajaxcart__product')
+        let drawerItems = document.querySelectorAll('#CartContainer .ajaxcart__product').length
+		
+        if (drawerRowHeight) {
+          let totalHeight = drawerItems * drawerRowHeight.offsetHeight
+
+          if(totalHeight > drawerContainerHeight){
+            let subtotalContainer = document.querySelector('#CartContainer .drawer__footer')
+            subtotalContainer.classList.add('subtotal-shadow')
+          } else {
+            let subtotalContainer = document.querySelector('#CartContainer .drawer__footer')
+            subtotalContainer.classList.add('subtotal-shadow')
+          }
+        }
+      
+    }, 400)
+  }
+  
+</script>

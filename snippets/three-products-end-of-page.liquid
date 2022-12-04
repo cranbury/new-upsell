@@ -1,0 +1,81 @@
+{% for collection in collections %}
+  {% if collection.id == 157696688189 %}{%comment%}all-luxome-products{%endcomment%}
+    {% for product in collection.products %} 
+
+    {% if product.id == 4405624864829 %}{%comment%}bamboo-sheets{%endcomment%}
+        {% assign bamboo-sheets = product%}
+    {% endif%}
+
+    {% if product.id == 4492419530813 %}{%comment%}layr-adjustable-pillow{%endcomment%} 
+        {% assign layr-pillow = product%}
+    {% endif%}
+
+    {% endfor %}
+  {% endif%}
+
+  {% if collection.id == 91114799173 %}{%comment%}luxome-weighted-blankets{%endcomment%}
+    {% assign luxome-collection = collection%}
+    {% assign luxome-collection-min-price = 14500%}
+    {% for product in collection.products %} 
+      {% if product.price_min < luxome-collection-min-price %}
+        {% assign luxome-collection-min-price = product.price_min%}
+      {% endif%}		
+    {% endfor %}
+  {% endif%}
+{% endfor %}
+
+<div class="article-divider"></div>
+<div class="home-collection-1">
+  <a class="collection-product-home-cover margin-mobile" href="https://luxome.com/products/weighted-blanket?variant=40256155779133">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Blog-Collection-WB.png' | asset_url }}">
+      </div>
+    </div>
+    <div class='title-cover'>
+      <h3 class='collection-product-home-title'>Weighted Blanket</h3>
+      <span>Starting at <span class="numeric-quicksand">{{luxome-collection-min-price | money}}</span></span>
+    </div>
+  </a>
+
+  <a class="collection-product-home-cover margin-mobile" href="https://luxome.com/products/{{bamboo-sheets.handle}}?variant=31578516455485">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Blog-Collection-Sheets.png' | asset_url }}">
+      </div>
+    </div>
+    <div class='title-cover'>
+      <h3 class='collection-product-home-title'>{{bamboo-sheets.title}}</h3>
+      <span>Starting at <span class="numeric-quicksand">{{bamboo-sheets.price_min | money}}</span></span>
+    </div>
+  </a>
+
+  <a class="collection-product-home-cover margin-mobile" href="https://luxome.com/products/{{layr-pillow.handle}}?variant=39349072134205">
+    <div class='image-cover'>
+      <div class="collection-products-image-all-index-0 lazyload" data-bgset="{{ 'Blog-Collection-LAYR.png' | asset_url }}">
+      </div>
+    </div>
+    <div class='title-cover'>
+        <h3 class='collection-product-home-title'>{{layr-pillow.title}}</h3>
+        <span>Starting at <span class="numeric-quicksand">{{layr-pillow.price_min | money}}</span></span>
+    </div>
+  </a>
+</div>
+<div class="bottom-article-divider"></div>
+
+<style>
+.title-cover{
+  background: black;
+  color: white;
+}
+.title-cover span{
+  color: white;
+}
+.bottom-article-divider {
+  height: 8vh;
+}
+@media only screen and (max-width: 480px) {
+  .collection-product-home-cover.margin-mobile{
+    margin-bottom: 15px;
+  }
+}
+
+</style>

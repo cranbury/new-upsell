@@ -1,0 +1,140 @@
+<div id="extra-pillowcase-container">
+  <input type="checkbox" id="extra-pillowcase" name="extraId" value="31578586644541">
+   <label for="extra-pillowcase">
+     ADD <span class="numeric-quicksand">2</span> EXTRA PILLOWCASES – <span class="numeric-quicksand price-extra-pillow"></span>
+<!--      <span class="line-through compare-at-price-extra-pillow">$50</span>  -->
+   </label>
+</div>
+
+      
+<script>
+  
+  let formId = {{ id | json }};
+  let productForm = document.getElementById(formId);
+  
+  let extraPillowcase = null;
+  {% for collection in collections %}
+    
+  	{% if collection.id == 157696688189 %}{% comment %}All products{% endcomment %}
+  		{% for product in collection.products %}
+  		  
+  		  {% if product.id == 4502045294653 %}{% comment %}Removable cover{% endcomment %}
+  			  {%- assign variants_available = product.variants | where: "available", true -%}
+              extraPillowcaseAvailable = {{ variants_available | json}}
+          {% endif%}
+  		
+  		{% endfor %}
+    {% endif%}
+  {% endfor %}
+                
+  window.addEventListener('load', (event) => {
+	let pillowcaseButton = document.createElement('div');
+    pillowcaseButton.classList.add('btn');
+    pillowcaseButton.classList.add('btn--full');
+    pillowcaseButton.classList.add('add-to-cart');
+	pillowcaseButton.classList.add('justify-center');
+    pillowcaseButton.classList.add('btn--upsell-extra');
+    
+    let addToCartButton = productForm.querySelector('.add-to-cart');
+    pillowcaseButton.innerText = addToCartButton.innerText;
+    
+    
+    //let paymentsButtons = productForm.querySelector('.product-single__form.product-form-flex');
+    productForm.insertBefore(pillowcaseButton, addToCartButton);   
+    
+    addToCartButton.style.display = 'none';
+                
+	let extraCheckBox = document.getElementById('extra-pillowcase');
+    
+    pillowcaseButton.addEventListener('click', function(){
+      
+      if(extraCheckBox.checked){
+        let formData = {
+         'items': [{
+          'id': extraCheckBox.value,
+          'quantity': 1,
+          }]
+        };
+
+        theme.cart.addItemFromForm(formData)
+        .then( r => { addToCartButton.click() })
+        
+      } else {
+        addToCartButton.click()
+      }
+      
+  	})
+    
+    checkAvailabilityOfPillowcase(userSelection().Color, userSelection().Size);
+  });
+  
+  function checkAvailabilityOfPillowcase(c, s){
+    let color = c.toLowerCase();
+    let size = s.toLowerCase();
+    
+    let filteredPillowcase = ExtraPillowcasePicker.bySizeAndColor(extraPillowcaseAvailable, color, size);
+    
+    let extraCheckBox = document.getElementById('extra-pillowcase');
+    if(filteredPillowcase.length > 0){
+      let container = document.getElementById('extra-pillowcase-container');
+//       let compareAtPrice = document.querySelector('.compare-at-price-extra-pillow') 
+      let atPrice = document.querySelector('.price-extra-pillow') 
+      container.style.display = 'block';
+//       compareAtPrice.innerHTML = theme.Currency.formatMoney(filteredPillowcase[0].compare_at_price, theme.settings.moneyFormat)
+	  atPrice.innerHTML = theme.Currency.formatMoney(filteredPillowcase[0].price, theme.settings.moneyFormat)
+      extraCheckBox.value = filteredPillowcase[0].id
+    } else {
+      let container = document.getElementById('extra-pillowcase-container');
+      container.style.display = 'none';
+      extraCheckBox.checked = false;
+    }
+    
+  }
+  
+  class ExtraPillowcasePicker {
+    static bySizeAndColor(variants, color, size) {
+      let filteredBySize = this.filterBySize(variants, size);
+      let filteredBySizeAndColor = this.filterByColor(filteredBySize, color);
+      return filteredBySizeAndColor;
+    }
+      
+    static filterBySize(variants, size) {
+      
+      return variants.filter(function(v){
+        return v.options.join('').toLowerCase().includes(ExtraPillowcasePicker.oldSizes(size))
+      })
+    }
+    
+    static filterByColor(variants, color) {
+      return variants.filter(function(v){
+        return (v.options.join('').toLowerCase().includes(color) || v.options.join('').toLowerCase().includes(ExtraPillowcasePicker.oldColors(color)));
+      })
+    }
+    
+    static oldColors(color) {
+      let colors = {
+        navy: 'sapphire',
+        'sky blue': 'sky',
+        grey: 'charcoal',
+        beige: 'sand',
+        sage: 'sage',
+        white: 'white'
+      }
+      return colors[color]
+    }
+    
+    static oldSizes(size) {
+      let sizes = {
+        twin: 'full',
+        'twin xl': 'full',
+        full: 'full',
+        queen: 'queen',
+        king: 'king',
+        'cal king': 'king',
+        'split king': 'king'
+      }
+      return sizes[size]
+    }
+  }
+  
+</script>

@@ -1,0 +1,95 @@
+<div class='collections-all'>
+  {% for product in collection.products %}
+    {% assign cover = ''%}
+    {% assign hover = ''%}
+  	{% assign variant_id = ''%}
+    
+    {% if product.id == 4502045294653 %} {%comment%}bamboo-pillowcase-set{%endcomment%}
+  		{% assign cover = 'CollectionPage_Pillowcases.png'%}
+        {% assign hover = 'CollectionPage_Pillowcases_OnHover.png'%}
+    {% elsif product.id == 6890447896637 %} {%comment%}weighted-blanket{%endcomment%}
+  		{% assign cover = 'CollectionPage_Cooling.png'%}
+  		{% assign hover = 'CollectionPage_Cooling_OnHover.png'%}
+  	{% elsif product.id == 1482400661573 %} {%comment%}weighted-blanket-integrated{%endcomment%}
+  		{% assign cover = 'CollectionPage_Integrated.png'%}
+  		{% assign hover = 'CollectionPage_Integrated_OnHover.png'%}
+  	{% elsif product.id == 4492419530813 %} {%comment%}layr-adjustable-pillow{%endcomment%}
+  		{% assign cover = 'CollectionPage_Layr.png'%}
+  		{% assign hover = 'CollectionPage_Layr_OnHover.png'%}
+  	{% elsif product.id == 4405624864829 %} {%comment%}luxury-sheets{%endcomment%}
+  		{% assign cover = 'CollectionPage_Sheets.png' %}
+      {% assign hover = 'CollectionPage_Sheets_OnHover.png'%}
+  		{% assign variant_id = '?variant=31578516455485'%}
+  	{% elsif product.id == 1482350919749 %} {%comment%}weighted-blanket-cover{%endcomment%}
+  		{% assign cover = 'CollectionPage_Removable.png'%}
+  		{% assign hover = 'CollectionPage_Removable_OnHover.png'%}
+  	{% elsif product.id == 2163188596805 %} {%comment%}removable-covers{%endcomment%}
+  		{% assign cover = 'CollectionPage_Covers.png'%}
+  		{% assign hover = 'CollectionPage_Covers_OnHover.png'%}
+    {% elsif product.id == 4813098811453 %} {%comment%}gift-cards{%endcomment%}
+  		{% assign cover = 'CollectionPage_GC.png'%}
+  		{% assign hover = 'CollectionPage_GC_OnHover.png'%}
+    {% elsif product.id == 6586143539261 %} {%comment%}Lightweight{%endcomment%}
+    	{% assign cover = 'CollectionPage_LWB.png'%}
+    	{% assign hover = 'CollectionPage_LWB_OnHover.png'%}
+    {% elsif product.id == 6640736469053 %} {%comment%}plush-performance-towel{%endcomment%}
+    	{% assign cover = 'CollectionPage_PP.png'%}
+    	{% assign hover = 'CollectionPage_PP_OnHover.png'%}
+    {% elsif product.id == 6669003915325 %} {%comment%}spa-collection-towel{%endcomment%}
+    	{% assign cover = 'CollectionPage_SC.png'%}
+    	{% assign hover = 'CollectionPage_SC_OnHover.png'%}
+  	{% elsif product.id == 6727710900285 %} {%comment%}ultra-plush-robe{%endcomment%}
+    	{% assign cover = 'CollectionPage_Robe2022.png'%}
+    	{% assign hover = 'CollectionPage_Robe_OnHover2022.png'%}
+  	{% elsif product.id == 6824157577277 %} {%comment%}climaSense-comforter{%endcomment%}
+    	{% assign cover = 'CollectionPage_CSC.png'%}
+    	{% assign hover = 'CollectionPage_CSC_OnHover.png'%}
+  	{% elsif product.id == 6824646279229 %} {%comment%}duvet-cover{%endcomment%}
+    	{% assign cover = 'CollectionPage_DV.png'%}
+    	{% assign hover = 'CollectionPage_DV_OnHover.png'%}
+  	{% elsif product.id == 6789635113021 %} {%comment%}ultra-plush-throw{%endcomment%}
+    	{% assign cover = 'CollectionPage_Throw.png'%}
+    	{% assign hover = 'CollectionPage_Throw_OnHover.png'%}
+    {% endif%}
+    <a class="collection-product-all-cover" href="https://luxome.com/products/{{product.handle}}{{variant_id}}">
+      <div class='image-cover collections-all-products-page'>
+        {% for variant in product.variants %}
+
+        {% if forloop.index0 == 0 %}
+        <div class="collection-products-image-all-index-{{forloop.index0}}"
+             style="background-image: url({{ cover | asset_url }});">
+        </div>
+        {%elsif forloop.index0 == 1%}
+        <div class="collection-products-image-all-index-{{forloop.index0}}"
+             style="background-image: url({{ hover | asset_url }});">
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class='title-cover'>
+        <div>
+					{% assign title = product.title %}
+					{% if title == 'Plush Performance Towel Set' %}
+						{% assign title = 'Plush Towel Set' %}
+					{% endif %}
+          <h3 class='collection-product-title'>{{ title }}</h3>
+        </div>
+        <div>
+          <span>
+					{% if product.id != 4813098811453 %}
+						<span class="on-sale-coll">ON SALE! </span>
+					{% endif %}
+
+					Starting at <span class="numeric-quicksand">{{product.price_min | money}}</span></span>
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
+<style>
+.title-cover .on-sale-coll{
+	color:#AF0404;
+	font-weight:700;
+}
+</style>

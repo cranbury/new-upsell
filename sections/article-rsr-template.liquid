@@ -1,0 +1,51 @@
+<header class="dark-blue-header">
+  <h3 class="dark-blue-h3">OUR BLOG</h3>
+  <h1 class="dark-blue-h1">Read. Sleep. Repeat.</h1>
+</header>
+
+<main>
+  <div class="div-a-blog-home mobile">
+    <a href="/blogs/read-sleep-repeat" class="a-blog-home">BLOG HOME</a>
+  </div>
+  
+  <div class="article-container-content">
+    {{article.content}}
+  </div>
+  
+  <script>
+    let blogImg = document.querySelectorAll('.article-container-content img')
+	
+    function setDesktopImage(firstImage) {
+      if(firstImage !== undefined){
+        firstImage.classList.add('img-article-top')
+      }
+      
+    }
+	
+    function setMobileImage(secondImage) {
+      if(secondImage !== undefined){
+        secondImage.classList.add('img-article-top')
+        secondImage.classList.add('mobile')
+      }
+    }
+    
+    setDesktopImage(blogImg[0])
+    setMobileImage(blogImg[1])
+  </script>
+  
+  <div class="div-a-blog-home">
+    <a href="/blogs/read-sleep-repeat" class="a-blog-home justify-self-end">BLOG HOME</a>
+    
+    <a href="/collections/all-products" class="a-blog-home justify-self-start">SHOP NOW</a>
+  </div>
+{% render 'three-products-end-of-page' %}
+
+</main>
+
+{% schema %}
+  {
+    "name": "Section name",
+    "settings": []
+  }
+{% endschema %}
+

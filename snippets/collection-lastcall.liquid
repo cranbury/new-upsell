@@ -1,0 +1,163 @@
+{% assign sheet_set = collection.products | where: "id", 4405624864829 %}
+{% assign pillowcases = collection.products | where: "id", 4502045294653 %}
+{% assign last_call_1 = sheetset | concat pillowcases %}
+
+{% for coll in collections %}
+{% assign counter = counter + 1 %}
+{% if coll.title == 'Luxury Sheet Sets & Pillowcase Sets' or coll.id == 267261182013 or coll.id == 267261247549 or coll.title == 'LAYR Customizable Pillow'or coll.title == 'Lightweight Blankets'or coll.title == 'Towel Sets' or coll.title == 'Ultra Plush Throw' or coll.title == 'Ultra Plush Robe' or coll.title == 'Duvet Covers' or coll.title == 'ClimaSense Comforter' %}
+	{% assign on_sale = false %}
+	{% for prod in coll.products %}
+    {% capture threshold %}
+    {% if prod.id == 6890447896637 %}{% comment %} weighted blankets {% endcomment %}
+      28
+    {% elsif prod.id == 6824646279229 %}{% comment %} duvet covers {% endcomment %}
+      21
+    {% elsif prod.id == 4492419530813 %}{% comment %} LAYR Pillow {% endcomment %}
+      10
+    {% elsif prod.id == 6824157577277 %}{% comment %} ClimaSense Comforter {% endcomment %}
+      10
+    {% elsif prod.id == 6727710900285 %}{% comment %} Ultra Plush Robe {% endcomment %}
+      12
+    {% elsif prod.id == 1482400661573 %}{% comment %} Integrated weighted blankets {% endcomment %}
+      28
+    {% elsif prod.id == 1482350919749 %}{% comment %} Removable weighted blankets {% endcomment %}
+      28
+    {% elsif prod.id == 6789635113021 %}{% comment %} Ultra Plush Throw {% endcomment %}
+      20
+    {% elsif prod.id == 6640736469053 %}{% comment %} Plush Performance Towel Set {% endcomment %}
+      14
+    {% elsif prod.id == 6669003915325 %}{% comment %} Spa Collection Towel Set {% endcomment %}
+      14
+    {% else %}
+      15
+    {% endif %}
+    {% endcapture %}
+
+    {% assign threshold = threshold | number | plus: 0.0 | divided_by: 100.0 %}
+		{% for vari in prod.variants %}
+
+      {% assign compare_at = vari.compare_at_price | plus: 0.0 %}
+      {% assign price = vari.price | plus:0.0 %}
+      {% assign ratio = price | divided_by: compare_at %}
+      {% assign percent = 1 | minus: ratio %}
+      {% if threshold and percent >= threshold %}
+				{% assign on_sale = true %}
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
+
+<div id="sale-section-{{coll.handle}}">
+    {% if on_sale %}
+  <div class="lastcall-product-title-and-description">
+    <div class="last-call-title">
+      <h3>{{ coll.title }}</h3>
+      <p>
+        {{coll.description}}
+      </p>
+    </div>
+      <!-- REVIEW SECTION -->
+    <div class="last-call-reviews wb-collection-review-container">
+      {% if coll.title != 'Ultra Plush Throw' and coll.title != 'Ultra Plush Robe' and coll.title != 'Duvet Covers' and coll.title != 'ClimaSense Comforter' %}
+        <div class="slide-stars">
+          <p class="yotpo-stars-product-p yotpo">
+            <span class="yotpo-filter-stars rating-stars-container "> 
+              <span class="yotpo-icon yotpo-icon-star rating-star pull-left"></span>
+              <span class="yotpo-icon yotpo-icon-star rating-star pull-left"></span>
+              <span class="yotpo-icon yotpo-icon-star rating-star pull-left"></span>
+              <span class="yotpo-icon yotpo-icon-star rating-star pull-left"></span>
+              <span class="yotpo-icon yotpo-icon-star rating-star pull-left"></span>
+            </span>
+          </p>
+        </div>
+        {% assign stars = '10,000' %}
+        {% if coll.title == 'Luxury Sheet Sets & Pillowcase Sets' or coll.id == 267261182013 %}
+          {% assign stars = '5,500' %}
+        {% elsif coll.id == 267261247549 %} {% comment %}weighted blankets{% endcomment %}
+          {% assign stars = '8,000' %}
+        {% elsif coll.title == 'LAYR Customizable Pillow' %} 
+          {% assign stars = '1,300' %}
+        {% elsif coll.title == 'Lightweight Blankets' %}
+          {% assign stars = '500' %}
+        {% elsif coll.title == 'Towel Sets' %}
+          {% assign stars = '200' %}
+        {% elsif coll.title == 'Extra Blanket Covers' %}
+          {% assign stars = '140' %}
+        {% endif %}
+        
+        <span class="collection-review"><span class="span-quicksand">{{stars}}</span>+ Reviews</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="collection-total-products-for-title last-call-boxes">
+  {% for product in coll.products %}
+    {% assign name = product.title %}
+    {% if product.title == "Removable Cover Weighted Blankets" %}
+      {% assign name = 'Blanket + Cover Set' %}
+    {% elsif product.title == "Integrated Cover Weighted Blankets" %}
+      {% assign name = "One-Piece Blanket" %}
+    {% elsif product.title == "Cooling Weighted Blankets" %}
+      {% assign name = "Cooling Blanket" %}
+    {% endif %}
+
+      {% assign variant_header_1 = "COLOR:" %} 
+      {% assign variant_header_2 = "SIZE:" %}
+      {% if product.title == "LAYR Customizable Pillow" %}
+        {% assign variant_header_1 = "SIZE:" %}
+        {% assign variant_header_2 = "PACK SIZE:"%}
+      {% elsif product.title == "Removable Cover Weighted Blankets" or product.title =="Integrated Cover Weighted Blankets" or product.title =="Cooling Weighted Blankets" %}
+        {% assign variant_header_1 = "MATERIAL:" %}
+        {% assign variant_header_2 = "SIZE:"%}
+      {% elsif product.id == 6824646279229 %}{% comment %} duvet {% endcomment %}
+        {% assign variant_header_1 = "FABRIC:" %}
+        {% assign variant_header_2 = "SIZE:"%}
+      {% endif %}
+      {% for variant in product.variants %}
+        {% assign compare_at = variant.compare_at_price | plus:0.0 %}
+        {% assign price = variant.price | plus:0.0 %}
+        {% assign ratio = price | divided_by: compare_at %}
+        {% assign percent = 1 | minus: ratio %}
+
+        {% if variant.available and threshold and percent >= threshold %}
+     
+    
+    <div class="collection-products-div last-call-box" data-shown="true" data-size="{{ variant.option2 }}" data-color="{{ variant.option1 }}" data-fabric="{{ variant.option1 }}">
+      <div class="collection-products-image"> 
+        <a href="https://luxome.com/products/{{product.handle}}?variant={{variant.id}}">
+          <img class="collection-products-image-border lazyload"  data-src="{{ variant.featured_image | img_url: "350x" }}" alt="">
+        </a>
+      </div>
+      <div class="lastcall-info">
+        <div class="lastcall-paras">
+          <p class="collections-title-paragraph">{{ name }}</p>
+          <p class="collections-option-paragraph">{{ variant_header_1 }} <span>{{ variant.option1 }}</span></p>
+          {% if product.id == 6824646279229 %}{% comment %} duvet {% endcomment %}
+            <p class="collections-option-paragraph">{{ variant_header_2 }} <span>{{ variant.option3 }}</span></p>
+          {% else %}
+            <p class="collections-option-paragraph">{{ variant_header_2 }} <span>{{ variant.option2 }}</span></p>
+          {% endif %}
+          <p class="last-call-price-section">
+            <span class="collection-products-price">{{ variant.compare_at_price | money }}</span>
+            <span class="collection-products-sales-price"> {{ variant.price | money }}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+      
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+</div>
+  {% if forloop.last == false%}
+<div class="last-call-lines hr-end-collection"></div>
+  {% endif %}
+{% endif %} 
+</div>
+
+{% endif %}
+{% endfor %}    
+<script>
+  let myOrder = ['ultra-plush-throw', 'towel-sets', 'luxury-weighted-blankets', 'lightweight-blankets', 'layr-customizable-pillow', 'luxury-sheet-sets-pillowcase-sets', 'climasense-comforter', 'duvet-covers', 'ultra-plush-robe']
+  myOrder.forEach(function(title,i){
+    $(`#sale-section-${title}`).css({order: i + 1})
+  })
+</script>

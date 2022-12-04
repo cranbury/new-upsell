@@ -1,0 +1,5 @@
+<script>
+    {%- assign luxomeProducts = collections | where: 'handle', 'all-luxome-products' | first -%}
+    
+    var shogunProducts = {{luxomeProducts.products | json}}
+</script>

@@ -1,0 +1,71 @@
+{% render 'shogun-products', content: product %}
+{{product.metafields.shogun.above}}
+{% section 'product-template' %}
+
+{% if collection %}
+  <div class="text-center page-content page-content--bottom">
+    <a href="{% if collection.handle == 'frontpage' %}/{% else %}{{ collection.url }}{% endif %}" class="btn btn--small return-link">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-left" viewBox="0 0 50 15"><path d="M50 5.38v4.25H15V15L0 7.5 15 0v5.38z"/></svg> {{ 'products.general.collection_return' | t: collection: collection.title }}
+    </a>
+  </div>
+{% endif %}
+
+<script>
+  // Override default values of shop.strings for each template.
+  // Alternate product templates can change values of
+  // add to cart button, sold out, and unavailable states here.
+  theme.productStrings = {
+    addToCart: {{ 'products.product.add_to_cart' | t | json }},
+    soldOut: {{ 'products.product.sold_out' | t | json }},
+    unavailable: {{ 'products.product.unavailable' | t | json }}
+  };
+</script>
+
+<script text="text/javascript">
+//   Klaviyo script
+  var _learnq = _learnq || [];
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }},
+    {% assign variantSelected = product.selected_variant %}
+    {% if variantSelected %}
+    vTitle: {{ variantSelected.title|json }},
+    vPrice: {{ variantSelected.price|money|json }},
+    vImage: "https:{{ variantSelected.image.src|img_url:'grande' }}",
+    vSKU: {{ variantSelected.sku|json }},
+    vOption1: {{ variantSelected.option1|json }},
+    vOption2: {{ variantSelected.option2|json }},
+    vOption3: {{ variantSelected.option3|json }},
+    vID: {{ variantSelected.id|json }}
+    {% endif %}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    VariantTitle: item.vTitle,
+    VariantPrice: item.vPrice,
+    VariantImage: item.vImage,
+    VariantSKU: item.vSKU,
+    VariantOption1: item.vOption1,
+    VariantOption2: item.vOption2,
+    VariantOption3: item.vOption3,    
+    VariantID: item.vID,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+{{product.metafields.shogun.below}}

@@ -1,0 +1,80 @@
+<div class="perfectly-packaged-flex">
+  <div class="perfectly-packaged-title">
+    <h1>Perfectly Packaged</h1>
+    <p>WHAT'S INCLUDED</p>
+  </div>
+  <div class="perfectly-packaged-grid">
+    <div class="pillow-single-two-pack">
+      <img class="lazyload" data-src="{{ 'LAYRPillow_Packaging.png' | asset_url}}" alt="LAYR Pillow packaging">
+      <div class="pillow-text">
+        <h3>Single Pillow</h3>
+        <p>Includes 1 Outer Cover, 1 SOFT Insert,</p>      
+        <p>1 MEDIUM Insert, 1 FIRM Insert (1” & 2” Solid</p>
+        <p>Memory Foam pieces inside one insert), and 2</p>
+        <p>Extra Insert Covers.</p>
+      </div>
+    </div>
+    <div class="pillow-single-two-pack mobile-top-margin">
+      <img class="lazyload" data-src="{{ 'LAYR2PackPillow_Packaging.png' | asset_url}}" alt="LAYR Pillow packaging">
+      <div class="pillow-text">
+        <h3>2-Pack</h3>
+        <p>Includes 2 Outer Covers, 2 SOFT Inserts,</p>      
+        <p>2 MEDIUM Inserts, 1 FIRM Insert (1” & 2” Solid</p>
+        <p>Memory Foam pieces inside individual inserts -</p>
+        <p>for sharing), and 2 Extra Insert Covers.</p> 
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.perfectly-packaged-flex{
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 15px;
+}
+.perfectly-packaged-title{
+  text-align:center;
+}
+.perfectly-packaged-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.pillow-text{
+  padding-top: 15px
+}
+.perfectly-packaged-grid .pillow-single-two-pack img{
+  width:75%;
+}
+.pillow-single-two-pack{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 5%;
+}
+.mobile-top-margin{
+  margin-top: 15px;
+}
+.pillow-text p{
+  font-family:'Work Sans', sans-serif;
+  line-height: 1;
+  margin: 0 0 8px
+}
+@media only screen and (max-width: 480px) {
+  .mobile-top-margin{
+    margin-top: 40px;
+  }
+}
+@media (max-width: 425px) {
+  .pillow-text p{
+    margin: 0 0 3px
+  }
+}
+
+</style>

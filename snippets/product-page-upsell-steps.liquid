@@ -1,0 +1,50 @@
+{% assign title = '' %}
+{% assign description ='' %}
+{% assign productAddedMessage ='' %}
+
+{% if product.id == 6824646279229 %}
+  {% assign title = 'ADD A MATCHING PILLOWCASE SET' %}
+  {% assign description = 'Complete the look with a Pillowcase Set.' %}
+  {% assign productAddedMessage = 'PILLOWCASE SET ADDED' %}
+
+{% endif %}
+
+<div id="blanket-cover-upsell" data-checked="false" >
+  <div id="blanket-cover-upsell-header">
+    <div id="blanket-cover-upsell-checkbox">
+      <img id="blanket-cover-upsell-check" src="{{ 'white-check-mark.png' | asset_url }}" width="15" height="13">
+    </div>
+    <div>
+      <span id="blanket-cover-upsell-title"> {{ title }}</span>
+      <span id="blanket-cover-upsell-subtitle">See Details</span>
+    </div>
+
+  </div>
+  
+  <div id="blanket-cover-upsell-description">{{ description }}</div>
+  
+  <div id="blanket-cover-upsell-variants">
+    <img src="" id="blanket-cover-upsell-variant-img">
+    
+    <div class="blanket-cover-upsell-custom-select-id custom-select-container"><select name="blanket-cover-upsell-id" id="blanket-cover-upsell-variant"></select></div>
+
+    <div id="blanket-cover-upsell-add">
+      ADD
+    </div>
+  </div>
+  
+</div>
+
+<script>
+  function shouldDisplayUpsell(){
+    let optionsSelected = userSelection()
+    document.getElementById("blanket-cover-upsell").style.display = 'block'
+  	//checkAvailabilityOfBlankets(optionsSelected.Size, optionsSelected['Blanket Type'] || optionsSelected.Material || optionsSelected.Fabric || optionsSelected.Color); 
+  }
+
+  window.addEventListener('load', (event) => {
+    shouldDisplayUpsell()
+  })
+</script>
+
+

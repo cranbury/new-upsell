@@ -1,0 +1,658 @@
+{%- assign swatch_file_extension = 'png' -%}
+{%- assign is_color = false -%}
+{%- assign color_swatch_drop = option_drop -%}
+{%- assign color_option_index = 0 -%}
+
+{%- if settings.product_color_swatches -%}
+  {%- for option in product.options_with_values -%}
+    {%- if option == color_swatch_drop -%}
+      {%- assign color_option_index = forloop.index0 -%}
+      {%- assign downcased_option = color_swatch_drop.name | downcase -%}
+      {%- if downcased_option contains 'color' or downcased_option contains 'colour' -%}
+        {%- assign is_color = true -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<div class="variant-wrapper variant-wrapper--{{ settings.variant_type }} js">
+  <label id="variant__label__{{ option.name }}" class="variant__label-size-flex variant__label{% if option.name == 'Default' or option.name == 'Title' %} hidden-label{% endif %}{% unless settings.variant_labels_enable %} hidden-label{% endunless %}"
+         for="ProductSelect-{{ section_id }}-option-{{ forloop.index0 }}">
+    <div>
+    {{ option.name | append: ":" }}
+      <span class="variant__label-info">
+        {%- if is_color -%}
+        <span
+              class="variant__label-info-font"
+
+              id="selectedColor"
+              data-option-index="{{ color_option_index }}">
+          {{ option.selected_value }}
+        </span>
+        {%- else -%}
+        <span id="selected{{ option.name }}">
+          {{ option.selected_value }}
+        </span>
+        {%- endif -%}
+      </span>
+    </div>
+    
+    <div>
+    {% if option.name == 'Size' %}
+      <!-- Trigger/Open The Size Guide Modal - modal-size-guide snippet -->
+      <a id="size-guide-modal-link"class="size-guide-link" href="#">Size Guide</a>
+      {%- include 'modal-size-guide' -%}
+    {%- endif -%}    
+    </div>
+      
+  </label>
+  {%- assign option_index = forloop.index -%}
+  
+  {%- assign variants_available = product.variants | where: "available", true -%}
+  
+  {%- assign variants_s = variants_available | where: "option1", '8lb | 42"x56"' -%}
+  {%- assign variants_m = variants_available | where: "option1", '15lb | 54"x72"' -%}
+  {%- assign variants_l = variants_available | where: "option1", '18lb | 60"x80"' -%}
+  {%- assign variants_xl = variants_available | where: "option1", '30lb | 100"x85"' -%}
+
+  <div class="variant-input-wrap {{ option.name }}"
+    name="{{ option.name }}"
+    data-index="option{{ option_index }}"
+    id="ProductSelect-{{ section_id }}-option-{{ forloop.index0 }}">
+    {%- for value in option.values -%}
+      {%- assign product_available = true -%}
+      {%- if product.options.size == 1 -%}
+        {%- assign product_available = product.variants[forloop.index0].available -%}
+      {%- endif -%}
+      <div
+        class="variant-input"
+        data-index="option{{ option_index }}"
+        data-value="{{ value | escape }}">
+        <input type="radio"
+          {% if option.name == "Size" %} {% if value == '15lb | 54"x72"' %} checked="checked" onload="" {% endif %}               
+          {% elsif option.selected_value == value %} checked="checked" {% endif %}
+          value="{{ value | escape }}"
+          data-index="option{{ option_index }}"
+          name="{{ option.name }}"
+          class="variant__input-{{ section_id }}{% unless product_available %} disabled{% endunless %}{% if is_color %} variant__input--color-swatch-{{ section_id }}{% endif %}"
+          {% if is_color %} data-color-name="{{ value | escape }}"{% endif %}
+          {% if is_color %} data-color-index="{{ color_option_index }}"{% endif %}
+          id="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}">
+        {%- if is_color -%}
+          {%- assign color_image = value | handle | append: '.' | append: swatch_file_extension | asset_img_url: '50x' | prepend: 'https:' | split: '?' | first -%}
+          {%- assign color_swatch_fallback = value | split: ' ' | last | handle -%}
+         
+        <label
+            onclick="clickColor(this.control.value)"
+            onmouseover="showVariantAvailable(this.control.value, 'color')"
+            onmouseout="showCurrentVariantAvailable()"
+            for="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            {%- assign color_available_s = variants_s | where: "option2", value -%}
+			{%- assign color_available_m = variants_m | where: "option2", value -%}
+            {%- assign color_available_l = variants_l | where: "option2", value -%}
+            {%- assign color_available_xl = variants_xl | where: "option2", value -%}
+            data-available="none{% if color_available_s.size > 0 %}, s{% endif %}{% if color_available_m.size > 0 %}, m{% endif %}{% if color_available_l.size > 0 %}, l{% endif %}{% if color_available_xl.size > 0 %}, xl{% endif %}"
+            class="variant__button-label color-swatch color-swatch--{{ value | handle }}{% unless product_available %} disabled{% endunless %}{% unless color_available_m.size > 0 %} color-unavailable{% endunless %}"
+            style="background-image: url('{{ color_image }}'); background-color: {{ color_swatch_fallback }};"
+            data-type="color-option"
+          >
+              {{ value | escape }}
+          </label>
+        {%- else -%}
+          <label
+            {% if variants_m.size > 0 %}{%- assign color_available = variants_m[0].option2 -%}{% endif %}
+            data-color-selected="{{color_available}}"
+            {% if option.name == 'Size' %}
+              onclick="clickSize(this.control.value)"
+              onmouseover="showVariantAvailable(this.control.value, 'size')"
+			  onmouseout="showCurrentVariantAvailable()"
+              data-type="size-option"
+            {% endif %}
+            for="ProductSelect-{{ section_id }}-option-{{ option.name | handleize }}-{{ value | url_encode }}"
+            class="variant__button-label{% unless product_available %} disabled{% endunless %}
+            {% if option.name == 'Size' %}
+              {% case value %}
+                {% when '8lb | 42"x56"' %}
+                  {% comment %} is closing the class variant__button-label {% endcomment %}
+                  {% unless variants_s.size > 0 %} variant-unavailable{% endunless %}"
+                  data-option="s">
+                  <span>S</span><br><span class="size-span-weight">8lbs</span>
+                {% when '15lb | 54"x72"' %}  
+                  {% comment %} is closing the class variant__button-label {% endcomment %}
+                  {% unless variants_m.size > 0 %} variant-unavailable{% endunless %}"
+                  data-option="m">
+            	  <span>M</span><br><span class="size-span-weight">15lbs</span>
+                {% when '18lb | 60"x80"' %}
+            	  {% comment %} is closing the class variant__button-label {% endcomment %}
+                  {% unless variants_l.size > 0 %} variant-unavailable{% endunless %}"
+            	  data-option="l">
+            	  <span>L</span><br><span class="size-span-weight">18lbs</span>
+                {% when '30lb | 100"x85"' %}
+            	  {% comment %} is closing the class variant__button-label {% endcomment %}
+                  {% unless variants_xl.size > 0 %} variant-unavailable{% endunless %}"
+            	  data-option="xl">
+            	  <span>XL</span><br><span  class="size-span-weight">30lbs</span>
+              {% endcase %}
+            {% else %}
+              {% comment %} "> is closing the class variant__button-label {% endcomment %}
+              {%- assign fabric_available_s = variants_s | where: "option3", value -%}
+              {%- assign fabric_available_m = variants_m | where: "option3", value -%}
+              {%- assign fabric_available_l = variants_l | where: "option3", value -%}
+              {%- assign fabric_available_xl = variants_xl | where: "option3", value -%}
+              
+              {% unless fabric_available_m.size > 0 %} variant-unavailable{% endunless %}"
+              data-available="none{% if fabric_available_s.size > 0 %}, s{% endif %}{% if fabric_available_m.size > 0 %}, m{% endif %}{% if fabric_available_l.size > 0 %}, l{% endif %}{% if fabric_available_xl.size > 0 %}, xl{% endif %}"
+              data-type="fabric-option"
+              onclick="clickFabric(this.control.value)"
+              onmouseover="showVariantAvailable(this.control.value, 'fabric')"
+              onmouseout="showCurrentVariantAvailable()">
+              {% if value contains '+'%}
+            	{% assign words = value | split: '+' %}
+            	  <span class="fabric-name">{{ words.first | escape }}</span>
+                  <span class="fabric-name">{{ words.last | prepend: '+' | escape}}</span>
+			  {% else %}
+            	<span class="fabric-name">{{ value | escape}}</span>
+              {% endif %}
+            {% endif %}
+        </label>
+        {%- endif -%}
+        {% if option.name == 'Size' %}	
+        <p class="size-desc">
+          {% case value %}
+          {% when '8lb | 42"x56"' %}
+            42"x56"
+          {% when '15lb | 54"x72"' %}
+            54"x72"
+          {% when '18lb | 60"x80"' %}
+            60"x80"
+          {% when '30lb | 100"x85"' %}
+            100"x85"
+          {% endcase %}
+        </p>
+        {%- endif -%}
+        
+        {% if option.name == 'Color' %}	
+        <p class="color-desc">
+          {% case value %}
+          {% when 'Grey' %}
+          Grey
+          {% when 'Beige' %}
+          Beige
+          {% when 'White' %}
+          White
+          {% when 'Lattice Print + Grey' %}
+          LP + G
+          {% when 'Tan + White' %}
+          T + W
+          {% when 'Navy + Grey' %}
+          N + G
+          {% endcase %}
+			
+        </p>
+        {%- endif -%}
+        
+        {% if option.name == 'Fabric' %}	
+        <p class="fabric-desc">
+          {% case value %}
+          {% when 'Bamboo + Minky' %}
+          Cool &amp; Cozy
+          {% when 'Bamboo' %}
+          Cool &amp; Silky
+          {% when 'Minky' %}
+          Cozy &amp; Plush
+          {% endcase %}
+        </p>
+        {% endif %}
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+<script>
+    var variantsAvailable = {{ variants_available | json }}
+    var pictures = {{ product.media | json}};
+    
+    function updateCarousel(color, fabric){
+      let colors = {Grey: 'grey', Beige: 'beige', White: 'white', 'Lattice Print + Grey': 'lattice', 'Tan + White': 'tan', 'Navy + Grey': 'navy'};
+      let fabrics = {'Bamboo + Minky': 'bammin', Bamboo: 'bamboo', Minky: 'minky'};
+      
+      const mainSlides = [...document.querySelector('.main-carousel').children];
+      const thumbSlides = [...document.querySelectorAll('.product__thumb')];
+
+      thumbSlides.filter(slide => slide.parentNode.parentNode.style.display = 'none');
+      let carousel = document.querySelector('#thumb-carousel')
+      carousel.style.transform = `translateX(0px)`
+      
+      let first = true;
+      let newMainIdx = 0; 
+      let slidesFiltered = thumbSlides.filter(slide => {
+        if(slide.href.includes(colors[color]) && slide.href.includes(fabrics[fabric])){
+          slide.parentNode.parentNode.style.display = 'block';
+          if(first){
+            slide.click();
+            first = false;
+            newMainIdx = slide.parentNode.parentNode.dataset.index
+          }
+        }
+      });
+
+      mainSlides.forEach(slide => {
+      	slide.style.display = 'none';
+        let img = slide.firstElementChild.firstElementChild.firstElementChild;
+        img.style.opacity = 0;
+        img.classList.remove('lazyautosizes')
+        img.classList.remove('lazyloaded')
+        if(slide.dataset.index === newMainIdx){
+       	  slide.style.display = 'block';
+          img.style.opacity = 1;
+          img.classList.add('lazyautosizes')
+          img.classList.add('lazyloaded')
+        }
+      
+      })
+    }
+  
+    function dotCarousel(color, fabric){
+      let colors = {Grey: 'grey', Beige: 'beige', White: 'white', 'Lattice Print + Grey': 'lattice', 'Tan + White': 'tan', 'Navy + Grey': 'navy'};
+      let fabrics = {'Bamboo + Minky': 'bammin', Bamboo: 'bamboo', Minky: 'minky'};
+      
+      const mainSlides = [...document.querySelector('.main-carousel').children];
+      const dotSlides = [...document.querySelectorAll('.dot-carousel')];
+
+      dotSlides.filter(dot => dot.style.display = 'none');
+      
+      let first = true;
+      let newMainIdx = 0; 
+      let slidesFiltered = dotSlides.filter(dot => {
+        if(dot.dataset.img.includes(colors[color]) && dot.dataset.img.includes(fabrics[fabric])){
+          dot.style.display = 'block';
+          if(first){
+            dot.click();
+            dot.classList.add('dot-picked');
+            first = false;
+            newMainIdx = dot.dataset.index
+          }
+          return true;
+        }
+      });
+	
+      if (slidesFiltered.length === 1) {
+        slidesFiltered[0].style.visibility = "hidden"
+      }
+      
+      mainSlides.forEach(slide => {
+      	slide.style.display = 'none';
+        let img = slide.firstElementChild.firstElementChild.firstElementChild;
+        img.style.opacity = 0;
+        img.classList.remove('lazyautosizes')
+        img.classList.remove('lazyloaded')
+        if(slide.dataset.index === newMainIdx){
+       	  slide.style.display = 'block';
+          img.style.opacity = 1;
+          img.classList.add('lazyautosizes')
+          img.classList.add('lazyloaded')
+        }
+      
+      })
+    }
+
+    //to know the options selected in a moment for each category
+    function userSelection(){
+      let options = ['size', 'color', 'fabric'];
+      let userSelection = {};
+      options.forEach(function(option) {
+        let elements = document.querySelectorAll('label[data-type="'+option+'-option"]');
+        let selected = [...elements].filter(element => element.control.checked);
+        userSelection[option] = selected.length > 0 ? selected[0].control.value : 'none';
+      })
+      return userSelection;
+    }
+
+    //to unselect and option or all of them
+    function unSelectOptionsFor(option){
+      let options = document.querySelectorAll('label[data-type="'+option+'-option"]');
+      options.forEach(option => option.control.checked = false);
+    }
+
+    function unSelectAllOption(){
+      let options = ['size', 'color', 'fabric'];
+      options.forEach(option => unSelectOptionsFor(option));
+    }
+
+    //to select an option in a category
+    function selectOptionsFor(option, value){
+      let options = document.querySelectorAll('label[data-type="'+option+'-option"]');
+      let selectedLabel = null;
+      unSelectOptionsFor(option);
+      options.forEach(function(label) {
+        if(label.control.value === value){
+          selectedLabel = label;
+          selectedLabel.control.click();
+        } 
+      });
+      return selectedLabel
+    }
+
+    function vanishThumbnails(){
+      let thumbs = document.querySelectorAll(`.product__thumb-item`);
+      thumbs.forEach(thumb => thumb.style.display = 'none');
+    }  
+
+    function availablesWithOption(op1){
+      return variantsAvailable.filter(variant => variant.options.includes(op1));
+    }
+
+    function availablesWithOptions(op1, op2){
+      return variantsAvailable.filter(variant => variant.options.includes(op1)).filter(variant => variant.options.includes(op2));
+    }
+
+    function getOptionsFor(type){
+      return [...document.querySelectorAll(`label[data-type="${type}-option"]`)];
+    }
+
+    function allUnAvailableFor(options, klass){
+      options.forEach(label => label.classList.add(klass));
+      options.forEach(label => label.control.classList.add(klass));
+    }
+
+    function allAvailableFor(options, klass){//se queda
+      options.forEach(label => label.classList.remove(klass));
+    }
+
+    function showAvailableFor(variants, options, klass, type){
+      let labels = {size: 'option1', color: 'option2', fabric: 'option3'};
+      variants.forEach(function(variant, idx){
+        let option = options.filter(label => label.control.value === variant[labels[type]]);
+        option[0].classList.remove(klass);
+        option[0].control.classList.remove(klass);
+      })
+    }
+
+    function varianstAvailable(variants, category){
+      let optionSelected = userSelection()[category];
+      let filtered = variants.filter(variant => variant.options.includes(optionSelected));
+      if(filtered.length > 0){
+        return filtered[0];
+      } else {
+        return variants[0];
+      }
+    }
+
+    //show available variant image on hover
+    function showVariantAvailable(value, type) {//se queda
+      let labels = {size: 'option1', color: 'option2', fabric: 'option3'};
+      let variants = variantsAvailable.filter(variant => variant[labels[type]] === value)
+      let sizeOptions = variants.filter(variant => variant.option1 === userSelection().size);
+      let colorOptions = variants.filter(variant => variant.option2 === userSelection().color);
+      let fabricOptions = variants.filter(variant => variant.option3 === userSelection().fabric);
+      if(variants.length > 0){
+        let size = variants[0].option1;
+        let color = variants[0].option2;
+        let fabric = variants[0].option3;
+
+        sizeOptions.length > 0 ? size = sizeOptions[0].option1 : null
+        colorOptions.length > 0 ? color = colorOptions[0].option2: null
+        fabricOptions.length > 0 ? fabric = fabricOptions[0].option3: null
+
+        let imgAvailable = imageAvailable(color, fabric);
+
+        let sizeLabel = document.querySelectorAll('#selectedSize','#selectedUnisex');
+        sizeLabel.innerHTML = size;
+
+        let colorLabel = document.querySelector('#selectedColor');
+        colorLabel.innerHTML = color;
+
+        let fabricLabel = document.querySelector('#selectedFabric');
+        fabricLabel.innerHTML = fabric;    
+
+        let activeSlide = document.querySelector('img.lazyautosizes.lazyautosizes');
+        var slideToShow = document.querySelector(`img[data-photoswipe-src="${imgAvailable}"]`);
+
+        activeSlide.classList.remove('lazyautosizes')
+        activeSlide.classList.remove('lazyloaded');
+        activeSlide.style.opacity = 0;
+        activeSlide.parentNode.parentNode.parentNode.style.display = 'none'
+        
+        
+        slideToShow.classList.add('lazyautosizes')
+        slideToShow.classList.add('lazyloaded');
+        slideToShow.style.opacity = 1;
+        slideToShow.parentNode.parentNode.parentNode.style.display = 'block'
+      }
+    }
+    function imageAvailable(color, fabric){//se queda
+      const variants = window.ourProduct.variants;
+      let imgUrl = null;
+      let colorsAvailable = variants.filter(variant => variant.option2 === color && variant.hasOwnProperty('featured_media'));
+      let fabricsAvailable = colorsAvailable.filter(variant => variant.option3 === fabric && variant.hasOwnProperty('featured_media'));
+      if(fabricsAvailable.length > 0){ return fabricsAvailable[0].featured_media.preview_image.src.split('https:')[1].split('.png').join('_1800x1800.png')}
+      if(colorsAvailable.length > 0){ return colorsAvailable[0].featured_media.preview_image.src.split('https:')[1].split('.png').join('_1800x1800.png')}
+    }
+
+    function showCurrentVariantAvailable(){//se queda
+      let currentSelection = userSelection();
+      let size = currentSelection.size;
+      let color = currentSelection.color;
+      let fabric = currentSelection.fabric;
+      let imgAvailable = imageAvailable(color, fabric);
+      let sizeLabel = document.querySelector('#selectedSize');
+      sizeLabel.innerHTML = size;
+      let colorLabel = document.querySelector('#selectedColor');
+      colorLabel.innerHTML = color;
+      let fabricLabel = document.querySelector('#selectedFabric');
+      fabricLabel.innerHTML = fabric;   	
+
+      let activeSlide = document.querySelector('img.lazyautosizes.lazyautosizes');
+      var slideToShow = document.querySelector(`img[data-photoswipe-src="${imgAvailable}"]`);
+      
+      activeSlide.classList.remove('lazyautosizes')
+      activeSlide.classList.remove('lazyloaded');
+      activeSlide.style.opacity = 0;
+      activeSlide.parentNode.parentNode.parentNode.style.display = 'none'
+
+
+      slideToShow.classList.add('lazyautosizes')
+      slideToShow.classList.add('lazyloaded');
+      slideToShow.style.opacity = 1;
+      slideToShow.parentNode.parentNode.parentNode.style.display = 'block'
+    }
+
+    function thumbnailsForColor(color){
+      emptyProductThumbs()
+      let track = document.querySelector('#ProductThumbs-{{ section_id }}')
+
+      let thumbs = document.querySelectorAll(`.product__thumb-item[data-variant-color="${color}"]`);
+      let first = [...document.querySelectorAll(`.product__thumb-item[data-index="0"]`)]
+
+          first.forEach(f => track.appendChild(f));
+      thumbs.forEach(thumb => track.appendChild(thumb));
+      var sliderArgs = sections.instances[1].setSliderArgs();
+      sections.instances[1].initSliders(sliderArgs)
+      //theme.Product();
+    }
+
+    function emptyProductThumbs() {
+      let track = document.querySelector('#ProductThumbs-{{ section_id }}')
+      let thumbsContainer = document.querySelector('.thumbs-container')
+
+  //     let slides = track.querySelectorAll(`.product__thumb-item`); 
+  //     slides.forEach(slide => {
+  //       slide.removeAttribute('data-slick-index')
+  //       slide.classList.remove('slick-slide')
+  //       thumbsContainer.appendChild(slide)
+
+  //     });
+      thumbsContainer.outerHTML = thumbSlider;
+      $(track).empty();
+    }
+
+
+
+    function clickSize(value){
+      let options = getOptionsFor('size')
+      allAvailableFor(options, 'variant-unavailable')
+
+      let variants = availablesWithOption(value); 
+      let optionsColor = getOptionsFor('color');
+      if(variants.length > 0){
+        allUnAvailableFor(optionsColor, 'color-unavailable');   
+        showAvailableFor(variants, optionsColor, 'color-unavailable', 'color');
+        selectOptionsFor( 'color', varianstAvailable(variants, 'color').option2)
+      } 
+      let color = userSelection().color
+
+      let variantsColorSize = availablesWithOption(color); 
+      let optionsSize = getOptionsFor('size');
+      if(variantsColorSize.length > 0){
+        allUnAvailableFor(optionsSize, 'variant-unavailable');   
+        showAvailableFor(variantsColorSize, optionsSize, 'variant-unavailable', 'size');
+      }
+
+      updateOptionsForTwo(value, color, 'fabric', 'variant-unavailable')
+    }
+
+    function clickColor(value){
+      let variantsColor = availablesWithOption(value);  
+      let optionSizes = getOptionsFor('size');
+      if(variantsColor.length > 0){
+        allUnAvailableFor(optionSizes, 'variant-unavailable');   
+        showAvailableFor(variantsColor, optionSizes, 'variant-unavailable', 'size');
+        selectOptionsFor( 'size', varianstAvailable(variantsColor, 'size').option1)
+      } 
+
+      let size = userSelection().size;
+
+      let variantSize = availablesWithOption(size);  
+      let optionsColor = getOptionsFor('color');
+      if(variantSize.length > 0){
+        allUnAvailableFor(optionsColor, 'color-unavailable');   
+        showAvailableFor(variantSize, optionsColor, 'color-unavailable', 'color');
+      }
+
+      updateOptionsForTwo(value, size, 'fabric', 'variant-unavailable')
+
+      let {fabric} = userSelection();
+      let variantColorFabric = availablesWithOptions(value, fabric); 
+      if(variantColorFabric.length > 0){
+        allUnAvailableFor(optionSizes, 'variant-unavailable');   
+        showAvailableFor(variantColorFabric, optionSizes, 'variant-unavailable', 'size');
+      }
+	  updateCarousel(value, fabric)
+      dotCarousel(value, fabric)
+      clickFabric(fabric)
+    }
+
+    function clickFabric(value){
+      let fabricOption = [...document.querySelectorAll('label[data-type="fabric-option"]')].filter(label => label.control.value === value)
+
+      if(!fabricOption[0].classList.contains('variant-unavailable')){
+        let {size} = userSelection()
+        let variants = availablesWithOptions(value, size);
+        let options = getOptionsFor('color');
+        if(variants.length > 0){
+          allUnAvailableFor(options, 'color-unavailable');   
+          showAvailableFor(variants, options, 'color-unavailable', 'color');
+        } 
+        
+        
+        let {color} = userSelection()
+        let variantsSize = availablesWithOptions(value, color);
+        let optionsSize = getOptionsFor('size');
+        if(variantsSize.length > 0){
+          allUnAvailableFor(optionsSize, 'variant-unavailable');   
+          showAvailableFor(variantsSize, optionsSize, 'variant-unavailable', 'size');
+        } 
+        updateCarousel(color, value)
+        dotCarousel(color, value)
+      } else {
+        let variantsFabric = availablesWithOption(value);  
+        let optionsSize = getOptionsFor('size')
+        allAvailableFor(optionsSize, 'variant-unavailable')
+
+        if(variantsFabric.length > 0){
+          selectOptionsFor( 'size', varianstAvailable(variantsFabric, 'size').option1)
+        } 
+
+        let size = userSelection().size;
+        let currentColor = userSelection().color;
+
+        let variantsSizes = availablesWithOption(size);  
+        let variantsSizesFabric = availablesWithOptions(size, value);
+        let variantsSizesFabricColor = variantsSizesFabric.filter(variant => variant.option2 === currentColor);
+        let optionColor = getOptionsFor('color');
+
+
+        if(variantsSizes.length > 0){
+          allUnAvailableFor(optionColor, 'color-unavailable');   
+          showAvailableFor(variantsSizes, optionColor, 'color-unavailable', 'color');
+          if(variantsSizesFabricColor.length > 0){
+            selectOptionsFor( 'color', variantsSizesFabricColor[0].option2)
+          } else {
+            selectOptionsFor( 'color', variantsSizesFabric[0].option2)
+          }
+        }
+
+        let newColor = userSelection().color;
+        let fabric = userSelection().fabric;
+
+        updateOptionsForTwo(size, newColor, 'fabric', 'variant-unavailable')
+        updateCarousel(newColor, value)
+        dotCarousel(newColor, value)
+      }
+    }
+
+    function updateOptionsForTwo(op1, op2, category, klass) {
+      let labels = {size: 'option1', color: 'option2', fabric: 'option3'};
+      let variants = availablesWithOptions(op1, op2);
+      let options = getOptionsFor(category);
+      if(variants.length > 0){
+        allUnAvailableFor(options, klass);   
+        showAvailableFor(variants, options, klass, category);
+        selectOptionsFor( category, varianstAvailable(variants, category)[labels[category]])
+      } 
+    }
+  window.onload = function(){updateCarousel("Grey", "Bamboo + Minky");dotCarousel("Grey", "Bamboo + Minky")}
+  
+  
+  // Left and right swipe on mobile size. The moveLeft and moveRight functions are in product-images
+  document.querySelector('.main-carousel').addEventListener('touchstart', handleTouchStart, false);        
+  document.querySelector('.main-carousel').addEventListener('touchmove', handleTouchMove, false);
+
+  var xDown = null;                                                        
+  var yDown = null;
+
+  function getTouches(evt) {
+    return evt.touches ||             // browser API
+           evt.originalEvent.touches; // jQuery
+  }                                                     
+
+  function handleTouchStart(evt) {
+      const firstTouch = getTouches(evt)[0];                                      
+      xDown = firstTouch.clientX;                                      
+      yDown = firstTouch.clientY;                                      
+  };                                                
+
+  function handleTouchMove(evt) {
+      if ( ! xDown || ! yDown ) {
+          return;
+      }
+
+      var xUp = evt.touches[0].clientX;                                    
+      var yUp = evt.touches[0].clientY;
+
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+
+      if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+          if ( xDiff > 0 ) {
+              /* left swipe */
+              moveRight()
+          } else {
+              /* right swipe */
+              moveLeft()
+          }                       
+      }
+      /* reset values */
+      xDown = null;
+      yDown = null;                                             
+  };
+</script>

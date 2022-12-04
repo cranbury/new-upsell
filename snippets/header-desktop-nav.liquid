@@ -1,0 +1,335 @@
+{%- assign first_link_title = 'Blankets' -%}
+{%- assign third_link_title = 'Sheets' -%}
+{%- assign fourth_link_title = 'Towels' -%}
+
+{% unless limit %}
+  {%- assign limit = main_menu.links.size -%}
+{% endunless %}
+{% unless offset %}
+  {%- assign offset = 0 -%}
+{% endunless %}
+
+<ul
+  class="site-nav site-nav-lux site-navigation small--hide"
+  {% unless disable_aria %}
+    role="navigation" aria-label="Primary"
+  {% endunless %}>
+  {% assign link_names = 'blankets_pillow_sheets_towel_robe_sale_giftcard' | split: '_' %}
+  {% for link in main_menu.links limit: limit offset: offset %}
+    {%- assign has_dropdown = false -%}
+    {%- assign is_megamenu = false -%}
+    {% if link.links != blank %}
+      {%- assign has_dropdown = true -%}
+      {% if link.levels > 1 %}
+        {%- assign is_megamenu = true -%}
+      {% endif %}
+    {% endif %}
+
+    <li
+      class="{% if link.title == first_link_title %}blanket-mobile{% endif %} site-nav__item site-nav__expanded-item item-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav--has-dropdown{% endif %}{% if is_megamenu %} site-nav--is-megamenu{% endif %}"
+      {% if has_dropdown %}aria-haspopup="true"{% endif %}>
+      
+      {% if link.title == first_link_title %}
+      
+      	<a class="{% if link.title == first_link_title %}no-show-mobile{% endif %} site-nav__link site-nav__link--underline collection-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+       	 {{ link.title }}
+      	</a>
+      {% elsif link.title == third_link_title %}
+    
+      	<a onclick="toggleMobileSheetsActive()" class="site-nav__link site-nav__link--underline collection-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+          {{ link.title }}
+        </a>
+      {% elsif link.title == fourth_link_title %}
+      
+      	<a onclick="toggleMobileTowelsActive()" class="site-nav__link site-nav__link--underline collection-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+          {{ link.title }}
+        </a>
+      
+      {% else %}
+      
+        {% assign variant_id  = ''%}
+
+        {% if link.object.id == 4492419530813 %}
+
+        	{% assign variant_id  = '?variant=39349072134205'%}
+      	{% elsif link.object.id == 4405624864829 %}
+      		
+      		{% assign variant_id  = '?variant=31578516455485'%}
+        {% endif %}
+      
+        <a href="{{ link.url }}{{ variant_id }}" class="site-nav__link site-nav__link--underline collection-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+          {{ link.title }}
+        </a>
+      {% endif %}
+      
+            {% comment %}
+      
+      <a href="{{ link.url }}" class="site-nav__link site-nav__link--underline collection-{{link_names[forloop.index0]}} {% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+        {{ link.title }}
+      </a>
+            {% endcomment %}
+      
+      {% if link.title == first_link_title %}
+        <ul>
+          <li>
+            <a onclick="toggleMobileComfortersActive()" class="mobile-only-nav site-nav__link site-nav__link--underline collection-comforters-">
+              COMFORTERS & THROWS
+            </a>
+            <div class="product-mobile comforters-mobile">
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/climasense-comforter">
+                  <img class="lazyload" data-src="{{ 'Comforter-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Ultra fluffy comforter infused with 37.5® Technology</p>
+              </div>
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/duvet-cover?variant=40040987557949">
+                  <img class="lazyload" data-src="{{ 'Duvet-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Designed for ClimaSense™ Comforter</p>
+              </div>
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/bamboo-blanket?variant=39344804757565">
+                  <img class="lazyload" data-src="{{ 'LW-Blanket-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Luxurious 100% Viscose from Bamboo fabric & fill blanket</p>
+              </div>
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/ultra-plush-throw?variant=39970670051389">
+                  <img class="lazyload" data-src="{{ 'Throw-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Breathtakingly soft & extra cozy</p>
+              </div>
+            </div>
+    
+          </li>
+
+          <li>
+            <a onclick="toggleMobileBlanketsActive()" style="margin-top:22px;" class="mobile-only-nav site-nav__link site-nav__link--underline collection-weighted-blankets-">
+              WEIGHTED BLANKETS
+            </a>
+            <div class="product-mobile weighted-blankets-mobile">
+
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/weighted-blanket?variant=40256155779133">
+                  <img class="lazyload" data-src="{{ 'Weighted-Blankets-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Exceptional Craftsmanship | Premium Fabrics</p>
+              </div>
+
+              <div class="weighted-blankets-mobile-subdiv">
+                <a href="/products/removable-covers?variant=19695805202501">
+                  <img class="lazyload" data-src="{{ 'Covers-400x200.png' | asset_img_url: '400x' }}" alt="">
+                </a>
+                <p>Change the look & feel of your removable cover blanket</p>
+              </div>
+    
+            </div>
+    
+          </li>
+        </ul>
+        <!-- Mobile version weighted Blankets -->
+          
+      {% elsif link.title == third_link_title %}
+      
+      	<!-- Mobile version Sheets -->
+        <div class="product-mobile sheets-mobile-menu">
+          <div class="weighted-blankets-mobile-subdiv">
+            <a href="/products/bamboo-sheets?variant=31578516455485">
+              <img class="lazyload" data-src="{{ 'Sheets-400x200.png' | asset_img_url: '400x' }}" alt="">
+            </a>
+            <p>100% Viscose from Bamboo | 400 Thread Count</p>
+          </div>
+          
+          <div class="weighted-blankets-mobile-subdiv">
+            <a href="/products/bamboo-pillowcase-set?variant=31945175859261">
+              <img class="lazyload" data-src="{{ 'Pillowcases-400x200.png' | asset_img_url: '400x' }}" alt="">
+            </a>
+            <p>Woven for luxurious softness, optimal cooling & durability</p>
+          </div>
+          
+        </div>      
+      {% elsif link.title == fourth_link_title %}
+      
+      	<!-- Mobile version Sheets -->
+        <div class="product-mobile towels-mobile-menu">
+          <div class="weighted-blankets-mobile-subdiv">
+            <a href="/products/plush-performance-towels">
+              <img class="lazyload" data-src="{{ 'PP-Towels-400x200.png' | asset_img_url: '400x' }}" alt="">
+            </a>
+            <p>Super absorbent & quick-drying</p>
+          </div>
+          
+          <div class="weighted-blankets-mobile-subdiv">
+            <a href="/products/spa-collection-towels">
+              <img class="lazyload" data-src="{{ 'SC-Towels-400x200.png' | asset_img_url: '400x' }}" alt="">
+            </a>
+            <p>60% Bamboo from Viscose - the softest towels ever!</p>
+          </div>
+          
+        </div>
+      {% endif %}
+      
+      {% if is_megamenu %}
+        {%- assign previous_column_type = '' -%}
+        {%- assign animation_column = 1 -%}
+
+        <div class="site-nav__dropdown megamenu text-left">
+          <div class="page-width">
+            <div class="grid{% if dropdown_alignment == 'center' %} grid--center{% endif %}">
+              <div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
+                {%- assign animation_column = animation_column | plus: 1 -%}
+
+                {% for childlink in link.links %}
+                  {%- assign create_new_column = false -%}
+
+                  {% if childlink.levels > 0 and forloop.index != 1 %}
+                    {%- assign create_new_column = true -%}
+                  {% endif %}
+
+                  {% if childlink.levels == 0 and previous_column_type == 'full' %}
+                    {%- assign create_new_column = true -%}
+                  {% endif %}
+
+                  {% if create_new_column %}
+                    </div><div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
+                    {%- assign animation_column = animation_column | plus: 1 -%}
+                  {% endif %}
+
+                  {%- assign subcollection_drop = false -%}
+                  {% if childlink.levels > 0 and childlink.url contains '/collections/' %}
+                    {%- assign subcollection_handle = childlink.url | remove: '/collections/' -%}
+                    {%- assign subcollection_drop = collections[subcollection_handle] -%}
+                    {% if subcollection_drop.image != blank %}
+                      <a
+                        href="{{ childlink.url }}"
+                        class="megamenu__colection-image lazyload" data-bgset="{{ collections[subcollection_handle].image | img_url: '400x' }}"></a>
+                    {% endif %}
+                  {% endif %}
+
+                  <div class="h5">
+                    <a href="{{ childlink.url }}" class="site-nav__dropdown-link site-nav__dropdown-link--top-level">{{ childlink.title }}</a>
+                  </div>
+
+                  {% if childlink.levels > 0 %}
+                    {%- assign previous_column_type = 'full' -%}
+                  {% else %}
+                    {%- assign previous_column_type = 'single' -%}
+                  {% endif %}
+
+                  {% for grandchildlink in childlink.links %}
+                    <div>
+                      <a href="{{ grandchildlink.url }}" class="site-nav__dropdown-link">
+                        {{grandchildlink.title}}
+                      </a>
+                    </div>
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% elsif has_dropdown %}
+        <ul class="site-nav__dropdown text-left">
+          {% for childlink in link.links %}
+            {%- assign has_sub_dropdown = false -%}
+            {% if childlink.links != blank %}
+              {%- assign has_sub_dropdown = true -%}
+            {% endif %}
+            <li class="{% if has_sub_dropdown %} site-nav__deep-dropdown-trigger{% endif %}">
+              <a href="{{ childlink.url }}" class="site-nav__dropdown-link site-nav__dropdown-link--second-level {% if has_sub_dropdown %} site-nav__dropdown-link--has-children{% endif %}">
+                {{ childlink.title | escape }}
+                {% if has_sub_dropdown %}
+                  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="M1.57 1.59l12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none" fill-rule="evenodd"/></svg>
+                {% endif %}
+              </a>
+              {% if has_sub_dropdown %}
+                <ul class="site-nav__deep-dropdown">
+                  {% for grandchildlink in childlink.links %}
+                    <li>
+                      <a href="{{ grandchildlink.url }}" class="site-nav__dropdown-link">{{ grandchildlink.title | escape }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+
+<script>
+  var colComforters = document.querySelector(".mobile-navigation .collection-comforters-")
+  var colBlankets = document.querySelector(".mobile-navigation .collection-weighted-blankets-")
+  var showShopAll = document.querySelector(".mobile-navigation .shop-all-a")
+  
+  var colSheets = document.querySelector(".mobile-navigation .collection-sheets")
+  
+  
+  var colTowels = document.querySelector(".mobile-navigation .collection-towel")
+
+  if (window.innerWidth <= 768 && colComforters !== null) {
+  	colComforters.innerHTML += '<span class="plus-symbol plus-symbol-comforters"><svg class="icon icon--wide icon-chevron-down" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <g class="footer-plus-symbol"><line class="footer-vertical-line white-symbol" x1="5.5" x2="5.5" y2="11" stroke="white"/> <line class="white-symbol" y1="5.5" x2="11" y2="5.5" stroke="white"/></g> </svg></span>'
+  }
+  
+  if (window.innerWidth <= 768 && colBlankets !== null) {
+  	colBlankets.innerHTML += '<span class="plus-symbol plus-symbol-blankets"><svg class="icon icon--wide icon-chevron-down" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <g class="footer-plus-symbol"><line class="footer-vertical-line white-symbol" x1="5.5" x2="5.5" y2="11" stroke="white"/> <line class="white-symbol" y1="5.5" x2="11" y2="5.5" stroke="white"/></g> </svg></span>'
+  }
+  
+  if (window.innerWidth <= 768 && colSheets !== null) {
+  	colSheets.innerHTML += '<span class="plus-symbol plus-symbol-sheets"><svg class="icon icon--wide icon-chevron-down" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <g class="footer-plus-symbol"><line class="footer-vertical-line white-symbol" x1="5.5" x2="5.5" y2="11" stroke="white"/> <line class="white-symbol" y1="5.5" x2="11" y2="5.5" stroke="white"/></g> </svg></span>'
+  }
+
+  if (window.innerWidth <= 768 && colTowels !== null) {
+  	colTowels.innerHTML += '<span class="plus-symbol plus-symbol-towels"><svg class="icon icon--wide icon-chevron-down" width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg"> <g class="footer-plus-symbol"><line class="footer-vertical-line white-symbol" x1="5.5" x2="5.5" y2="11" stroke="white"/> <line class="white-symbol" y1="5.5" x2="11" y2="5.5" stroke="white"/></g> </svg></span>'
+  }
+    
+
+  var toggleMobileComfortersActive = (ev) => {
+    if (window.innerWidth >= 769) {
+	  ev.preventDefault()
+    } else {
+      $(".mobile-navigation .comforters-mobile").toggleClass("mobile-active")
+      menuActive = !menuActive
+      $(".mobile-navigation .plus-symbol-comforters").toggleClass("is-open")
+      //colBlankets.classList.toggle("li-is-open")
+      showShopAll.classList.toggle("show-shop-all")
+    }
+  }
+
+  var toggleMobileBlanketsActive = (ev) => {
+    if (window.innerWidth >= 769) {
+	  ev.preventDefault()
+    } else {
+      $(".mobile-navigation .weighted-blankets-mobile").toggleClass("mobile-active")
+      menuActive = !menuActive
+      $(".mobile-navigation .plus-symbol-blankets").toggleClass("is-open")
+      //colBlankets.classList.toggle("li-is-open")
+      showShopAll.classList.toggle("show-shop-all")
+    }
+  }
+  
+  var toggleMobileSheetsActive = (ev) => {
+    if (window.innerWidth >= 769) {
+      ev.preventDefault()
+    } else {
+      $(".mobile-navigation .sheets-mobile-menu").toggleClass("mobile-active")
+      menuActive = !menuActive
+      $(".mobile-navigation .plus-symbol-sheets").toggleClass("is-open")
+      colSheets.classList.toggle("li-is-open")
+    }
+  }
+
+  var toggleMobileTowelsActive = (ev) => {
+    if (window.innerWidth >= 769) {
+      ev.preventDefault()
+    } else {
+      $(".mobile-navigation .towels-mobile-menu").toggleClass("mobile-active")
+      menuActive = !menuActive
+      $(".mobile-navigation .plus-symbol-towels").toggleClass("is-open")
+      colSheets.classList.toggle("li-is-open")
+    }
+  }
+</script>

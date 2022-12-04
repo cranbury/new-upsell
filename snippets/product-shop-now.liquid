@@ -1,0 +1,435 @@
+{% for collection in collections %}
+  {% if collection.id == 91114799173 %}{%comment%}luxome-weighted-blankets{%endcomment%}
+	{% assign luxome-collection = collection%}
+	{% assign luxome-collection-min-price = 14500%}
+	{% for product in collection.products %} 
+
+	  {% if product.price_min < luxome-collection-min-price %}
+	     {% assign luxome-collection-min-price = product.price_min%}
+	  {% endif%}		
+	{% endfor %}
+  {% endif%}
+
+  {% if collection.id == 157696688189 %}{%comment%}all-luxome-products{%endcomment%} 
+
+    {% for product in collection.products %} 
+
+      {% if product.id == 4405624864829 %}{%comment%}bamboo-sheets{%endcomment%} 
+          {% assign bamboo-sheets = product%}
+      {% endif%}
+
+      {% if product.id == 4492419530813 %}{%comment%}layr-adjustable-pillow{%endcomment%}  
+          {% assign layr-pillow = product%}
+      {% endif%}
+
+      {% if product.id == 4502045294653 %}{%comment%}bamboo-pillowcase-set{%endcomment%}  
+          {% assign pillowcase = product%}
+      {% endif%}
+
+      {% if product.id == 2140387999813 %}{%comment%}cooling-weighted-blankets{%endcomment%}  
+          {% assign coolin-wb = product%}
+      {% endif%}
+
+      {% if product.id == 1482400661573 %}{%comment%}weighted-blanket-integrated{%endcomment%}  
+          {% assign integrated-wb = product%}
+      {% endif%}
+
+      {% if product.id == 1482350919749 %}{%comment%}weighted-blanket-cover{%endcomment%}  
+          {% assign removable-wb = product%}
+      {% endif%}
+
+      {% if product.id == 2163188596805 %}{%comment%}removable-covers{%endcomment%}  
+          {% assign removable-covers = product%}
+      {% endif%}
+
+      {% if product.id == 6640736469053 %}{%comment%}plush-performance-towels{%endcomment%}  
+          {% assign plush-performance-towels = product%}
+      {% endif%}
+
+      {% if product.id == 6669003915325 %}{%comment%}spa-collection-towels{%endcomment%}  
+          {% assign spa-collection-towels = product%}
+      {% endif%}
+      
+      {% if product.id == 6727710900285 %}{%comment%}ultra-plush-robes{%endcomment%}  
+          {% assign ultra-plush-robes = product%}
+      {% endif%}
+
+      {% if product.id == 6789635113021 %}{%comment%}ultra-plush-throw{%endcomment%}  
+          {% assign ultra-plush-throw = product%}
+      {% endif%}
+
+      {% if product.id == 6824157577277 %}{%comment%}climasense-comforter{%endcomment%}  
+          {% assign climasense-comforter = product%}
+      {% endif%}
+
+      {% if product.id == 6586143539261 %}{%comment%}lightweight-blanket{%endcomment%}  
+        {% assign lightweight-blanket = product%}
+      {% endif%}
+      
+      {% if product.id == 6824646279229 %}{%comment%}duvet-cover{%endcomment%}  
+        {% assign duvet-cover = product%}
+      {% endif%}
+      
+      {% if product.id == 6890447896637 %}{%comment%}weighted-blanket-consolidation-page{%endcomment%}  
+        {% assign weighted-blanket-cp = product%}
+      {% endif%}
+     
+    {% endfor %}
+  {% endif%}
+{% endfor %}
+{% if product.id == 2140387999813 %}{%comment%}cooling-weighted-blankets{%endcomment%} 
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><img class="lazyload" data-src="{{ 'Pillowcase-Recommend.png' | asset_img_url: '300x' }}" alt="Pillowcase Set"></a>
+        <h4>Pillowcase Set</h4>
+        <p>Starting at <span>
+          {%- if pillowcase -%}
+          	{{pillowcase.price_min | money}}
+          {%- else -%}
+          	{{ 3000 | money }}
+          {%- endif -%}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose | 400 Thread Count</p>
+        <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><button>SHOP NOW</button></a>
+      </div>   
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+    </div>
+  </div>
+
+{% elsif product.id == 1482400661573 %}{%comment%}weighted-blanket-integrated{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><img class="lazyload" data-src="{{ 'Pillowcase-Recommend.png' | asset_img_url: '300x' }}" alt="Pillowcase Set"></a>
+        <h4>Pillowcase Set</h4>
+        <p>Starting at <span>
+          {%- if pillowcase -%}
+          	{{pillowcase.price_min | money}}
+          {%- else -%}
+          	{{ 3000 | money }}
+          {%- endif -%}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose | 400 Thread Count</p>
+        <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><button>SHOP NOW</button></a>
+      </div>   
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+    </div>
+  </div>
+{% elsif product.id == 6789635113021 %}{%comment%}Ultra-Plush-Throw{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/weighted-blanket?variant=40256155779133"><img class="lazyload" data-src="{{ 'WB-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Weighted Blanket</h4>
+        <p>Starting at <span>{{luxome-collection-min-price | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple colors & fabrics</p>
+        <a href="/products/weighted-blanket?variant=40256155779133"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div> 
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+{% elsif product.id == 4492419530813 %}{%comment%}layr-adjustable-pillow{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><img class="lazyload" data-src="{{ 'Pillowcase-Recommend.png' | asset_img_url: '300x' }}" alt="Pillowcase Set"></a>
+        <h4>Pillowcase Set</h4>
+        <p>Starting at <span>
+          {%- if pillowcase -%}
+          	{{pillowcase.price_min | money}}
+          {%- else -%}
+          	{{ 3000 | money }}
+          {%- endif -%}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose | 400 Thread Count</p>
+       <a href="/products/bamboo-pillowcase-set?variant=31945175760957"><button>SHOP NOW</button></a>
+      </div>   
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-blanket?variant=39344804757565"><img class="lazyload" data-src="{{ 'LWB-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Lightweight Blanket</h4>
+        <p>Starting at <span>{{lightweight-blanket.price_min | money}}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose Fabric & Fill</p>
+        <a href="/products/bamboo-blanket?variant=39344804757565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+
+{% elsif product.id == 6669003915325 %}{%comment%}spa-collection-towels{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex"> 
+      <div class="shop-now-flex-item">
+        <a href="/products/weighted-blanket?variant=40256155779133"><img class="lazyload" data-src="{{ 'WB-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Weighted Blanket</h4>
+        <p>Starting at <span>{{luxome-collection-min-price | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple colors & fabrics</p>
+        <a href="/products/weighted-blanket?variant=40256155779133"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/ultra-plush-robe?variant=39788176408637"><img class="lazyload" data-src="{{ 'Robe-Recommend.png' | asset_img_url: '300x' }}" alt="Ultra Plush Robe"></a>
+        <h4>Ultra Plush Robe</h4>
+        <p>Starting at <span>{{ultra-plush-robes.price_min | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple sizes & colors</p>
+        <a href="/products/ultra-plush-robe?variant=39788176408637"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/plush-performance-towels?variant=39535706734653"><img class="lazyload" data-src="{{ 'PP-Towels-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Plush Performance Towels</h4>
+        <p>Starting at <span>{{plush-performance-towels.price_min | money}}</span></p>
+        <p class="font-weight-light">Super absorbent & quick drying</p>
+        <a href="/products/plush-performance-towels?variant=39535706734653"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+
+{% elsif product.id == 6640736469053 %}{%comment%}plush-performance-towel{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex"> 
+      <div class="shop-now-flex-item">
+        <a href="/products/weighted-blanket?variant=40256155779133"><img class="lazyload" data-src="{{ 'WB-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Weighted Blanket</h4>
+        <p>Starting at <span>{{luxome-collection-min-price | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple colors & fabrics</p>
+        <a href="/products/weighted-blanket?variant=40256155779133"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/ultra-plush-robe?variant=39788176408637"><img class="lazyload" data-src="{{ 'Robe-Recommend.png' | asset_img_url: '300x' }}" alt="Ultra Plush Robe"></a>
+        <h4>Ultra Plush Robe</h4>
+        <p>Starting at <span>{{ultra-plush-robes.price_min | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple sizes & colors</p>
+        <a href="/products/ultra-plush-robe?variant=39788176408637"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/spa-collection-towels?variant=39553092649021"><img class="lazyload" data-src="{{ 'SC-Towels-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Spa Collection Towels</h4>
+        <p>Starting at <span>$90</span></p>
+        <p class="font-weight-light">The softest towels ever!</p>
+        <a href="/products/spa-collection-towels?variant=39553092649021"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+
+{% elsif product.id == 4405624864829 %}{%comment%}luxury-sheets 4405624864829{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-blanket?variant=39344804757565"><img class="lazyload" data-src="{{ 'LWB-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Lightweight Blanket</h4>
+        <p>Starting at <span>{{lightweight-blanket.price_min | money}}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose Fabric & Fill</p>
+        <a href="/products/bamboo-blanket?variant=39344804757565"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-pillowcase-set?variant=31945175564349"><img class="lazyload" data-src="{{ 'Pillowcase-Recommend.png' | asset_img_url: '300x' }}" alt="Pillowcase Set">
+        <h4>Pillowcase Set</h4>
+        <p>Starting at <span>
+          {%- if pillowcase -%}
+          	{{pillowcase.price_min | money}}
+          {%- else -%}
+          	{{ 3000 | money }}
+          {%- endif -%}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose | 400 Thread Count</p>
+        <a href="/products/bamboo-pillowcase-set?variant=31945175564349"><button>SHOP NOW</button>
+      </div> 
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+
+{% elsif product.id == 6890447896637 %}{%comment%}weighted-blanket-cover{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/climasense-comforter?variant=40039052279869"><img class="lazyload" data-src="{{ 'Comforter-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>ClimaSense™ Comforter</h4>
+        <p>Starting at <span>{{climasense-comforter.price_min | money}}</span></p>
+        <p class="font-weight-light">Infused with 37.5® Technology</p>
+        <a href="/products/climasense-comforter?variant=40039052279869"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/ultra-plush-throw?variant=39970670051389"><img class="lazyload" data-src="{{ 'UPT-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Ultra Plush Throw</h4>
+        <p>Starting at <span>{{ultra-plush-throw.price_min | money}}</span></p>
+        <p class="font-weight-light">Breathtakingly soft & extra cozy</p>
+        <a href="/products/ultra-plush-throw?variant=39970670051389"><button>SHOP NOW</button></a>
+      </div>
+  </div>
+    
+{% elsif product.id == 6586143539261 %}{%comment%}lightweighted blanket 6586143539261{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/weighted-blanket?variant=40256155779133"><img class="lazyload" data-src="{{ 'WB-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Weighted Blanket</h4>
+        <p>Starting at <span>{{luxome-collection-min-price | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple colors & fabrics</p>
+        <a href="/products/weighted-blanket?variant=40256155779133"><button>SHOP NOW</button></a>
+      </div>
+      
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+          
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+{% elsif product.id == 6727710900285 %}{%comment%}Ultra Plush Robes 6727710900285{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/spa-collection-towels?variant=39553092649021"><img class="lazyload" data-src="{{ 'SC-Towels-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Spa Collection Towels</h4>
+        <p>Starting at <span>$90</span></p>
+        <p class="font-weight-light">The softest towels ever!</p>
+        <a href="/products/spa-collection-towels?variant=39553092649021"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+      <div class="shop-now-flex-item">
+        <a href="/products/weighted-blanket?variant=40256155779133"><img class="lazyload" data-src="{{ 'WB-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Weighted Blanket</h4>
+        <p>Starting at <span>{{luxome-collection-min-price | money}}</span></p>
+        <p class="font-weight-light">Choose from multiple colors & fabrics</p>
+        <a href="/products/weighted-blanket?variant=40256155779133"><button>SHOP NOW</button></a>
+      </div>         
+    </div>
+  </div>
+  {% elsif product.id == 6824157577277 %}{%comment%}ClimaSense Comforter 6824157577277{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/duvet-cover?variant=40040987557949"><img class="lazyload" data-src="{{ 'DV-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>Duvet Cover</h4>
+        <p>Starting at <span>{{duvet-cover.price_min | money}}</span></p>
+        <p class="font-weight-light">Choose from 2 luxurious fabrics</p>
+        <a href="/products/duvet-cover?variant=40040987557949"><button>SHOP NOW</button></a>
+      </div>
+      
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+          
+      <div class="shop-now-flex-item">
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><img class="lazyload" data-src="{{ 'LAYR-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>LAYR Pillow</h4>
+        <p>Starting at <span>{{layr-pillow.price_min | money}}</span></p>
+        <p class="font-weight-light">The only 100% adjustable pillow</p>
+        <a href="/products/layr-adjustable-pillow?variant=31902303125565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+  
+  {% elsif product.id == 6824646279229 %}{%comment%}Duvet Cover 6824646279229{%endcomment%}
+  <div class="product-shop-now">
+    <h3>May we also suggest...</h3>
+    <div class="shop-now-flex">
+      <div class="shop-now-flex-item">
+        <a href="/products/climasense-comforter?variant=40039052279869"><img class="lazyload" data-src="{{ 'Comforter-Recommend.png' | asset_img_url: '300x' }}" alt="Integrated Cover"></a>
+        <h4>ClimaSense™ Comforter</h4>
+        <p>Starting at <span>{{climasense-comforter.price_min | money}}</span></p>
+        <p class="font-weight-light">Infused with 37.5® Technology</p>
+        <a href="/products/climasense-comforter?variant=40039052279869"><button>SHOP NOW</button></a>
+      </div>
+      
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-sheets?variant=31578516455485"><img class="lazyload" data-src="{{ 'Sheets-Recommend.png' | asset_img_url: '300x' }}" alt="Bamboo Sheets"></a>
+        <h4>Luxury Sheet Set</h4>
+        <p>Starting at <span>{{bamboo-sheets.price_min | money}}</span></p>
+        <p class="font-weight-light">Available in multiple sizes & colors</p>
+        <a href="/products/bamboo-sheets?variant=31578516455485"><button>SHOP NOW</button></a>
+      </div>
+          
+      <div class="shop-now-flex-item">
+        <a href="/products/bamboo-blanket?variant=39344804757565"><img class="lazyload" data-src="{{ 'LWB-Recommend.png' | asset_img_url: '300x' }}" alt="LAYR Pillow"></a>
+        <h4>Lightweight Blanket</h4>
+        <p>Starting at <span>{{lightweight-blanket.price_min | money}}</span></p>
+        <p class="font-weight-light">100% Bamboo Viscose Fabric & Fill</p>
+        <a href="/products/bamboo-blanket?variant=39344804757565"><button>SHOP NOW</button></a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+

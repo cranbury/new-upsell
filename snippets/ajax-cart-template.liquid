@@ -1,0 +1,718 @@
+<script>
+  comparePrices = {};
+  {% for collection in collections %}
+    {% if collection.id == 162048868413%}{%comment%}all-products{%endcomment%}
+      allProducts = {{collection.products | json}}
+      {% for product in collection.products %}
+        {% for variant in product.variants%}
+          comparePrices[{{variant.id | json }}] = {{variant.compare_at_price | json }}
+        {% endfor %}
+          {% if product.id == 39344804757565 %}{%comment%}lightweight blanket{%endcomment%}
+            {%- assign lightweight_blanket = product -%}
+          lightweightBlanketVariants = {{ lightweight_blanket.variants | where: 'available' | json }}
+            {% endif%}   
+            
+        {% if product.id == 4492419530813  %}{%comment%}layr pillow{%endcomment%}
+          {%- assign layr_pillow = product -%}
+        {% endif%}
+        
+      {% endfor %}
+    {% elsif  collection.id == 273929928765 %}
+      upsellProducts = {{collection.products | json}}
+      {% for product in collection.products %}
+        {% for variant in product.variants%}
+          comparePrices[{{variant.id | json }}] = {{variant.compare_at_price | json }}
+        {% endfor %}
+        {% if product.id == 1482350919749  %}{%comment%}Removable Cover Weighted Blanket{%endcomment%}
+          {%- assign rc_weighted_blanket = product -%}
+          rcBlanketVariants = {{rc_weighted_blanket.variants | where: 'available' | json }}
+                
+        {% elsif product.id == 1482400661573  %}{%comment%}Integrated Cover Weighted Blanket{%endcomment%}
+          {%- assign integrated_weighted_blanket = product -%}
+          
+          integratedBlanketVariants = {{ integrated_weighted_blanket.variants | where: 'available' | json }}
+        {% endif%} 
+      {% endfor %}
+    {% endif%}
+  {% endfor %}
+  {%- assign show_upsell = true -%}
+
+</script>
+
+<script id="CartTemplate" type="text/template">
+
+{% raw %}
+  <div class="drawer__scrollable">
+    {{#items}}
+    <div class="ajaxcart__product appear-animation appear-delay-{{animationRow}} variant-{{variation}}">
+      <div class="ajaxcart__row">
+        <div class="grid">
+          <div class="grid__item one-quarter">
+            <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt="{{name}}"></a>
+          </div>
+          <div class="grid__item three-quarters product-details-cart-wrapper">
+            <div class="ajaxcart__product-name--wrapper grid__item display-table-cell two-thirds product-details-cart">
+              <a href="{{url}}" class="ajaxcart__product-name">{{{name}}}</a>
+              {{#if variation}}
+              	{{#if option1}}
+                	<span class="ajaxcart__product-meta">{{option1}}</span>
+                {{/if}}
+                {{#if option2}}
+                	<span class="ajaxcart__product-meta">{{option2}}</span>
+                {{/if}}
+                {{#if option3}}
+                	<span class="ajaxcart__product-meta">{{option3}}</span>
+                {{/if}}
+              {{/if}}
+              
+            </div>
+            <div class="grid__item display-table-cell one-third text-right cart-prices">
+
+              {{#if compareOrDiscount }}
+              	<span class="ajaxcart__price cart__price--strikethrough span-quicksand">{{{compareAtPrice}}}</span>
+             	  <span class="ajaxcart__price span-quicksand red">
+              	   {{{discountedPrice}}}
+  			  	    </span>
+              {{else}}
+              	<span class="ajaxcart__price span-quicksand">
+                  {{{discountedPrice}}}
+                </span>
+                
+              {{/if}}
+             </div>
+            <div class="grid grid--full display-table">
+              
+              {{#if unitBase}}
+                <div class="grid__item text-right">
+                  <div class="product__unit-price">
+                    {{{ unitPrice }}}/{{{ unitBase }}}
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+          <div class="grid grid--full display-table quantity-section-cart">
+              <div class="grid__item display-table-cell full-grid">
+                <div class="ajaxcart__quantity">
+                  <label for="updates_{{key}}" class="visually-hidden">{% endraw %}{{ 'products.product.quantity' | t }}{% raw %}</label>
+                  <div class="js-qty__wrapper">
+                  	<button type="button" class="js-qty__adjust js-qty__adjust--remove">REMOVE</button>
+                  	<span class="js-qty-wrapper-span">QTY:</span>
+                    <input type="text" id="updates_{{key}}"
+                      class="js-qty__num"
+                      value="{{itemQty}}"
+                      data-id="{{key}}"
+                      min="0"
+                      aria-label="quantity"
+                      pattern="[0-9]*"
+                      name="updates[]">
+                    <button type="button"
+                      class="js-qty__adjust js-qty__adjust--minus"
+                      aria-label="{% endraw %}{{ 'cart.general.reduce_quantity' | t }}{% raw %}">
+                        {% endraw %}<svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 20 20"><path fill="#444" d="M17.543 11.029H2.1A1.032 1.032 0 0 1 1.071 10c0-.566.463-1.029 1.029-1.029h15.443c.566 0 1.029.463 1.029 1.029 0 .566-.463 1.029-1.029 1.029z"/></svg>{% raw %}
+                        <span class="icon__fallback-text" aria-hidden="true">&minus;</span>
+                    </button>
+                    <button type="button"
+                      class="js-qty__adjust js-qty__adjust--plus"
+                      aria-label="{% endraw %}{{ 'cart.general.increase_quantity' | t }}{% raw %}">
+                        {% endraw %}<svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 20 20"><path fill="#444" d="M17.409 8.929h-6.695V2.258c0-.566-.506-1.029-1.071-1.029s-1.071.463-1.071 1.029v6.671H1.967C1.401 8.929.938 9.435.938 10s.463 1.071 1.029 1.071h6.605V17.7c0 .566.506 1.029 1.071 1.029s1.071-.463 1.071-1.029v-6.629h6.695c.566 0 1.029-.506 1.029-1.071s-.463-1.071-1.029-1.071z"/></svg>{% raw %}
+                        <span class="icon__fallback-text" aria-hidden="true">+</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    {{/items}}
+  
+    {% endraw %}{% if settings.cart_notes_enable %}{% raw %}
+      <div class="appear-animation appear-delay-{{lastAnimationRow}}">
+        <label for="CartSpecialInstructions" class="ajaxcart__note">We offer <strong>FREE SHIPPING</strong> to the contiguous US!</label>
+        <textarea name="note" class="input-full" id="CartSpecialInstructions">{{note}}</textarea>
+      </div>
+    {% endraw %}{% endif %}{% raw %}
+  </div>
+
+  <div class="drawer__footer appear-animation appear-delay-{{lastAnimationRow}}">
+    {{#if cartDiscounts }}
+      <div class="grid grid--full">
+        <div class="grid__item one-third">
+          <p class="ajaxcart__subtotal">{% endraw %}{{ 'cart.general.discounts' | t }}{% raw %}</p>
+        </div>
+        <div class="grid__item two-thirds text-right">
+          {{#each cartDiscounts}}
+            <p class="ajaxcart__price cart__discount span-quicksand">
+              {{this.title}} (-{{{this.formattedAmount}}})
+            </p>
+          {{/each}}
+        </div>
+      </div>
+    {{/if}}
+     
+    <div class="grid grid--full">
+      <div class="grid__item one-half">
+      <p class="ajaxcart__subtotal">{% endraw %}{{ 'cart.general.subtotal' | t }}{% raw %}
+      </p>
+       
+      </div>
+      <div class="grid__item one-half text-right">
+        <p id="ajax-cart-total-price" class="ajaxcart__price span-quicksand">{{{totalPrice}}}</p>
+      </div>      
+    </div>
+     <div class="grid grid--full">
+      <div class="grid__item one-whole">
+      <p class="ajaxcart__note2">
+        Or 4 installments of {{installments}} <span id='klarna-shoppay'>with Klarna or ShopPay</span>
+      </p>
+      </div>      
+    </div>
+    
+    {% endraw %}{% if settings.cart_terms_conditions_enable %}
+      <p class="ajaxcart__note ajaxcart__note--terms">
+        <input type="checkbox" id="CartAgree" />
+        <label for="CartAgree">
+          {% if settings.cart_terms_conditions_link != blank %}
+            {{ 'cart.general.terms_html' | t: url: settings.cart_terms_conditions_link }}
+          {% else %}
+            {{ 'cart.general.terms' | t }}
+          {% endif %}
+        </label>
+      </p>
+    {% endif %}{% raw %}
+    {% endraw %}
+      {% if additional_checkout_buttons and settings.cart_additional_buttons %}
+        <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+      {% endif %}
+    {% raw %}
+   <button type="submit" class="btn btn--full cart__checkout{% endraw %}{% if settings.cart_terms_conditions_enable %}{% raw %} cart__checkout--ajax{% endraw %}{% endif %}{% raw %}" name="checkout">
+      CHECKOUT NOW
+    </button>
+  </div>
+  
+  	
+    {{#if showUpsell}}
+    {% endraw %}
+      <div id="upsell-container-and-dots">
+        <div class="upsell-container-slider">
+          <div class="upsell-slides">
+            {% raw %}
+            {{#if preserveUpsellOrder }}
+             {% endraw %}
+              <div class="starting-slide upsell-slide" data-active="true">
+                {% render 'upsell-product', product_data: integrated_weighted_blanket%}  
+              </div>
+              <div class="secondary-slide upsell-slide">
+                {% render 'upsell-product', product_data: rc_weighted_blanket%}
+              </div>
+              {% raw %}
+            {{ else }}
+            {% endraw %}
+              <div class="secondary-slide upsell-slide" data-active="true">
+                {% render 'upsell-product', product_data: rc_weighted_blanket%}
+              </div>
+              <div class="starting-slide upsell-slide">
+                {% render 'upsell-product', product_data: integrated_weighted_blanket%}  
+              </div>
+              {% raw %}
+            {{/if }}
+            {% endraw %}
+              
+          </div>
+        </div>
+        <div class="upsell-container-dots"></div>
+      </div>
+      {% raw %}
+    {{/if}}
+   {{#unless showUpsell }}
+  	<div class="additional-info-cart">
+      
+    </div>
+  {{/unless}}
+  
+  {% endraw %}
+</script>
+
+<script>
+  loadScript = function(){
+    
+  slides = document.querySelector(".upsell-slides");
+  containerDots = document.querySelector(".upsell-container-dots");
+
+  var slideIndex = 1;
+
+  // Adding images and dots to the Respective Container
+
+   $('.upsell-slide').each((i) => {
+                          
+    var dot = document.createElement("div");
+    dot.classList.add("dot");
+    if (i === 0) {dot.dataset.active = true}
+    containerDots.appendChild(dot);
+  });
+
+  // Adding EventListener to All dots so that when user click on it trigger move dots;
+
+  dots = containerDots.querySelectorAll("*").forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      moveDot(index + 1);
+      $('.upsell-collapsible-trigger .footer-vertical-line').show()
+      $('.upsell-footer__collapsible').hide()
+        
+    });
+  });
+  // It helps to move the dot, it take "index" as parameter and update the slideIndex
+  function moveDot(index) {
+    slideIndex = index;
+    updateImageAndDot();
+  }
+
+  // Update Image And Slide Dot according to the [data-active]
+  function updateImageAndDot() {
+    /* ...........Updating Image.............. */
+    const activeSlide = slides.querySelector("[data-active]");
+    slides.children[slideIndex - 1].dataset.active = true;
+    activeSlide && delete activeSlide.dataset.active;
+
+    /* ...........Updating Dots.............. */
+    const activeDot = containerDots.querySelector("[data-active]");
+    containerDots.children[slideIndex - 1].dataset.active = true;
+    activeDot && delete activeDot.dataset.active;
+    showUpsellVariant()
+      document.querySelectorAll('.upsell-slide[data-active] .upsell-size:checked').forEach(function(el){
+    updateVariantInfo(el.labels[0])
+  })
+  }
+
+  // Slide Next Button Click Event
+  nextSlide = () => {
+    // it will update the slideIndex on the basis of the images.length as it gets greater than images.length, this will initialize to the 1
+    if (slideIndex !== images.length) {
+      ++slideIndex;
+    } else if (slideIndex === images.length) {
+      slideIndex = 1;
+    }
+    updateImageAndDot();
+  };
+
+  //const nextBtn = document.querySelector(".next");
+  //nextBtn.onclick = nextSlide;
+
+  // Slide Previous Button Click Event
+  prevSlide = () => {
+    // It will check if the slideIndex is less equal to 1 then change it to the images.legnth, it will enable infinite scrolling
+    if (slideIndex !== 1) {
+      --slideIndex;
+    } else if (slideIndex === 1) {
+      slideIndex = images.length;
+    }
+    updateImageAndDot();
+  };
+
+  //const prevBtn = document.querySelector(".prev");
+  //prevBtn.onclick = prevSlide;
+
+  // Show the Image as the Page Loads;
+  //updateImageAndDot();
+  document.querySelectorAll('.upsell-slide[data-active] .upsell-size:checked').forEach(function(el){
+    updateVariantInfo(el.labels[0])
+  })
+  }
+</script>
+  
+
+
+
+<style>
+  .js-qty__wrapper, .js-qty-wrapper-span .js-qty__num{
+    font-size:13px;
+  }
+  #upsell-promo-desc {
+    font-family: 'Work Sans';
+    font-size: .8em;
+    font-weight: 400;
+  }
+	#upsell-add.disabled {
+    background-color: grey;
+  }
+  .upsell-mobile-footer__item{
+  	display: flex;
+    justify-content: space-between;
+    cursor:pointer;
+    height: 29px;
+  }
+  .upsell-footer__collapsible {
+	  display: none;
+  }
+  .upsell-grid{
+    display:flex;
+    flex-direction:column;
+    margin-top:-5px;
+  }
+  .upsell-prices{
+    display:flex;
+    line-height: .9em;
+    font-size: .9em;
+  }
+  .upsell-link-subheader{
+    margin-bottom:unset;
+  }
+  .upsell-material-name {
+    font-family:'Work Sans', sans-serif;
+    font-style:italic;
+    font-size: .7em;
+    margin: 0 0 0 16px;
+  }
+
+  .upsell-product-image{
+    display:flex;
+  }
+  /* Main Wrapper Container */
+  .upsell-container-slider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+  #upsell-container-and-dots{
+    padding-top: 20px;
+  }
+  /* Slider Container which contains images */
+  .upsell-slides {
+    position: relative;
+    display:flex;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.5s ease-in-out;
+    transition-delay: 500ms;
+    width: 90%;
+    height: 70%;
+  }
+  /* Active Image or Current image to display */
+  .upsell-slides > .upsell-slide[data-active] {
+    transform: translateX(0);
+    transition-delay: 0ms;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    position: initial;
+  }
+  .upsell-slide {
+	  position: absolute;
+    flex: 1 0 100%;
+  }
+  /* Image Slider Next And Previous Buttons */
+  .upsell-btn-slide {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    opacity: 0;
+    border: 1px solid rgba(34, 34, 34, 0.287);
+    transition: opacity 300ms ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 10;
+  }
+  .upsell-btn-slide > img {
+    width: 100%;
+  }
+  /* Show Buttons when user hover on the slider Container */
+  .container-slider:hover > .upsell-btn-slide {
+    opacity: 1;
+  }
+  /* Previous and Next Button Position Absolute */
+  .upsell-prev,
+  .upsell-next {
+    top: 50%;
+    transform: translateY(-60%);
+  }
+  .upsell-prev {
+    left: 20px;
+  }
+  .upsell-next {
+    right: 20px;
+  }
+  /* Bottom Dots Container  */
+  .upsell-container-dots {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+  }
+  /* Sigle Dot style */
+  .dot {
+	  width: 54px;
+    height: 12px;
+    border: 1px solid #E0E2E2;
+    margin: 0 5px;
+    background: #E0E2E2;
+    cursor: pointer;
+    transition: background-color 500ms ease-in-out;
+  }
+  /* Change the color of bg when user hover on it. */
+  .dot:hover {
+    opacity: 0.9;
+    background: rgb(32, 32, 32);
+  }
+  .upsell-slide[data-active] .variant-input-wrap input[type="radio"]:checked + label.color-swatch {
+    background-color: #fff;
+    outline: 2px solid var(--general-black);
+    margin-bottom: 0;
+    outline: 0;
+    box-shadow: 0 0 0 2px black;
+  }
+
+  /* Current or active dot */
+  .dot[data-active="true"] {
+    background: rgb(32, 32, 32);
+  }
+  .variant-wrapper--button .upsell-material-images .variant__button-label{
+    border-radius: 50%;
+  }
+
+  @media screen and (max-width: 1574px) {
+    .upsell-grid .product-title{
+      font-size:13px;
+    }
+    .upsell-link-variant, .upsell-link-subheader {
+      font-size:13px;
+    }
+    .upsell-size-span{
+      font-size:.7em;
+    }
+
+  }
+  @media  screen and (max-width: 1440px) {
+    .upsell-grid .product-title .upsell-link-variant, .upsell-link-subheader{
+      font-size:.9em;
+    }
+
+    .upsell-mobile-footer__item h4, .upsell-prices{
+      font-size:.8em;
+    }
+
+  }
+
+  @media screen and (max-width: 1280px),
+         screen and (max-height: 720px){
+    .upsell-grid .product-title .upsell-link-variant, .upsell-link-subheader {
+      font-size: .8em;
+    }
+    .upsell-size-span{
+      font-size:.8em;
+    }
+  }
+  @media  screen and (max-width: 1170px) {
+    .upsell-grid .product-title .upsell-link-variant, .upsell-link-subheader{
+      font-size:.7em;
+    }
+    .upsell-mobile-footer__item h4, .upsell-prices{
+      font-size:11px;
+    }
+  }
+  @media (max-width: 480px) {
+   .upsell-size-span{
+      font-size: 10px;
+    }
+    .upsell-grid .variant-input-wrap.upsell-material-images{
+      padding-top:10px;
+    }
+    .variant-wrapper--button .upsell-material-images .variant__button-label{
+    border-radius: 50%;
+    }
+    .variant__label.upsell-variant-label{
+      margin-bottom: unset;
+    }
+    .upsell-grid {
+      margin-top: -7px;
+    }
+    .btn:not(.btn--secondary):not(.btn--tertiary):not(.btn--inverse):not(.btn--body):not(.btn--static):hover{
+      background: #AF0404;
+    }
+  }
+
+  @media (max-width: 375px) {
+    #upsell-promo-desc {
+        font-size: 0.7rem;
+      }
+  }
+ 
+  @media (max-width: 360px) {
+    .upsell-size-span {
+      font-size: 9px;
+    }
+  }
+
+</style>
+
+<script>
+  var layrPillowAvailable;
+  var layrHandle;
+  var rcWeightedBlanketHandle;
+  var rcWeightedBlanketHandleAvailable;
+  
+  {% for collection in collections %}
+    
+  	{% if collection.id == 157696688189 %}
+  		{% for product in collection.products %}
+  		  
+  		  {% if product.id == 4492419530813 %}
+  			  {%- assign variants_available = product.variants | where: "available", true -%}
+              layrPillowAvailable = {{ variants_available | json}}
+              layrHandle = {{ product.handle | json }}
+          {% elsif product.id == 1482350919749 %}
+              {%- assign variants_available = product.variants | where: "available", true -%}
+              rcWeightedBlanketHandleAvailable = {{ variants_available | json}}
+              rcWeightedBlanketHandle = {{ product.handle | json }}
+          {% endif%}
+  		
+  		{% endfor %}
+    {% endif%}
+  {% endfor %}
+
+  window.addEventListener( 'load', loadUpsellFunctionality)
+  showUpsellVariant()
+  function loadUpsellFunctionality() {
+    let checkUpsellButton = setInterval(function() {
+      let upsellButton = document.getElementById("upsell-add")
+      if (upsellButton && !document.querySelector('.dot')) {
+        loadScript()
+        showUpsellVariant()
+        //clearInterval(checkUpsellButton)
+      }
+    }, 200)
+    
+    {% comment %} let checkVariantButtons = setInterval(function() {
+      let variantButton = document.querySelector(".upsell-size-variant")
+      if (variantButton) {
+        clearInterval(checkVariantButtons)
+        document.querySelectorAll(".upsell-size-variant").forEach( button => {
+          //button.addEventListener('click', updateVariantInfo)
+          
+        })
+      }
+    }, 200) {% endcomment %}
+    
+  }
+  
+  function addUpsellToCart(productId){
+    
+    let productData = upsellProducts.find(prod => prod.id == productId)
+    let selectedSize = [...document.querySelectorAll('.upsell-slide[data-active] .upsell-size')].filter(node => node.checked)[0].value
+    let selectedMaterial = [...document.querySelectorAll('.upsell-slide[data-active]  .upsell-material')].filter(node => node.checked)[0].value
+    
+    let selectedIid = productData.variants.filter(node => node.options.includes(selectedSize) && node.options.includes(selectedMaterial))[0].id
+    let formData = {
+     'items': [{
+      'id': selectedIid,
+      'quantity': 1,
+      properties: {
+        'upsell': true
+      }
+      
+      }]
+    };
+    
+    theme.cart.addItemFromForm(formData)
+    .then( r => {
+      let upsellButton = document.getElementById("upsell-add")
+      setTimeout(() => { document.querySelector('.ajaxcart__subtotal').click()}, 500)
+      if(upsellButton) {
+        upsellButton.removeEventListener ('click', addUpsellToCart)
+      }
+      let variantButton = document.querySelector(".upsell-size-variant")
+      if(variantButton) {
+        document.querySelectorAll(".upsell-size-variant").forEach( button => {
+          //button.removeEventListener('click', updateVariantInfo)
+        })
+      }
+      	
+    })
+    .then( r => { $('body').trigger('added.ajaxProduct', $('.add-to-cart'))})
+  }
+  
+  function variantsForEl(el){
+    let productVariants
+  	if (el.dataset.product == 39344804757565){
+      productVariants = lightweightBlanketVariants 
+    } else if (el.dataset.product ==  1482350919749){
+    	productVariants = rcBlanketVariants
+    } else if (el.dataset.product == 1482400661573){
+      productVariants = integratedBlanketVariants
+    }
+    return productVariants
+  }
+  
+  function updateVariantInfo(el) {
+    let button = document.querySelector('.upsell-slide[data-active] #upsell-add')
+    button.classList.remove('disabled')
+    button.innerText = 'ADD TO CART'
+    document.querySelector('.upsell-slide[data-active] .upsell-prices').style.display='flex'
+    let productVariants = variantsForEl(el)
+    
+    let selectedSize = el.dataset.value
+    let selectedMaterial = [...document.querySelectorAll('.upsell-slide[data-active]  .upsell-material')].filter(node => node.checked)[0].value
+
+    let selectedVariant = productVariants.filter(node => node.options.includes(selectedSize) && node.options.includes(selectedMaterial))[0]
+    
+    let comparePrice = document.querySelector(".upsell-slide[data-active] .upsell-normal-price")
+    let price = selectedVariant.compare_at_price || selectedVariant.price
+    comparePrice.innerHTML = theme.Currency.formatMoney(price, theme.settings.moneyFormat)
+    
+    let promoPrice = document.querySelector(".upsell-slide[data-active] .upsell-promo-price")
+
+    promoPrice.innerHTML = theme.Currency.formatMoney((price * 0.5), theme.settings.moneyFormat)
+    
+    document.querySelectorAll(".upsell-slide[data-active] .upsell-link-variant").forEach( link => {
+      link.href = `https://luxome.com/products/${el.dataset.handle}?variant=${selectedVariant.id}`
+    })
+  }
+  
+  function showUpsellVariant(ev){
+    let el
+    if (ev){
+      el = ev.target
+    } else {
+      el = $('.upsell-slide[data-active]  .upsell-material-images input[type=radio]:checked+label')[0]
+    }
+    if(!el){return false}
+    $('.upsell-slide[data-active] .upsell-material-name').text(el.control.dataset.colorName)
+    
+  	let productVariants = variantsForEl(el)
+    let selectedVariant = productVariants.filter(node => node.options.includes(el.control.value))[0]
+	  
+//
+    
+    let selectedSizeEl = [...document.querySelectorAll('.upsell-slide[data-active] .upsell-size')].filter(node => node.checked)[0]
+    if (ev && ev.type == 'click' && selectedSizeEl){
+      selectedSize = selectedSizeEl.value
+      let selectedMaterial = el.control.value
+
+      let selectedVariant = productVariants.filter(node => node.options.includes(selectedSize) && node.options.includes(selectedMaterial))[0]
+
+      let comparePrice = document.querySelector(".upsell-slide[data-active] .upsell-normal-price")
+      let price = selectedVariant.compare_at_price || selectedVariant.price
+      comparePrice.innerHTML = theme.Currency.formatMoney(price, theme.settings.moneyFormat)
+      
+      let promoPrice = document.querySelector(".upsell-slide[data-active] .upsell-promo-price")
+
+      promoPrice.innerHTML = theme.Currency.formatMoney((price * 0.5), theme.settings.moneyFormat)
+    }
+    
+//
+
+    document.querySelector(`#img-link-${el.dataset.product}`).href = `https://luxome.com/products/${el.dataset.handle}?variant=${selectedVariant.id}`
+    document.querySelector(`#img-link-${el.dataset.product} img`).src = selectedVariant.featured_image.src
+  }
+  
+  function upsellPlusToMinus(className){
+    $('.collapse-' + className).toggle()
+    $('.btn-collapse-' + className + ' .footer-vertical-line').toggle()
+  }
+  
+</script>
+ 

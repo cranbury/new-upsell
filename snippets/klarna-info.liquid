@@ -1,0 +1,259 @@
+<style>
+  #klarna-modal{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+  }
+</style>
+
+<div id="klarna-modal">
+  <div class="klarna-upstream-interstitial">
+    <style>.klarna-upstream-interstitial article,.klarna-upstream-interstitial aside,.klarna-upstream-interstitial details,.klarna-upstream-interstitial figcaption,.klarna-upstream-interstitial figure,.klarna-upstream-interstitial footer,.klarna-upstream-interstitial header,.klarna-upstream-interstitial hgroup,.klarna-upstream-interstitial main,.klarna-upstream-interstitial menu,.klarna-upstream-interstitial nav,.klarna-upstream-interstitial section,.klarna-upstream-interstitial summary{display:block}.klarna-upstream-interstitial audio,.klarna-upstream-interstitial canvas,.klarna-upstream-interstitial progress,.klarna-upstream-interstitial video{display:inline-block;vertical-align:baseline}.klarna-upstream-interstitial audio:not([controls]){display:none;height:0}.klarna-upstream-interstitial [hidden],.klarna-upstream-interstitial template{display:none}.klarna-upstream-interstitial a{background-color:transparent}.klarna-upstream-interstitial a:active,.klarna-upstream-interstitial a:hover{outline:0}.klarna-upstream-interstitial abbr[title]{border-bottom:1px dotted}.klarna-upstream-interstitial b,.klarna-upstream-interstitial strong{font-weight:700}.klarna-upstream-interstitial dfn{font-style:italic}.klarna-upstream-interstitial h1{font-size:2em;margin:.67em 0}.klarna-upstream-interstitial mark{background:#ff0;color:#000}.klarna-upstream-interstitial small{font-size:80%}.klarna-upstream-interstitial sub,.klarna-upstream-interstitial sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}.klarna-upstream-interstitial sup{top:-.5em}.klarna-upstream-interstitial sub{bottom:-.25em}.klarna-upstream-interstitial img{border:0}.klarna-upstream-interstitial svg:not(:root){overflow:hidden}.klarna-upstream-interstitial figure{margin:1em 40px}.klarna-upstream-interstitial hr{box-sizing:content-box;height:0}.klarna-upstream-interstitial pre{overflow:auto}.klarna-upstream-interstitial code,.klarna-upstream-interstitial kbd,.klarna-upstream-interstitial pre,.klarna-upstream-interstitial samp{font-family:monospace,monospace;font-size:1em}.klarna-upstream-interstitial button,.klarna-upstream-interstitial input,.klarna-upstream-interstitial optgroup,.klarna-upstream-interstitial select,.klarna-upstream-interstitial textarea{color:inherit;font:inherit;margin:0}.klarna-upstream-interstitial button{overflow:visible}.klarna-upstream-interstitial button,.klarna-upstream-interstitial select{text-transform:none}.klarna-upstream-interstitial button,.klarna-upstream-interstitial input[type="button"],.klarna-upstream-interstitial input[type="reset"],.klarna-upstream-interstitial input[type="submit"]{-webkit-appearance:button;cursor:pointer}.klarna-upstream-interstitial button[disabled],.klarna-upstream-interstitial input[disabled]{cursor:default}.klarna-upstream-interstitial button::-moz-focus-inner,.klarna-upstream-interstitial input::-moz-focus-inner{border:0;padding:0}.klarna-upstream-interstitial input{line-height:normal}.klarna-upstream-interstitial input[type="checkbox"],.klarna-upstream-interstitial input[type="radio"]{box-sizing:border-box;padding:0}.klarna-upstream-interstitial input[type="number"]::-webkit-inner-spin-button,.klarna-upstream-interstitial input[type="number"]::-webkit-outer-spin-button{height:auto}.klarna-upstream-interstitial input[type="search"]{-webkit-appearance:textfield;box-sizing:content-box}.klarna-upstream-interstitial input[type="search"]::-webkit-search-cancel-button,.klarna-upstream-interstitial input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}.klarna-upstream-interstitial fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}.klarna-upstream-interstitial legend{border:0;padding:0}.klarna-upstream-interstitial textarea{overflow:auto}.klarna-upstream-interstitial optgroup{font-weight:700}.klarna-upstream-interstitial table{border-collapse:collapse;border-spacing:0}.klarna-upstream-interstitial td,.klarna-upstream-interstitial th{padding:0}.klarna-upstream-interstitial__overlay{position:fixed;z-index:2147483647;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:#000;background-color:rgba(0,0,0,0.4)}.klarna-upstream-interstitial__overlay__content{position:relative;background-color:#FEFEFE;margin:5% auto;border:1px solid #888;width:80%}.klarna-upstream-interstitial__overlay__content iframe{border:0}.klarna-upstream-interstitial__overlay__content__close{color:#AAA;position:absolute;font-size:28px;font-weight:700;right:10px;top:5px}.klarna-upstream-interstitial__overlay__content__close:hover,.klarna-upstream-interstitial__overlay__content__close:focus{color:#000;text-decoration:none;cursor:pointer}</style><div class="klarna-upstream-interstitial__overlay" style="background: rgba(0, 0, 0, 0.5);"><div class="klarna-upstream-interstitial__overlay__content" style="max-width: 100%; height: auto; border-width: 0px; border-color: transparent; border-radius: 0px;">
+  <style>
+      * {
+          text-rendering: optimizeLegibility;
+          -moz-osx-font-smoothing: grayscale;
+          font-smoothing: antialiased;
+          -webkit-font-smoothing: antialiased;
+      }
+      #interstitial header {
+          margin-bottom: 60px;
+      }
+      #interstitial header>img {
+          width: 72px;
+          margin: 0 auto;
+          display: block;
+      }
+      #interstitial section {
+          margin-bottom: 30px;
+      }
+      #interstitial h2 {
+          margin: 8px 0;
+          font-style: normal;
+          font-weight: 700;
+          font-size: 27px;
+          line-height: 30px;
+      }
+      #interstitial p {
+          line-height: 25px;
+          margin: 8px 0;
+      }
+      .klarna-upstream-interstitial__overlay__content {
+          max-width: 530px!important;
+          background-color: transparent;
+          margin: 5% auto;
+      }
+      #interstitial {
+          background: #fff;
+          padding: 20px 50px;
+          margin: 0 auto;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+          font-family: "Klarna Text", "Klarna Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+          font-size: 16px;
+          color: #343434;
+      }
+      #interstitial .interstitial-container {
+          width: 100%
+      }
+      ul {
+          margin-top: 0;
+          margin-bottom: 16px;
+      }
+      #interstitial .timeline {
+          position: relative;
+      }
+      #interstitial .timeline section.timeline-items {
+          position: relative;
+      }
+      #interstitial .timeline section.timeline-items section {
+          position: relative;
+          margin: 30px 0 0 0;
+          padding-bottom: 0;
+      }
+      #interstitial .timeline section.timeline-items section.timeline-item {
+          position: relative;
+          margin: 16px 0 0 0;
+          padding-bottom: 0;
+      }
+      #interstitial .timeline section.timeline-items section ul {
+          list-style-type: none;
+      }
+      #interstitial .timeline section.timeline-items section ul:last-child {
+          margin-bottom: 0;
+      }
+      #interstitial .timeline section.timeline-items section ul:first-of-type:before {
+          content: '';
+          width: 10px;
+          height: 10px;
+          background: #343434;
+          border: 2px solid #fff;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          border-radius: 50%;
+          position: absolute;
+          left: 5px;
+          top: 3px;
+          z-index: 2;
+      }
+      #interstitial button {
+          color: #fff;
+          text-align: center;
+          background-color: #17120f;
+          font-size: 16px;
+          font-weight: 500;
+          width: 100%;
+          padding: 15px 25px;
+          border: none;
+          cursor: pointer;
+      }
+      #interstitial button:hover {
+          background-color: #000;
+      }
+      #interstitial button:visited {
+          background-color: #0c0706;
+      }
+      #interstitial button:focus {
+          border: #676161 solid 5px;
+          padding: 10px 25px;
+          outline: 0;
+      }
+      @media (max-width:767px) {
+          #interstitial {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              flex-wrap: wrap;
+              border-radius: 0;
+              padding: 20px;
+          }
+      }
+
+      #interstitial .legal>p {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 12px;
+          color: #787471;
+          line-height: 20px;
+          margin-bottom: 0;
+      }
+
+      #interstitial .legal>p>a {
+          color: #787878;
+          text-decoration: underline;
+      }
+
+      #interstitial .timeline section.timeline-items section ul li .badge {
+          position: absolute;
+          top: -4px;
+          left: 250px;
+          height: 32px;
+          width: 48px;
+          background-repeat: no-repeat;
+          background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='38px' height='22px' viewBox='0 0 38 22' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3C!-- Generator: Sketch 57.1 (83088) - https://sketch.com --%3E%3Ctitle%3EAcceptance mark / Klarna / Inside Checkout / Pink%3C/title%3E%3Cdesc%3ECreated with Sketch.%3C/desc%3E%3Cg id='Delivery' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='Acceptance-mark-/-Klarna-/-Inside-Checkout-/-Pink'%3E%3Cg id='Mark' transform='translate(-0.000300, 0.000400)'%3E%3Cpath d='M35,22 L3,22 C1.344,22 0,20.656 0,19 L0,3 C0,1.343 1.344,0 3,0 L35,0 C36.657,0 38,1.343 38,3 L38,19 C38,20.656 36.657,22 35,22' id='BG' fill='%23FFB3C7'%3E%3C/path%3E%3Cpath d='M30.5664,13.3271 C29.8184,13.3271 29.2124,12.7531 29.2124,12.0431 C29.2124,11.3341 29.8184,10.7601 30.5664,10.7601 C31.3144,10.7601 31.9204,11.3341 31.9204,12.0431 C31.9204,12.7531 31.3144,13.3271 30.5664,13.3271 L30.5664,13.3271 Z M31.9244,9.5481 L31.9244,9.8671 C31.5034,9.5791 30.9934,9.4101 30.4444,9.4101 C28.9894,9.4101 27.8104,10.5891 27.8104,12.0431 C27.8104,13.4981 28.9894,14.6771 30.4444,14.6771 C30.9934,14.6771 31.5034,14.5081 31.9244,14.2201 L31.9244,14.5391 L33.4204,14.5391 L33.4204,9.5481 L31.9244,9.5481 Z' id='Letter' fill='%23000000'%3E%3C/path%3E%3Cpath d='M8.792,7.3222 L7.171,7.3222 C7.171,8.6502 6.561,9.8702 5.495,10.6682 L4.854,11.1482 L7.341,14.5412 L9.387,14.5412 L7.098,11.4192 C8.183,10.3392 8.792,8.8842 8.792,7.3222' id='Letter' fill='%23000000'%3E%3C/path%3E%3Cpolygon id='Letter' fill='%23000000' points='2.9953 14.5406 4.6553 14.5406 4.6553 7.3216 2.9953 7.3216'%3E%3C/polygon%3E%3Cpolygon id='Letter' fill='%23000000' points='9.8693 14.5386 11.4333 14.5386 11.4333 7.3236 9.8693 7.3236'%3E%3C/polygon%3E%3Cpath d='M25.1552,9.414 C24.5582,9.414 23.9932,9.599 23.6152,10.11 L23.6152,9.548 L22.1282,9.548 L22.1282,14.539 L23.6342,14.539 L23.6342,11.916 C23.6342,11.157 24.1422,10.785 24.7562,10.785 C25.4122,10.785 25.7902,11.178 25.7902,11.905 L25.7902,14.539 L27.2822,14.539 L27.2822,11.365 C27.2822,10.203 26.3592,9.414 25.1552,9.414' id='Letter' fill='%23000000'%3E%3C/path%3E%3Cpath d='M14.8017,13.3271 C14.0537,13.3271 13.4477,12.7531 13.4477,12.0431 C13.4477,11.3341 14.0537,10.7601 14.8017,10.7601 C15.5497,10.7601 16.1557,11.3341 16.1557,12.0431 C16.1557,12.7531 15.5497,13.3271 14.8017,13.3271 L14.8017,13.3271 Z M16.1607,9.5481 L16.1607,9.8671 C15.7387,9.5791 15.2297,9.4101 14.6797,9.4101 C13.2257,9.4101 12.0457,10.5891 12.0457,12.0431 C12.0457,13.4981 13.2257,14.6771 14.6797,14.6771 C15.2297,14.6771 15.7387,14.5081 16.1607,14.2201 L16.1607,14.5391 L17.6557,14.5391 L17.6557,9.5481 L16.1607,9.5481 Z' id='Letter' fill='%23000000'%3E%3C/path%3E%3Cpath d='M19.9668,10.1982 L19.9668,9.5482 L18.4368,9.5482 L18.4368,14.5392 L19.9698,14.5392 L19.9698,12.2092 C19.9698,11.4232 20.8218,11.0002 21.4128,11.0002 L21.4318,11.0002 L21.4318,9.5482 C20.8238,9.5482 20.2668,9.8072 19.9668,10.1982' id='Letter' fill='%23000000'%3E%3C/path%3E%3Cpath d='M35.0058,12.7685 C34.4878,12.7685 34.0688,13.1885 34.0688,13.7055 C34.0688,14.2245 34.4878,14.6445 35.0058,14.6445 C35.5238,14.6445 35.9428,14.2245 35.9428,13.7055 C35.9428,13.1885 35.5238,12.7685 35.0058,12.7685' id='Letter' fill='%23000000'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+          background-size: 100% auto;
+      }
+      #interstitial .timeline section.timeline-items section:not(:last-child):after {
+          content: '';
+          width: 2px;
+          position: absolute;
+          top: 18px;
+          left: 11px;
+          z-index: 1;
+          background: #676161;
+          height: 100%;
+      }
+      .nowrap {
+          white-space: nowrap;
+      }
+  </style>
+
+  <div id="interstitial">
+      <header>
+          <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54px" height="12px" viewBox="0 0 54 12" version="1.1">
+    <g id="Selector-/-Radio-/-With-logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-281.000000, -23.000000)">
+        <g id="Radio" transform="translate(0.000000, -1.000000)">
+            <g id="Logo-/-Klarna-/-Full,-Gray" transform="translate(281.000000, 24.000000)">
+                <g id="Logo">
+                    <rect id="Footprint" x="0" y="0" width="54" height="12"/>
+                    <path d="M0,11.7777624 L0,0 L2.69399122,0 L2.69399122,11.7777624 L0,11.7777624 Z M9.4225781,0 C9.4225781,2.5497967 8.43194869,4.92175582 6.66680569,6.68481713 L10.3906017,11.7782373 L7.06317581,11.7782373 L3.01615289,6.24283495 L4.06063371,5.45823646 C5.79275574,4.15674558 6.78622565,2.16741029 6.78622565,0 L9.4225781,0 Z M11.1758856,11.774557 L13.7200397,11.774557 L13.7200397,0.00225561678 L11.1758856,0.00225561678 L11.1758856,11.774557 Z M36.0406836,3.41215461 C35.0697011,3.41215461 34.1507947,3.71452597 33.5364151,4.54874803 L33.5364151,3.63166174 L31.1161785,3.63166174 L31.1161785,11.774557 L33.5661222,11.774557 L33.5661222,7.49517714 C33.5661222,6.25684352 34.3940138,5.65043876 35.3907976,5.65043876 C36.4590677,5.65043876 37.0732106,6.29055906 37.0732106,7.47831937 L37.0732106,11.774557 L39.501022,11.774557 L39.501022,6.59601706 C39.501022,4.70094281 37.9988633,3.41215461 36.0406836,3.41215461 M21.4097856,4.15211563 C20.7230913,3.68223504 19.8942529,3.40610006 19.0003193,3.40610006 C16.6344075,3.40610006 14.7164685,5.32990374 14.7164685,7.70305003 C14.7164685,10.0761963 16.6344075,12 19.0003193,12 C19.8942529,12 20.7230913,11.723865 21.4097856,11.2541031 L21.4097856,11.774557 L23.8405559,11.774557 L23.8405559,3.63118687 L21.4097856,3.63118687 L21.4097856,4.15211563 Z M19.1991553,9.79828059 C17.9828234,9.79828059 16.9966914,8.86018144 16.9966914,7.70305003 C16.9966914,6.54591862 17.9828234,5.6080569 19.1991553,5.6080569 C20.4156056,5.6080569 21.4017375,6.54591862 21.4017375,7.70305003 C21.4017375,8.86018144 20.4156056,9.79828059 19.1991553,9.79828059 Z M27.6008052,4.69192034 L27.6008052,3.63130559 L25.1121595,3.63130559 L25.1121595,11.774557 L27.6063678,11.774557 L27.6063678,7.97253688 C27.6063678,6.68980323 28.9924205,6.00029679 29.9541714,6.00029679 C29.9639948,6.00029679 29.9732265,6.00124653 29.9830499,6.00136524 L29.9830499,3.63178045 C28.9959712,3.63178045 28.0880718,4.05571769 27.6008052,4.69192034 M47.053358,4.15211563 C46.3666637,3.68223504 45.5378252,3.40610006 44.6437733,3.40610006 C42.2778615,3.40610006 40.3599225,5.32990374 40.3599225,7.70305003 C40.3599225,10.0761963 42.2778615,12 44.6437733,12 C45.5378252,12 46.3666637,11.723865 47.053358,11.2541031 L47.053358,11.774557 L49.4840099,11.774557 L49.4840099,3.63118687 L47.053358,3.63118687 L47.053358,4.15211563 Z M44.8427277,9.79828059 C43.6262774,9.79828059 42.6402638,8.86018144 42.6402638,7.70305003 C42.6402638,6.54591862 43.6262774,5.6080569 44.8427277,5.6080569 C46.059178,5.6080569 47.0451916,6.54591862 47.0451916,7.70305003 C47.0451916,8.86018144 46.059178,9.79828059 44.8427277,9.79828059 Z M52.0646172,8.88618039 C52.9071848,8.88618039 53.5903285,9.57129431 53.5903285,10.416557 C53.5903285,11.2615823 52.9071848,11.9468149 52.0646172,11.9468149 C51.2220497,11.9468149 50.5390243,11.2615823 50.5390243,10.416557 C50.5390243,9.57129431 51.2220497,8.88618039 52.0646172,8.88618039 Z" fill="#D1D1D0"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
+      </header>
+
+      <div class="interstitial-container">
+          <section>
+            <h2>Pay 4 installments of <span id="klarna-price-modal"></span></h2>
+              <p>Pay in 4 interest-free installments so you can spread <span class="nowrap">the cost.</span></p>
+          </section>
+          <section class="timeline-list">
+              <div class="timeline">
+                  <div>
+                      <section class="timeline-items">
+                          <section>
+                              <ul>
+                                  <li>Add item(s) to your cart</li>
+                              </ul>
+                          </section>
+                          <section class="timeline-item">
+                              <ul>
+                                  <li><span>Go to checkout and choose</span><span class="badge"></span></li>
+                              </ul>
+                          </section>
+                          <section class="timeline-item">
+                              <ul>
+                                  <li>Enter your debit or credit card information</li>
+                              </ul>
+                          </section>
+                          <section class="timeline-item">
+                              <ul>
+                                  <li>Pay later in 4 installments. The first payment is taken when the order is processed and the remaining 3 are automatically taken every two weeks.</li>
+                              </ul>
+                          </section>
+                      </section>
+                  </div>
+              </div>
+          </section>
+          <section class="legal">
+              <p>
+                  Please note that a higher initial payment may be required for some purchases. More information in the Pay later in 4 installments <a href="https://cdn.klarna.com/1.0/shared/content/legal/terms/0/en_us/sliceitinx" target="_blank">terms</a>. For CA residents loans made or arranged pursuant to a California Finance Lenders Law license.
+              </p>
+          </section>
+          <footer>
+              <button onclick="klarnaModal()">Close</button>
+          </footer>
+      </div>
+  </div><span class="klarna-upstream-interstitial__overlay__content__close"><style>
+    button.cross {
+        width: 20px;
+        height: 20px;
+        margin-top: 12px;
+        margin-right: 5px;
+        background-image: url(//us-assets.klarnaservices.com/images/cross.svg);
+        background-color: transparent;
+        background-repeat: no-repeat;
+        border-color: transparent;
+        border-width: 0;
+    }
+  </style>
+
+  <button class="cross" onclick="klarnaModal()"></button></span></div></div></div>
+</div>
+
+<script>
+  function klarnaModal(){
+    let modal = document.getElementById('klarna-modal')
+    if(modal.style.display == 'none' || modal.style.display == ''){
+      let price = document.getElementById('klarna-price-modal')
+      modal.style.display = 'block';
+      price.innerHTML = document.getElementById('klarna-price-cart').innerHTML
+    } else {
+      modal.style.display = 'none';
+    }
+  }
+</script>
