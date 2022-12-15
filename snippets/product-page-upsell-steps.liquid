@@ -25,14 +25,14 @@
       <div class='my-slide-body'>
         <div class="my-slide-selection">
           <p>FABRIC</p>
-          <div class="my-slide-buttons">
+          <div class="product-options-grid">
             <div class="variant-input-wrap">
               <input id='my-slide-opt1'>
-              <label for='my-slide-opt1' class="variant__button-label">opt 1</label>
+              <label for='my-slide-opt1' class="variant__button-label">BAMBOO VISCOSE</label>
             </div>
             <div class="variant-input-wrap">
               <input id='my-slide-opt2'>
-              <label for='my-slide-opt2' class="variant__button-label">opt 2</label>
+              <label for='my-slide-opt2' class="variant__button-label">37.5® TECHNOLOGY </label>
             </div>
           </div>
         </div>
@@ -47,13 +47,16 @@
       <div class='my-slide-body'>
         <div class="my-slide-selection">
           <p>SIZE</p>
-          <div class="my-slide-buttons">
-            <input id='my-slide-opt1'>
-            <label for='my-slide-opt1' class="variant__button-label">opt 1</label>
-            <input id='my-slide-opt2'>
-            <label for='my-slide-opt2' class="variant__button-label">opt 2</label>
+          <div class="product-options-grid">
+            <div class="variant-input-wrap">
+              <input id='my-slide-opt1'>
+              <label for='my-slide-opt1' class="variant__button-label">FULL/QUEEN</label>
+            </div>
+            <div class="variant-input-wrap">
+              <input id='my-slide-opt2'>
+              <label for='my-slide-opt2' class="variant__button-label">KING /CAL KING </label>
+            </div>
           </div>
-        </div>
         <div class='my-slide-navlinks'>
           <a class="slide-link" data-slidenum="2" href="">< BACK</a>
           <a class="slide-link" data-slidenum="4" href="">SELECT COLOR ></a>
@@ -65,7 +68,7 @@
       <div class='my-slide-body'>
         <div class="my-slide-selection">
           <p>COLOR</p>
-          <div class="my-slide-buttons">
+          <div class="product-options-grid">
             <input id='my-slide-opt1'>
             <label for='my-slide-opt1' class="variant__button-label">opt 1</label>
             <input id='my-slide-opt2'>
@@ -145,6 +148,23 @@
     left: 40%;
     justify-content: space-around;
   }
+  .product-options-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;    
+    grid-gap: 20px;
+  }
+  .product-options-grid .variant-input-wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+  }
+  .product-options-grid .variant-input-wrap label{
+    padding: 10px 15px;
+    font-size: 9.1px;
+    font-weight: 600;
+    width: 120px;
+  }
   .first-line {
     display: flex;
   }
@@ -185,5 +205,10 @@
   }
   .custom-upsell-x-btn {
     float: right;
+  }
+
+  .variant-input-wrap input:hover+label:not(.collection-size-guide-label){
+    color: white;
+    background-color: #999999;
   }
 </style>
