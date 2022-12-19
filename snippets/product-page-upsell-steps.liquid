@@ -1,20 +1,22 @@
-<div id="carousel-upsell">
-  <button type="button" class="custom-upsell-x-btn">
+<div id="carousel-upsell" data-value="40040987623485" data-checked="true">
+  <button type="button" class="custom-upsell-x-btn" style="display:none;">
     <svg aria-hidden="true" focusable="false" role="presentation" class="white-x-close" viewBox="0 0 64 64"><path class="white-x-close-path" d="M19 17.61l27.12 27.13m0-27.12L19 44.74"></path></svg>
     <span class="icon__fallback-text">Close</span>
   </button>
   <div class="first-line">
     <div id="blanket-cover-upsell-checkbox">
-      <img id="blanket-cover-upsell-check" src="//cdn.shopify.com/s/files/1/0026/5178/3237/t/106/assets/white-check-mark.png?v=38606035714254630441670254408" width="15" height="13" style="display: flex;">
+      <img id="blanket-cover-upsell-check" src="//cdn.shopify.com/s/files/1/0026/5178/3237/t/106/assets/white-check-mark.png?v=38606035714254630441670254408" width="15" height="13" style="display: none;">
     </div>
     <p>ADD A DUVET COVER <span class="and-save-span">& SAVE</span> <span></span></p>
 
   </div>
-  <div  id='slide-div'>
+  <div  id='slide-div' style="display:none;">
     <div class='my-slide' data-slide="1">
       <img src='https://cdn.shopify.com/s/files/1/0026/5178/3237/products/WhiteBDV_768x.png?v=1667322220'>
       <div class='my-slide-body'>
-        <p>Protect your comforter while adding style & softness with one of our premium Duvet Covers. With 2x the cover ties to prefecnt shifting & bunching pluse an envelope button closure for a clean, finished look.</p>
+        <div class="my-slide-top">
+          <p>Protect your comforter while adding style & softness with one of our premium Duvet Covers. With 2x the cover ties to prefecnt shifting & bunching pluse an envelope button closure for a clean, finished look.</p>
+        </div>
         <div class='my-slide-navlinks' style="justify-content:right;">
           <a class="slide-link" data-slidenum="2" href="">SELECT FABRIC ></a>
         </div>
@@ -23,16 +25,16 @@
     <div class='my-slide' data-slide="2">
       <img src='https://cdn.shopify.com/s/files/1/0026/5178/3237/products/WhiteBDV_768x.png?v=1667322220'>
       <div class='my-slide-body'>
-        <div class="my-slide-selection">
-          <p>FABRIC</p>
-          <div class="product-options-grid">
-            <div class="variant-input-wrap">
-              <input id='my-slide-opt1'>
-              <label for='my-slide-opt1' class="variant__button-label">BAMBOO VISCOSE</label>
+        <div class="my-slide-top">
+          <p>FABRIC<span>100% Viscose from Bamboo</span></p>
+          <div class="my-slide-buttons">
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-fabric" id='my-slide-fabric-opt1' checked>
+              <label for='my-slide-fabric-opt1' data-msg="100% Viscose from Bamboo" class="slide-opt-btn">BAMBOO VISCOSE</label>
             </div>
-            <div class="variant-input-wrap">
-              <input id='my-slide-opt2'>
-              <label for='my-slide-opt2' class="variant__button-label">37.5® TECHNOLOGY </label>
+            <div class="opt-input-wrap">
+              <input  type="radio" name="upsell-fabric" id='my-slide-fabric-opt2'>
+              <label for='my-slide-fabric-opt2' data-message="37.5 TECHNOLOGY" class="slide-opt-btn">37.5 TECHNOLOGY</label>
             </div>
           </div>
         </div>
@@ -45,18 +47,19 @@
     <div class='my-slide' data-slide="3">
       <img src='https://cdn.shopify.com/s/files/1/0026/5178/3237/products/WhiteBDV_768x.png?v=1667322220'>
       <div class='my-slide-body'>
-        <div class="my-slide-selection">
+        <div class="my-slide-top">
           <p>SIZE</p>
-          <div class="product-options-grid">
-            <div class="variant-input-wrap">
-              <input id='my-slide-opt1'>
-              <label for='my-slide-opt1' class="variant__button-label">FULL/QUEEN</label>
+          <div class="my-slide-buttons">
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-size" id='my-slide-size-opt-1' checked>
+              <label for='my-slide-size-opt-1' class="slide-opt-btn">FULL/QUEEN</label>
             </div>
-            <div class="variant-input-wrap">
-              <input id='my-slide-opt2'>
-              <label for='my-slide-opt2' class="variant__button-label">KING /CAL KING </label>
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-size" id='my-slide-size-opt2'>
+              <label for='my-slide-size-opt2' class="slide-opt-btn">KING/CAL</label>
             </div>
           </div>
+        </div>
         <div class='my-slide-navlinks'>
           <a class="slide-link" data-slidenum="2" href="">< BACK</a>
           <a class="slide-link" data-slidenum="4" href="">SELECT COLOR ></a>
@@ -66,13 +69,29 @@
     <div class='my-slide' data-slide="4">
       <img src='https://cdn.shopify.com/s/files/1/0026/5178/3237/products/WhiteBDV_768x.png?v=1667322220'>
       <div class='my-slide-body'>
-        <div class="my-slide-selection">
+        <div class="my-slide-top">
           <p>COLOR</p>
-          <div class="product-options-grid">
-            <input id='my-slide-opt1'>
-            <label for='my-slide-opt1' class="variant__button-label">opt 1</label>
-            <input id='my-slide-opt2'>
-            <label for='my-slide-opt2' class="variant__button-label">opt 2</label>
+          <div class="my-slide-buttons swatch-slide-buttons">
+            <div class="opt-input-wrap">
+              <input checked type="radio" name="upsell-color" id='my-slide-color-opt-1' checked>
+              <label for='my-slide-color-opt-1' class="slide-opt-btn slide-swatch" style="background-image: url('//cdn.shopify.com/s/files/1/0026/5178/3237/t/104/assets/White_120x.png?v=157934115595128859331669043175');"></label>
+            </div>
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-color" id='my-slide-color-opt2'>
+              <label for='my-slide-color-opt2' class="slide-opt-btn slide-swatch" style="background-image: url('//cdn.shopify.com/s/files/1/0026/5178/3237/t/104/assets/Ivory_120x.png?v=55990294007130769771669042942');"></label>
+            </div>
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-color" id='my-slide-color-opt3'>
+              <label for='my-slide-color-opt3' class="slide-opt-btn slide-swatch" style="background-image: url('//cdn.shopify.com/s/files/1/0026/5178/3237/t/104/assets/Terracotta_120x.png?v=125237573686121632821669043142');"></label>
+            </div>
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-color" id='my-slide-color-opt4'>
+              <label for='my-slide-color-opt4' class="slide-opt-btn slide-swatch" style="background-image: url('//cdn.shopify.com/s/files/1/0026/5178/3237/t/104/assets/Stone_120x.png?v=87447747276863013891669043137');"></label>
+            </div>
+            <div class="opt-input-wrap">
+              <input type="radio" name="upsell-color" id='my-slide-color-opt5'>
+              <label for='my-slide-color-opt5' class="slide-opt-btn slide-swatch" style="background-image: url('//cdn.shopify.com/s/files/1/0026/5178/3237/t/104/assets/Charcoal_120x.png?v=157763158347161408971669042821');"></label>
+            </div>
           </div>
         </div>
         <div class='my-slide-navlinks'>
@@ -82,22 +101,24 @@
       </div>
     </div> 
   </div>
-  <div id="my-slide-buttons">
-    <div style="background:white;" class="slide-button" data-slidenum="1"></div>
-    <div class="slide-button" data-slidenum="2"></div>
-    <div class="slide-button" data-slidenum="3"></div>
-    <div class="slide-button" data-slidenum="4"></div>
-  </div>
 </div>
-
+<div id="choose-slide-buttons">
+  <div style="background:white;" class="slide-button" data-slidenum="1"></div>
+  <div class="slide-button" data-slidenum="2"></div>
+  <div class="slide-button" data-slidenum="3"></div>
+  <div class="slide-button" data-slidenum="4"></div>
+</div>
 <script>
-  document.querySelector(".my-slide").style.display = 'flex'
+  const checkbox = document.getElementById('blanket-cover-upsell-check')
+  const upsellSubmit = document.querySelector('.slide-submit')
+
+  document.querySelector(".my-slide").style.display = 'grid'
   document.querySelectorAll(".slide-button, .slide-link").forEach(function(el){
     el.addEventListener('click', function(ev){
       ev.preventDefault()
       document.querySelectorAll('.my-slide').forEach(function(slide){
         if (slide.dataset.slide == el.dataset.slidenum){
-          slide.style.display = 'flex'
+          slide.style.display = 'grid'
           document.querySelector(`.slide-button[data-slidenum="${slide.dataset.slide}"]`).style.background = 'white'
         } else {
           slide.style.display = 'none'
@@ -107,10 +128,85 @@
       
     })
   })
+
+  function createCustomCartButton(){
+    let custom = document.createElement('div');
+    custom.setAttribute("class", "btn btn--full add-to-cart btn--upsell-extra justify-center")
+    return custom;
+  }
+  
+  function setCustomCartButtonFrom(originalButton){
+    let custom = createCustomCartButton()
+    
+    custom.innerText = originalButton.innerText;
+    
+    let paymentsButtons = document.querySelector('.payment-buttons');
+
+    document.querySelector(".product-single__form.product-form-flex").insertBefore(custom, originalButton); 
+      
+    originalButton.style.display = 'none';
+    
+    return custom;
+  }
+
+  window.addEventListener('load', (event) => {
+    let blanketUpsellContainer = document.getElementById('carousel-upsell')
+    //shouldDisplayUpsell()
+    const slideDiv = document.getElementById('slide-div')
+    const closeBtn = document.querySelector('.custom-upsell-x-btn')
+    blanketUpsellContainer.addEventListener("click", function(ev){
+      if (slideDiv.style.display == 'none'){
+        slideDiv.style.display = 'flex'
+        closeBtn.style.display = 'block'
+      } else {
+      
+      }
+    })
+    closeBtn.addEventListener('click', function(ev){
+      setTimeout(function(){
+        slideDiv.style.display = 'none'
+        closeBtn.style.display = 'none'
+      },300)
+    })
+
+    upsellSubmit.addEventListener('click', function(ev){
+      ev.preventDefault()
+      setTimeout(function(){
+        checkbox.style.display = 'flex'
+        slideDiv.style.display = 'none'
+        closeBtn.style.display = 'none'
+      },300)
+  
+    })
+
+    let productForm = document.getElementById({{ id | json }});
+    let addToCartButton = productForm.querySelector('.add-to-cart');
+    
+    let customCartButton = setCustomCartButtonFrom(addToCartButton)
+    
+    customCartButton.addEventListener('click', function(){
+      console.log('custom')
+      if(true || blanketUpsellContainer.dataset.checked === 'true'){
+        let idUpsell = blanketUpsellContainer.dataset.value;
+        //let idUpsell = document.getElementById('blanket-cover-upsell-variant').value;
+//         let qtyUpsell = document.getElementById('blanket-cover-upsell-variant-quantity').value;
+        let qtyUpsell = 1
+
+        
+        let formData = {'items': [{ 'id': idUpsell,'quantity': qtyUpsell }]};
+
+        theme.cart.addItemFromForm(formData).then( r => { addToCartButton.click() })
+        
+      } else {
+        addToCartButton.click()
+      }
+  	})
+    //setCustomOptions("blanket-cover-upsell-custom-select-qty", "blanket-cover-upsell-variant-quantity")
+    
+  })
 </script>
 <style>
   #carousel-upsell {
-    height: 200px;
     border: grey 1px solid;
   }
   .and-save-span {
@@ -126,6 +222,7 @@
     width: 100%;
     display: none;
     height: 164px;
+    grid-template-columns: 3fr 4fr;
   }
   .my-slide img {
     height: 65%;
@@ -135,35 +232,17 @@
     height: 65%;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     font-family: Work Sans,sans-serif;
     font-weight: 400;
     line-height: 1.2;
-    font-size: 11.5px;
+    font-size: 10px;
   }
-  #my-slide-buttons {
-    position: relative;
+  #choose-slide-buttons {
+    width: 100%;
     display: flex;
-    width: 90px;
-    height: 15px;
-    left: 40%;
-    justify-content: space-around;
-  }
-  .product-options-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr;    
-    grid-gap: 20px;
-  }
-  .product-options-grid .variant-input-wrap{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: fit-content;
-  }
-  .product-options-grid .variant-input-wrap label{
-    padding: 10px 15px;
-    font-size: 9.1px;
-    font-weight: 600;
-    width: 120px;
+    justify-content: center;
+    margin-top: 10px;
   }
   .first-line {
     display: flex;
@@ -178,6 +257,7 @@
     width: 18px;
     background: grey;
     cursor: pointer;
+    margin: 0 1px;
   }
   .slide-button:hover {
     background: white;
@@ -206,9 +286,43 @@
   .custom-upsell-x-btn {
     float: right;
   }
-
-  .variant-input-wrap input:hover+label:not(.collection-size-guide-label){
-    color: white;
-    background-color: #999999;
+  .opt-input-wrap input {
+    display: none;
   }
+  .opt-input-wrap input+label {
+    background: black;
+    color: white;
+    border: 1px solid white;
+    padding: 0.3em;
+    text-align: center;
+  }
+  .opt-input-wrap input:checked+label {
+    background: grey;
+    border: 1px solid grey;
+  }
+  .my-slide-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 4px;
+  }
+  .my-slide-buttons.swatch-slide-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  .my-slide-buttons.swatch-slide-buttons .opt-input-wrap {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+  }
+  .my-slide-buttons.swatch-slide-buttons .opt-input-wrap .slide-opt-btn.slide-swatch {
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+  }
+  .my-slide-buttons.swatch-slide-buttons .opt-input-wrap input:checked+label.slide-opt-btn.slide-swatch {
+    border: 1px solid white;
+  }
+  
 </style>
